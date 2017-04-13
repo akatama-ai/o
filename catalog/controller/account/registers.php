@@ -319,7 +319,7 @@ class ControllerAccountRegisters extends Controller {
 				   <tbody>
 				      <tr>
 				        <td>
-				          <div style="text-align:center" class="ajs-header"><img  src="'.HTTPS_SERVER.'catalog/view/theme/default/img/logo.png" alt="logo" style="margin: 0 auto; width:150px;"></div>
+				          <div style="text-align:center" class="ajs-header"><img  src="'.HTTPS_SERVER.'catalog/view/theme/default/img/logo.png" alt="logo" style="margin:0 auto;padding: 50px;width:150px;"></div>
 				        </td>
 				       </tr>
 				       <tr>
@@ -336,7 +336,7 @@ class ControllerAccountRegisters extends Controller {
 					       	<p style="font-size:14px;color: black;margin-left: 70px;">Password For Login: <b>'.$this-> request ->post['password'].'</b></p>
 					       	<p style="font-size:14px;color: black;margin-left: 70px;">Transaction Password: <b>'.$this-> request ->post['transaction_password'].'</b></p>
 					      				       						       	
-							<p>Best regards, <a href="'.HTTPS_SERVER.'">OdooClub team</a></p>
+							<p style=" margin-left: 70px; margin-top: 34px; display: block; width: 100%; ">Best regards, <a href="'.HTTPS_SERVER.'">OdooClub team</a></p>
 					          </div>
 				       </td>
 				       </tr>

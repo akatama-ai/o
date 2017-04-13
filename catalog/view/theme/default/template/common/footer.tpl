@@ -73,15 +73,22 @@ $('.js-textareacopybtn').click(function(event) {
 						console.log(result);
 						
 						var package = result.package / 100000000
-						
-						var xhtml = '<div class="col-md-12">Please send '+package+' BTC to this address.</div><div class="col-md-6"><img style="margin-left:0px" src="https://chart.googleapis.com/chart?chs=225x225&chld=L|0&cht=qr&chl=bitcoin:'+result.input_address+'?amount='+package+'"/><p>'+result.input_address+'</p></div><div class="col-md-6"><p>Your Packet: '+package+' BTC</p>Total: '+ package +' BTC</p></div>'
-						alertify.alert(xhtml, function(){
+						if(_.has(result, 'btn') && result['btn'] === 1){
+              var html = '<button id="payment_o" class="btn btn-info">Pay with O Wallet</button>';
+            }else{
+              var html ='';
+            }  
+						var xhtml = '<div class="col-md-12">Please send '+package+' BTC to this address.</div><div class="col-md-6"><img style="margin-left:0px" src="https://chart.googleapis.com/chart?chs=225x225&chld=L|0&cht=qr&chl=bitcoin:'+result.input_address+'?amount='+package+'"/><p>'+result.input_address+'</p></div><div class="col-md-6"><p>Your Packet: '+package+' BTC</p>Total: '+ package +' BTC</p> <p><code><h4>O Wallet: '+result.o_wallet+' BTC</h4></code></p><p>'+html+'</p></div>';
+						alertify.alert(xhtml, function(){                
+
 						    window.funLazyLoad.reset();
 						    
 							    location.reload(true);
 						    
 						  });
-
+             $('#payment_o').click(function(){
+                  alert('123');
+            })
 						function checkBalance() {
                             $.ajax({
                                 type: "GET",
@@ -109,7 +116,7 @@ $('.js-textareacopybtn').click(function(event) {
 						
 					}
 				});
-				check_payment();
+				// check_payment();
 			}, 200);
 		  },
 		  function(){
@@ -131,18 +138,28 @@ $('.js-textareacopybtn').click(function(event) {
 						var xhtml = '<div class="col-md-12 text-center"><h3>You have to activate this package! please select another package!</h3></div>'
 					}else{
 						var amount = result.amount / 100000000;
-						
+						if(_.has(result, 'btn') && result['btn'] === 1){
+              var html = '<button id="payment_o" class="btn btn-info">Pay with O Wallet</button>';
+            }else{
+              var html ='';
+            }  
 						var package = result.package / 100000000
 						var total = package;
 						var received = result.received / 100000000;
-						var xhtml = '<div class="col-md-12">Please send '+amount+' BTC to this address.</div><div class="col-md-6"><img style="margin-left:-10px" src="https://chart.googleapis.com/chart?chs=225x225&chld=L|0&cht=qr&chl=bitcoin:'+result.input_address+'?amount='+amount+'"/><p>'+result.input_address+'</p></div><div class="col-md-6"><p>Your Packet: '+package+' BTC</p><p>Total: '+ total +' BTC</p><p></p>Paid amount: '+received+' BTC</div>';
+						var xhtml = '<div class="col-md-12">Please send '+amount+' BTC to this address.</div><div class="col-md-6"><img style="margin-left:-10px" src="https://chart.googleapis.com/chart?chs=225x225&chld=L|0&cht=qr&chl=bitcoin:'+result.input_address+'?amount='+amount+'"/><p>'+result.input_address+'</p></div><div class="col-md-6"><p>Your Packet: '+package+' BTC</p><p>Total: '+ total +' BTC</p><p></p>Paid amount: '+received+' BTC <p><code><h4>O Wallet: '+result.o_wallet+' BTC</h4></code></p><p>'+html+'</p></div>';
 						}
 					
 					alertify.alert(xhtml, function(){
+               $('#payment_o').click(function(){
+                  alert('123');
+                 })
+
 							window.funLazyLoad.reset();
 					    	location.reload(true);
 					 });
-
+            $('#payment_o').click(function(){
+                  alert('123');
+            })
 					function checkBalance() {
                             $.ajax({
                                 type: "GET",
@@ -157,9 +174,9 @@ $('.js-textareacopybtn').click(function(event) {
                                     if (value > 0) {
                                         var xhtml = '<div class="col-md-12 text-center"><h3>Payment success!</h3></div>';
                                         alertify.alert(xhtml, function(){
-												window.funLazyLoad.reset();
-										    	location.reload(true);
-										 });
+                									 		 	window.funLazyLoad.reset();
+                										    	location.reload(true);
+                										 });  
                                     } else {
                                         setTimeout(checkBalance, 5000);
                                     }

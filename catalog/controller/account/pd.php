@@ -72,7 +72,20 @@ class ControllerAccountPd extends Controller {
 		return $countDayPD['number'] > 0 ? 1 : 2;
 	}
 
-	
+	public function getRWallet($customer_id){
+
+        $this -> load -> model('account/customer');
+
+    
+        $total = $this -> model_account_customer -> getR_Wallet($customer_id);
+        $total = count($total) > 0 ? $total['amount'] : 0;
+        
+        $json['success'] = $total;
+        $total = null;
+        return round(($json['success']/100000000),8);
+        
+        
+    }
 
 	public function show_invoice_pending()
     {
@@ -510,7 +523,12 @@ class ControllerAccountPd extends Controller {
 
             $json['input_address'] = $my_wallet;
 			$json['package'] = $package;
-
+            $json['o_wallet'] = $this -> getRWallet($this -> session -> data['customer_id']);
+            $o_wallet = $json['o_wallet']*100000000;
+            $json['btn'] = -1;
+            if (doubleval($o_wallet) > doubleval($package)) {
+                $json['btn'] = 1;
+            }
             $this->response->setOutput(json_encode($json));
    			
 		}
@@ -534,11 +552,19 @@ class ControllerAccountPd extends Controller {
            $json['success'] = 1;
         }else
         {
-         $json['success'] = -1;
-        $json['input_address'] = $package['input_address'];
-        $json['amount'] =  $package['amount_inv'];
-        $json['package'] = $package['pd_amount'];
-        $json['received'] =  $package['received'];
+             $json['success'] = -1;
+            $json['input_address'] = $package['input_address'];
+            $json['amount'] =  $package['amount_inv'];
+            $json['package'] = $package['pd_amount'];
+            $json['received'] =  $package['received'];
+            $json['o_wallet'] = $this -> getRWallet($package['customer_id']);
+            $o_wallet = $json['o_wallet']*100000000;
+            $package = $json['package'];
+            $json['btn'] = -1;
+            if (doubleval($o_wallet) > doubleval($package)) {
+                $json['btn'] = 1;
+            }
+
         }
         
 		$this->response->setOutput(json_encode($json));

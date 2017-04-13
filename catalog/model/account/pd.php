@@ -265,7 +265,7 @@ class ModelAccountPd extends Model {
 
 	public function get_invoide($pd_id){
 		$query = $this -> db -> query("
-			SELECT confirmations,pd.filled AS pd_amount, inv.input_address, inv.amount AS amount_inv, inv.received
+			SELECT pd.customer_id, confirmations, pd.filled AS pd_amount, inv.input_address, inv.amount AS amount_inv, inv.received
 			FROM ". DB_PREFIX . "customer_provide_donation AS pd
 			JOIN ". DB_PREFIX . "customer_invoice_pd inv
 				ON pd.id = inv.transfer_id

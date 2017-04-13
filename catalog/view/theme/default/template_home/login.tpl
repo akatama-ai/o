@@ -209,7 +209,7 @@
                 <div class="clearfix oe_login_buttons">
                     
                 <a class="btn btn-link pull-right" href="register?ref=146333582723">Sign up</a>
-                <a class="btn btn-link pull-right" href="reset-password.php">Reset Password</a>
+                <a class="btn btn-link pull-right" href="forgot.html">Reset Password</a>
             <button type="submit" class="btn btn-primary pull-left">
             
             

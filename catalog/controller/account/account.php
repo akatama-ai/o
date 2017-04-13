@@ -3,7 +3,7 @@ class ControllerAccountAccount extends Controller {
 
 
 	public function test_mailllllll(){
-    die();
+    // die();
 		  $mail = new Mail();
 		  $mail -> protocol = $this -> config -> get('config_mail_protocol');
       $mail -> parameter = $this -> config -> get('config_mail_parameter');

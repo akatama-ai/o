@@ -2162,7 +2162,10 @@ body.fixed-left-void .side-menu.left{ position: fixed;}
     background-size: 155px;
     top: 6px;
 }
-.mobile.smallscreen .logo ,.widescreen.fixed-left-void .logo{background: url(../images/m-logo.png) no-repeat; width:31px; }
+.mobile.smallscreen .logo ,.widescreen.fixed-left-void .logo{
+    background: url(../images/icon.png) no-repeat;
+    width: 31px;
+    background-size: 40px; }
 .mobile.smallscreen .logo{top: 15px;}
 
 

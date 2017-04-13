@@ -26,7 +26,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
                 <title>Contact us | Odoo</title>
-                <link type="image/x-icon" rel="shortcut icon" href="http://odoocdn.com/web/image/website/1/favicon/"/>
+                <link type="image/x-icon" rel="shortcut icon" href="catalog/view/theme/default/assets/images/icon.png"/>
 
                 <script type="text/javascript">
                     var odoo = {

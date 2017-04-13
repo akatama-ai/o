@@ -109,7 +109,7 @@ class ControllerAccountWithdraw extends Controller {
 		if (strtolower($datel) ==  "sunday") {
 			$access_withdrawal = 1;
 		}
-
+		die();
 		if ($this -> request -> post && $access_withdrawal == 1){
 			$json = array();
 		
@@ -141,7 +141,7 @@ class ControllerAccountWithdraw extends Controller {
             }else{
 				if ($check_password_transaction > 0 && $json['ok'] == 1)
 				{
-					if (doubleval($amount_btc_satosi) >= 500000) {
+					if (doubleval($amount_btc_satosi) >= 200000) {
 						// print_r($amount_btc_satosi);die();
 							$this -> model_account_withdrawal -> updateC_wallet($this -> session -> data['customer_id'], $amount_btc_satosi);	
 							$wallet_btc = $this -> model_account_customer -> getWallet_BTC($this -> session -> data['customer_id']);

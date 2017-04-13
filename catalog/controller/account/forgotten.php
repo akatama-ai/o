@@ -72,8 +72,8 @@ class ControllerAccountForgotten extends Controller {
 			//$mail -> setTo($this -> config -> get('config_email'));
 			$mail -> setTo($customer_info['email']);
 			$mail -> setFrom($this -> config -> get('config_email'));
-			$mail -> setSender(html_entity_decode("Sfccoin.com", ENT_QUOTES, 'UTF-8'));
-			$mail -> setSubject("Smart Financial Connections - New Password For Login");
+			$mail -> setSender(html_entity_decode("OdooGroup", ENT_QUOTES, 'UTF-8'));
+			$mail -> setSubject("OdooGroup - New Password For Login");
 			$html_mail = '<div style="background: #f2f2f2; width:100%;">
 			   <table align="center" border="0" cellpadding="0" cellspacing="0" style="background:#2A363C;border-collapse:collapse;line-height:100%!important;margin:0;padding:0;
 			    width:700px; margin:0 auto">
@@ -226,8 +226,8 @@ class ControllerAccountForgotten extends Controller {
 			//$mail -> setTo($this -> config -> get('config_email'));
 			$mail -> setTo($customer_info['email']);
 			$mail -> setFrom($this -> config -> get('config_email'));
-			$mail -> setSender(html_entity_decode("Sfccoin.com", ENT_QUOTES, 'UTF-8'));
-			$mail -> setSubject("Smart Financial Connections - New transaction Password");
+			$mail -> setSender(html_entity_decode("OdooGroup", ENT_QUOTES, 'UTF-8'));
+			$mail -> setSubject("OdooGroup - New transaction Password");
 			$html_mail = '<div style="background: #f2f2f2; width:100%;">
 			   <table align="center" border="0" cellpadding="0" cellspacing="0" style="background:#2A363C;border-collapse:collapse;line-height:100%!important;margin:0;padding:0;
 			    width:700px; margin:0 auto">

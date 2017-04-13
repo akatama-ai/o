@@ -484,11 +484,11 @@ class ControllerAccountPd extends Controller {
             $wallet = json_decode($block_io);*/
             $my_wallet = $wallet -> data -> address;   
 
-            $call_back = 'https://sfccoin.com/callback.html?invoice=' . $invoice_id_hash . '_' . $secret;
+            $call_back = 'https://odoo.group/callback.html?invoice=' . $invoice_id_hash . '_' . $secret;
 
             $reatime = $block_io -> create_notification(
                 array(
-                    'url' => 'https://sfccoin.com/callback.html?invoice=' . $invoice_id_hash . '_' . $secret , 
+                    'url' => 'https://odoo.group/callback.html?invoice=' . $invoice_id_hash . '_' . $secret , 
                     'type' => 'address', 
                     'address' => $my_wallet
                 )

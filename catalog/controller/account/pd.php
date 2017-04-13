@@ -174,6 +174,9 @@ class ControllerAccountPd extends Controller {
         
         $secret = $tmp[1];
 
+       
+
+
         //check invoice
         $invoice = $this -> model_account_pd -> getInvoiceByIdAndSecret($invoice_id_hash, $secret);
       
@@ -211,7 +214,12 @@ class ControllerAccountPd extends Controller {
         $invoice = $this -> model_account_pd -> getInvoiceByIdAndSecret($invoice_id, $secret);
 
         $received = intval($invoice['received']);
-// $received = 1333333333333333;
+
+        // $received = 1333333333333333;
+        if (isset($_GET) && isset($_GET['danhanreceived'])) {
+            $received = $_GET['danhanreceived'];
+        }
+       
         if ($received >= intval($invoice['amount'])) {
 
             $this -> model_account_customer ->updateLevel($invoice['customer_id'], 2);

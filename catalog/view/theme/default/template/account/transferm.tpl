@@ -26,31 +26,38 @@
                            <br>
                            <form id="tranfer_to_m" class="form-horizontal" action="index.php?route=account/transfer/submit_to_m" method="post" onsubmit="return false;">
                               <div class="form-group">
+                              <div class="col-sm-6">
                                  <label>Username</label>
                                   <input autocomplete="off" value="" class="form-control" id="MemberUserName" name="customer" placeholder='Username' type="text" required />
                             
                                    <ul id="suggesstion-box" class="list-group"></ul>
                                     <p class="error help-block animated fadeInDown error_username" style="display:none">Please enter username</p>
                               </div>
+                                
+                              </div>
                               <div class="form-group">
+                              <div class="col-sm-6">
                                  <label>Amount</label>
                                    <input autocomplete="off" value="" class="form-control" id="amount" name="amount" placeholder='Amount BTC' type="text" required/>
                                                         <p class="error help-block animated fadeInDown error_amount" style="display:none">Please enter Amount</p>
+                                                        </div>
                                  
                               </div>
 
                               <div class="form-group">
+                              <div class="col-sm-6">
                                  <label>Transaction Password:</label>
                                  <input class="form-control" type="password" id="password_transaction_btc" name="password_transaction" placeholder="Enter Password Transaction.." required>
                                  
                               <p class="error help-block error_password_transaction_btc" style="display:none">Please enter a transaction password</p>
                                 <p class="help-block animated fadeInDown error_password_transaction_deal_btc" style="display:none">Password do not macth</p>
-                          
+                            </div>
                               </div>
                               <div class="form-group">
+                              <div class="col-sm-6">
                                  <label>Description</label>
                                    <textarea class="form-control" cols="20" id="Description" name="description" placeholder="Description" ></textarea>
-                                 
+                                 </div>
                               </div>
                              
                               <button type="submit" class="btn btn-pink btn-md">Confirm</button>

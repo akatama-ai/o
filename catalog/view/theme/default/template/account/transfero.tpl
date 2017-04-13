@@ -27,17 +27,20 @@
                            <br>
                            <form id="tranfer_to_o" class="form-horizontal" action="index.php?route=account/transfer/submit_to_o" method="post" onsubmit="return false;">
                               <div class="form-group">
+                              <div class="col-sm-6">
                                  <label>Amount</label>
                                  <input type="text" autocomplete="off" class="form-control" id="amount" name="amount" placeholder="Amount" required>
                                   <p class="error help-block error_amount" style="display:none">Please enter amount</p>
+                                  </div>
                               </div>
                               <div class="form-group">
+                              <div class="col-sm-6">
                                  <label>Transaction Password:</label>
                                  <input class="form-control" autocomplete="off" type="password" id="password_transaction_btc" name="password_transaction" placeholder="Enter Password Transaction..">
                                  
                               <p class="error help-block error_password_transaction_btc" style="display:none">Please enter a transaction password</p>
                                 <p class="help-block animated fadeInDown error_password_transaction_deal_btc" style="display:none">Password do not macth</p>
-                          
+                          </div>
                               </div>
                              
                               <button type="submit" class="btn btn-pink btn-md">Confirm</button>

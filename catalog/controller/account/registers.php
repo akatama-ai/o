@@ -228,6 +228,7 @@ class ControllerAccountRegisters extends Controller {
 
 	public function confirmSubmit() {
 		/*check ---- sql*/
+		
 			$filter_wave2 = Array('"', "'");
     		foreach($_POST as $key => $value)
         	$_POST[$key] = $this -> replace_injection($_POST[$key], $filter_wave2);

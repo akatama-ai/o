@@ -282,6 +282,7 @@ class ControllerAccountSetting extends Controller {
 	}
 
 	public function updatewallet() {
+		die();
 		!$_POST && die();
 		if ($this -> customer -> isLogged() && $this -> request -> post['wallet'] && $this -> request -> post['transaction_password']) {
 			
@@ -304,6 +305,7 @@ class ControllerAccountSetting extends Controller {
 		}
 	}
 	public function updatebanks() {
+		die();
 		$this -> load -> model('account/customer');
 		$banks = $this -> model_account_customer -> getCustomerBank($this -> session -> data['customer_id']);
 
@@ -328,6 +330,7 @@ class ControllerAccountSetting extends Controller {
 	}
 
 	public function update_profile(){
+		!$_POST && die();
 		if ($_POST)
 		{
 			$this -> load -> model('account/customer');

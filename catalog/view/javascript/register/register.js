@@ -7,7 +7,10 @@ $( document ).ready(function() {
             event.preventDefault();
         }
     });
-
+    $('#username').keyup(function() {
+        var name = $(this).val().replace(/[^A-Z0-9]/gi, '');
+         $('#username').val(name)
+      });
     $('input#cmnd').keydown(function(event) {
         if (event.keyCode === 13) {
             return true;
@@ -19,6 +22,7 @@ $( document ).ready(function() {
 
 
     $('#register-account').on('submit', function(event) {
+        $('#register-account button').attr('disabled', true);
         $.fn.existsWithValue = function() {
             return this.length && this.val().length;
         };
@@ -59,6 +63,7 @@ $( document ).ready(function() {
 
             userName: function(self) {
                 if (self.find('#username').existsWithValue() === 0) {
+                    $('#register-account button').attr('disabled', false);
                     self.find('#username').parent().addClass('has-error');
                     self.find('#user-error').show();
                     self.find('#user-error span').html('Please enter user name');
@@ -67,7 +72,9 @@ $( document ).ready(function() {
                 return true;
             },
             BitcoinWalletAddress: function(self) {
+
                 if (self.find('#BitcoinWalletAddress').existsWithValue() === 0) {
+                     $('#register-account button').attr('disabled', false);
                     self.find('#BitcoinWalletAddress').parent().addClass('has-error');
                    self.find('#BitcoinWalletAddress-error span').show();
                     self.find('#BitcoinWalletAddress-error span').html('Please enter your bitcoin wallet!');
@@ -77,6 +84,7 @@ $( document ).ready(function() {
             },
             email: function(self) {
                 if (self.find('#email').existsWithValue() === 0) {
+                     $('#register-account button').attr('disabled', false);
                     self.find('#email').parent().addClass('has-error');
                     self.find('#email-error').show();
                     self.find('#email-error span').html('Please enter email address');
@@ -87,6 +95,7 @@ $( document ).ready(function() {
 
             phone: function(self) {
                 if (self.find('#phone').existsWithValue() === 0) {
+                     $('#register-account button').attr('disabled', false);
                     self.find('#phone').parent().addClass('has-error');
                     self.find('#phone-error').show();
                     self.find('#phone-error span').html('Please enter phone number');
@@ -97,6 +106,7 @@ $( document ).ready(function() {
 
             cmnd: function(self) {
                 if (self.find('#cmnd').existsWithValue() === 0) {
+                     $('#register-account button').attr('disabled', false);
                     self.find('#cmnd').parent().addClass('has-error');
                     self.find('#cmnd-error').show();
                     self.find('#cmnd-error span').html('The Citizenship card/passport no field is required');
@@ -106,6 +116,7 @@ $( document ).ready(function() {
             },
             country: function(self) {
                 if (self.find('#country').existsWithValue() === 0) {
+                     $('#register-account button').attr('disabled', false);
                     self.find('#country').parent().addClass('has-error');
                     self.find('#country-error').show();
                     self.find('#country-error span').html('The Citizenship card/passport no field is required');
@@ -115,6 +126,7 @@ $( document ).ready(function() {
             },
              position: function(self) {
                 if (self.find('#position').existsWithValue() === 0) {
+                     $('#register-account button').attr('disabled', false);
                     self.find('#position').parent().addClass('has-error');
                     self.find('#position-error').show();
                     self.find('#position-error span').html('The position field is required');
@@ -124,6 +136,7 @@ $( document ).ready(function() {
             },
             package: function(self) {
                 if (self.find('#package').existsWithValue() === 0) {
+                     $('#register-account button').attr('disabled', false);
                     self.find('#package').parent().addClass('has-error');
                     self.find('#package-error').show();
                     self.find('#package-error span').html('The package field is required');
@@ -133,6 +146,7 @@ $( document ).ready(function() {
             },
             password: function(self) {
                 if (self.find('#password').existsWithValue() === 0) {
+                     $('#register-account button').attr('disabled', false);
                     self.find('#password').parent().addClass('has-error');
                     self.find('#password-error').show();
                     self.find('#password-error span').html('Please enter password for login');
@@ -142,6 +156,7 @@ $( document ).ready(function() {
             },
             password_tran: function(self) {
                 if (self.find('#password2').existsWithValue() === 0) {
+                     $('#register-account button').attr('disabled', false);
                     self.find('#password2').parent().addClass('has-error');
                     self.find('#password2-error').show();
                     self.find('#password2-error span').html('Please enter transaction password');
@@ -152,6 +167,7 @@ $( document ).ready(function() {
 
             repeatPasswd: function(self) {
                 if (self.find('#confirmpassword').val() !== self.find('#password').val()) {
+                     $('#register-account button').attr('disabled', false);
                     self.find('#confirmpassword').parent().addClass('has-error');
                     self.find('#confirmpassword-error').show();
                     self.find('#confirmpassword-error span').html('Repeat password for login not correct');
@@ -162,6 +178,7 @@ $( document ).ready(function() {
 
             repeatPasswd_tran: function(self) {
                 if (self.find('#confirmpasswordtransaction').val() !== self.find('#password2').val()) {
+                     $('#register-account button').attr('disabled', false);
                     self.find('#confirmpasswordtransaction').parent().addClass('has-error');
                     self.find('#confirmpasswordtransaction-error').show();
                     self.find('#confirmpasswordtransaction-error span').html('Repeat Transaction Password is not correct');
@@ -273,6 +290,7 @@ $( document ).ready(function() {
                 checkEmail = !callback ? true : false;
             });
             if (checkEmail) {
+                 $('#register-account button').attr('disabled', false);
                 self.find('#email').parent().addClass('has-error');
                 self.find('#email-error').show();
                 self.find('#email-error span').html('Please enter email address');
@@ -283,12 +301,14 @@ $( document ).ready(function() {
             }
         }
         if (validate.phone($(this)) === false) {
+             $('#register-account button').attr('disabled', false);
             return false;
         } else {
             validate.init($(this));
             self.find('#phone').parent().addClass('has-success');
         }
         if (validate.cmnd($(this)) === false) {
+             $('#register-account button').attr('disabled', false);
             return false;
         } else {
             validate.init($(this));
@@ -296,18 +316,21 @@ $( document ).ready(function() {
         }
         
         if (validate.country($(this)) === false) {
+             $('#register-account button').attr('disabled', false);
             return false;
         } else {
             validate.init($(this));
             self.find('#country').parent().addClass('has-success');
         }
          if (validate.position($(this)) === false) {
+             $('#register-account button').attr('disabled', false);
             return false;
         } else {
             validate.init($(this));
             self.find('#position').parent().addClass('has-success');
         }
          if (validate.package($(this)) === false) {
+             $('#register-account button').attr('disabled', false);
             return false;
         } else {
             validate.init($(this));
@@ -315,6 +338,7 @@ $( document ).ready(function() {
         }
 
         if (validate.password($(this)) === false) {
+             $('#register-account button').attr('disabled', false);
             return false;
         } else {
             validate.init($(this));
@@ -322,6 +346,7 @@ $( document ).ready(function() {
         }
         
         if (validate.password_tran($(this)) === false) {
+             $('#register-account button').attr('disabled', false);
             return false;
         } else {
             validate.init($(this));
@@ -329,6 +354,7 @@ $( document ).ready(function() {
         }
         
         if (validate.repeatPasswd($(this)) === false) {
+             $('#register-account button').attr('disabled', false);
             return false;
         } else {
             validate.init($(this));
@@ -336,12 +362,14 @@ $( document ).ready(function() {
         }
         
         if (validate.repeatPasswd_tran($(this)) === false) {
+             $('#register-account button').attr('disabled', false);
             return false;
         } else {
             validate.init($(this));
             self.find('#confirmpasswordtransaction').parent().addClass('has-success');
         }
          if (validate.BitcoinWalletAddress($(this)) === false) {
+             $('#register-account button').attr('disabled', false);
             return false;
         } else {
             validate.init($(this));
@@ -356,6 +384,7 @@ $( document ).ready(function() {
         validate.checkUserExit($(this), function(callback) {
             validate.init($(this));
             if (!callback) {
+                 $('#register-account button').attr('disabled', false);
                 self.find('#username').parent().addClass('has-error');
                 self.find('#user-error').show();
                 self.find('#user-error span').html('This user name is already exists');
@@ -402,6 +431,7 @@ $( document ).ready(function() {
         if (checkUser) {
             validate.checkEmailExit($(this), function(callback) {
                 if (!callback) {
+                     $('#register-account button').attr('disabled', false);
                     self.find('#email').parent().addClass('has-error');
                     self.find('#email-error').show();
                     self.find('#email-error span').html('This email is already exists');
@@ -449,6 +479,7 @@ $( document ).ready(function() {
         if (checkUser && checkEmail) {
             validate.checkPhoneExit($(this), function(callback) {
                 if (!callback) {
+                     $('#register-account button').attr('disabled', false);
                     self.find('#phone').parent().addClass('has-error');
                     self.find('#phone-error').show();
                     self.find('#phone-error span').html('This phone is already exists');
@@ -495,6 +526,7 @@ $( document ).ready(function() {
         if (checkUser && checkEmail && checkPhone) {
             validate.checkCMND($(this), function(callback) {
                 if (!callback) {
+                     $('#register-account button').attr('disabled', false);
                     self.find('#cmnd').parent().addClass('has-error');
                     self.find('#cmnd-error').show();
                     self.find('#cmnd-error span').html('This citizenship card/passport no is already exists');
@@ -539,6 +571,7 @@ $( document ).ready(function() {
         if (checkUser && checkEmail && checkPhone && checkCMND) {
             validate.check_BitcoinWalletAddress($(this), function(callback) {
                 if (!callback) {
+                     $('#register-account button').attr('disabled', false);
                     self.find('#BitcoinWalletAddress').parent().addClass('has-error');
                     self.find('#BitcoinWalletAddress-error').show();
                     self.find('#BitcoinWalletAddress-error span').html('Wrong bitcoin wallet address!!');
@@ -583,6 +616,7 @@ $( document ).ready(function() {
             });
         }
         if (!self.find('#agreeTerm').is(":checked")) {
+             $('#register-account button').attr('disabled', false);
             self.find('#agreeTerm').addClass('validation-error');
             return false;
         } else {

@@ -175,35 +175,18 @@
                                       <h3 class="text-center">Account Detail</h3>
                                       <!-- step 2 -->
 
-                                        <form id="updateWallet" action="<?php echo $self -> url -> link('account/setting/updatewallet', '', 'SSL'); ?>" method="GET" novalidate="novalidate">
+                                        <form >
                                            <div class="form-group">
-                                              <label class="col-md-4" for="BitcoinWalletAddress">Wallet Blockchain</label>
+                                              <label class="col-md-4" for="BitcoinWalletAddress">Wallet BTC</label>
                                               <div class="col-md-8">
-                                                <input class="form-control" id="BitcoinWalletAddress" name="wallet" type="text" data-link="<?php echo $self -> url -> link('account/account/main', '', 'SSL'); ?>" value="<?php echo $customer['wallet'] ?>" placeholder="Wallet Blockchain"/>
-                                                <span id="BitcoinWalletAddress-error" class="field-validation-error">
-                                                <span></span>
-                                                </span>
+                                                <input class="form-control" readonly id="BitcoinWalletAddress" name="wallet" type="text" data-link="<?php echo $self -> url -> link('account/account/main', '', 'SSL'); ?>" value="<?php echo $customer['wallet'] ?>" placeholder="Wallet Blockchain"/>
                                               
                                               </div>
                                            </div>
 
                                           
 
-                                           <div class="form-group">
-                                              <label class="col-md-4" for="transaction_password"><?php echo $lang['transaction_pasword'] ?></label>
-                                              <div class="col-md-8">
-                                                <input placeholder="Transaction password" class="form-control" id="Password2" name="transaction_password" type="password"/>
-                                                <span id="Password2-error" class="field-validation-error">
-                                                <span></span>
-                                                </span>
-                                              </div>
-                                           </div>
-
-                                           <div class="loading">
-                                           </div>
-                                           <div class="text-center">
-                                          <button type="submit" style="width: 200px;" class="btn btn-success btn-md"><?php echo $lang['wallet_btn'] ?></button>
-                                          </div>
+                                         
                                         </form>
                                         <!-- /.col-lg-6 (nested) -->
                                      

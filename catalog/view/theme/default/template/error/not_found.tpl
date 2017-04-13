@@ -32,7 +32,7 @@
 
 <div id="error-wrapper" class="text-center"> 
 	<div class="container">
-		<a href="#"><img src="catalog/view/theme/default/assets/images/logo-2.png" class="img-responsive center-block" alt=""/></a>
+		<a href="#"><img src="catalog/view/theme/default/assets/images/logo.png" class="img-responsive center-block" alt="" style="width: 200px" /></a>
 		<p class="lead">The page you are looking for<br>could not be found</p>
 		<h2>404</h2>
 		<p>Please go to our <a href="home.html">homepage</a> or go back to <a href="#">previous page</a></p>

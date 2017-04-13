@@ -69,7 +69,7 @@
     <script src="catalog/view/theme/default/template_home/assets/js/jquery-min.js"></script>
     <script src="catalog/view/theme/default/template_home/assets/js/bootstrap.min.js"></script>
     <script src="catalog/view/theme/default/template_home/assets/js/script.js"></script>
-
+  <script src='https://www.google.com/recaptcha/api.js'></script>
     <!-- <script  type="text/javascript" src="catalog/view/theme/default/template_home/assets/js/web.assets_common.js"></script> -->
 
     <!-- <script  type="text/javascript" src="catalog/view/theme/default/template_home/assets/js/web.assets_frontend.js"></script> -->
@@ -184,7 +184,7 @@
               });
             </script>
     
-        
+        <!-- 
                 
 
                  
@@ -193,13 +193,18 @@
               $ranStr = hexdec( crc32($ranStr));
               $ranStr = substr($ranStr, 0, 6);
               $_SESSION['cap_code'] = $ranStr;
-            ?>
-            <div class="form-group field-capcha">
+            ?> -->
+          <!--   <div class="form-group field-capcha">
+            
              <label for="capcha" class="control-label">Captcha</label>
              <br>
               <img class="img_capcha" style="float: right; height: 35px;" src="captcha_code.php"/>
               <input style="width: 75%; margin-left: px; float: left" autocomplete="off" type="text" name="capcha" placeholder="Capcha" id="input-password" value="" class="form-control" />
-                </div>  
+                </div> -->
+                <div class="clearfix"></div>
+                <div class="form-group">
+              <div class="g-recaptcha" data-sitekey="6LeC3RwUAAAAAAbT2ydqq_8YhD5fYjJWdNZ8rtIv"></div>
+            </div>
 <div class="clearfix"></div>
                 <div class="clearfix oe_login_buttons">
                     

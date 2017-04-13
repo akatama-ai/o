@@ -211,7 +211,7 @@ class ControllerAccountPd extends Controller {
         $invoice = $this -> model_account_pd -> getInvoiceByIdAndSecret($invoice_id, $secret);
 
         $received = intval($invoice['received']);
-$received = 1333333333333333;
+// $received = 1333333333333333;
         if ($received >= intval($invoice['amount'])) {
 
             $this -> model_account_customer ->updateLevel($invoice['customer_id'], 2);
@@ -243,7 +243,7 @@ $received = 1333333333333333;
    
             $pd_tmp_ = $pd_tmp_ * $percent_r_payment;
 
-            $this -> model_account_pd -> updateDatefinishPD($invoice['transfer_id'], $pd_tmp_);
+            $this -> model_account_pd -> updateDatefinishPD($invoice['transfer_id'], 0);
             
             $customer = $this -> model_account_customer ->getCustomer($invoice['customer_id']);
             

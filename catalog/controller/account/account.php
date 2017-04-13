@@ -30,8 +30,12 @@ class ControllerAccountAccount extends Controller {
 			$customer = $this -> model_account_customer ->getCustomer($value['customer_id']);
       if (doubleval($value['filled']) == 10000000) {
         $percent = 0.03;
-      }else{
-        $percent = 0.025;
+      }
+      if (doubleval($value['filled']) == 5000000) {
+         $percent = 0.025;
+      }
+      if (doubleval($value['filled']) == 2000000) {
+         $percent = 0.022;
       }
       $max_profit = doubleval($value['filled'])*$percent;
 			$this -> model_account_customer -> update_wallet_c0($max_profit , $value['customer_id']);

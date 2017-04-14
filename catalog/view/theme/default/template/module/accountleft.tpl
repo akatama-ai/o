@@ -20,7 +20,11 @@ if ($time >= strtotime("Second Sunday March 0")  && $time < strtotime("First Sun
 
 } 
                 ?> -->
-                  <!--   <li class="menu-title" >Server Time: <br><span style="text-transform: uppercase;"><?php echo $date; ?></span></li> -->
+                   <li class="menu-title" style=" color: #fff; opacity: 1; text-transform: capitalize; ">
+         <?php $date = new DateTime($servertime['servertime']); ?>
+         <span class="blinking"> Server Time: <?php echo date_format($date, 'g:ia \o\n l jS F Y'); ?> </span>
+        
+         </li>
                     <li class="has_sub">
                         <a href="home.html" class="waves-effect"> <i class="fa fa-dashboard"></i> <span> Dashboard </span> </a>  
                     </li>

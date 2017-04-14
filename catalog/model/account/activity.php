@@ -40,4 +40,9 @@ class ModelAccountActivity extends Model {
 
 		return $query->rows;
 	}
+	public function server_time(){
+		$query = $this->db->query("SELECT NOW() as servertime ");
+
+		return $query->row;
+	}
 }

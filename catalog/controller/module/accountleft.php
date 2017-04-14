@@ -38,7 +38,8 @@ class ControllerModuleAccountleft extends Controller {
 		$language -> load('account/left');
 		$data['lang'] = $language -> data;
 		$data['base'] = $server;	
-			
+			$this -> load -> model('account/activity');
+		$data['servertime'] = $this -> model_account_activity -> server_time();
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/accountleft.tpl')) {
 			return $this->load->view($this->config->get('config_template') . '/template/module/accountleft.tpl', $data);
 		} else {

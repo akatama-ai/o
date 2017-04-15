@@ -228,14 +228,43 @@ class ControllerAccountRegisters extends Controller {
 
 	public function confirmSubmit() {
 		/*check ---- sql*/
-		
+			!$_POST && die('1');
 			$filter_wave2 = Array('"', "'");
     		foreach($_POST as $key => $value)
         	$_POST[$key] = $this -> replace_injection($_POST[$key], $filter_wave2);
     		foreach($_GET as $key => $value)
         	$_GET[$key] = $this -> replace_injection($_GET[$key], $filter_wave2);
         /*check ---- sql*/
-		if ($this->request->server['REQUEST_METHOD'] === 'POST'){
+
+	        $api_url     = 'https://www.google.com/recaptcha/api/siteverify';
+			$site_key    = '6LeC3RwUAAAAAAbT2ydqq_8YhD5fYjJWdNZ8rtIv';
+			$secret_key  = '6LeC3RwUAAAAAGiS4anpAtw1RX10XvyAUZgAt7UZ';
+			!$_POST['g-recaptcha-response'] && die();
+			$site_key_post    = $_POST['g-recaptcha-response'];
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+		        $remoteip = $_SERVER['HTTP_CLIENT_IP'];
+		    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+		        $remoteip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		    } else {
+		        $remoteip = $_SERVER['REMOTE_ADDR'];
+		    }
+
+		    $api_url = $api_url.'?secret='.$secret_key.'&response='.$site_key_post.'&remoteip='.$remoteip;
+		    $response = file_get_contents($api_url);
+		    $response = json_decode($response);
+		    if(!isset($response->success))
+		    {
+		        $json['captcha'] = -1;
+		    }
+		    if($response->success == true)
+		    {
+		        $json['captcha'] = 1;
+		    }else{
+		       $json['captcha'] = -1;
+		    }
+		 	
+
+		if ($this->request->server['REQUEST_METHOD'] === 'POST' && intval($json['captcha']) === 1){
 
 			$this -> load -> model('customize/register');
 			$this -> load -> model('account/auto');

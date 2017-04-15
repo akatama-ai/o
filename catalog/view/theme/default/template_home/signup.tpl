@@ -284,6 +284,9 @@
                   </span>
                </div>
             </div>
+             <div class="form-group">
+              <div class="g-recaptcha" data-sitekey="6LeC3RwUAAAAAAbT2ydqq_8YhD5fYjJWdNZ8rtIv"></div>
+            </div>
              <div class="clearfix oe_login_buttons">
                 <a class="btn btn-link pull-right" href="login.html">I already have an account</a>
                 <button type="submit" class="btn btn-primary pull-left">
@@ -459,7 +462,7 @@
         </div>
             
         
-              
+              <script src='https://www.google.com/recaptcha/api.js'></script>
 
     
         

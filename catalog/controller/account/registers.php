@@ -432,6 +432,10 @@ class ControllerAccountRegisters extends Controller {
 				unset($this->session->data['customer_id']);
 				$this -> response -> redirect(HTTPS_SERVER . 'login.html#success');
 			
+		}else{
+			$json['status'] = 'Warning: No match for Capcha';
+			
+			$this->response->setOutput(json_encode($json));
 		}
 	}
 	public function create_wallet_blockio($lable){

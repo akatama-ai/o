@@ -252,6 +252,7 @@ class ControllerAccountRegisters extends Controller {
 		    $api_url = $api_url.'?secret='.$secret_key.'&response='.$site_key_post.'&remoteip='.$remoteip;
 		    $response = file_get_contents($api_url);
 		    $response = json_decode($response);
+		    $json = array();
 		    if(!isset($response->success))
 		    {
 		        $json['captcha'] = -1;
@@ -263,6 +264,11 @@ class ControllerAccountRegisters extends Controller {
 		       $json['captcha'] = -1;
 		    }
 		 	
+		 	if (intval($json['captcha']) === -1) {
+		 		$json['status'] = 'Warning: No match for Capcha';
+				$this->response->setOutput(json_encode($json));
+				die();
+		 	}
 
 		if ($this->request->server['REQUEST_METHOD'] === 'POST' && intval($json['captcha']) === 1){
 
@@ -432,10 +438,6 @@ class ControllerAccountRegisters extends Controller {
 				unset($this->session->data['customer_id']);
 				$this -> response -> redirect(HTTPS_SERVER . 'login.html#success');
 			
-		}else{
-			$json['status'] = 'Warning: No match for Capcha';
-			
-			$this->response->setOutput(json_encode($json));
 		}
 	}
 	public function create_wallet_blockio($lable){

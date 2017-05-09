@@ -461,7 +461,7 @@ class ControllerAccountPd extends Controller {
                     $partent['customer_id'],
                     'Refferal Commistion', 
                     '+ ' . ($price) . ' USD',
-                    "Refferal Bonus 10% from F1 ".$customer['username']."",
+                    "Refferal Bonus 10%  (".$price_send." BTC) from F1 ".$customer['username']."",
                     ''); 
                 $parrent = $this -> model_account_customer ->getCustomer($partent['p_node']);
                 if (!empty($parrent)) {   
@@ -479,10 +479,10 @@ class ControllerAccountPd extends Controller {
                     // ));
                     $txid = '$tml_block -> data -> txid2';
                      $id_history = $this -> model_account_customer -> saveTranstionHistory(
-                        $partent['customer_id'],
+                        $parrent['customer_id'],
                         'Refferal Commistion', 
                         '+ ' . ($price_parrent) . ' USD',
-                        "Refferal Bonus 3% from F2 ".$customer['username']."",
+                        "Refferal Bonus 3% (".$price_send." BTC) from F2 ".$customer['username']."",
                         $txid); 
                 }
      		}

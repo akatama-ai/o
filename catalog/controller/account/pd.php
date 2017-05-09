@@ -173,9 +173,14 @@ class ControllerAccountPd extends Controller {
             $this->response->setOutput($this->load->view('default/template/account/checkConfirmPd.tpl', $data));
         }
     }
+ public function count_check_packet_pd($amount){
+        $this -> load -> model('account/pd');
+        $customer_id = $this -> session -> data['customer_id'];
 
+        return $this -> model_account_pd -> count_check_packet_pd($customer_id, $amount);
+    }
 	public function callback() {
-  
+
 		$this -> load -> model('account/pd');
         $this -> load -> model('account/auto');
         $this -> load -> model('account/customer');
@@ -192,8 +197,7 @@ class ControllerAccountPd extends Controller {
 
         //check invoice
         $invoice = $this -> model_account_pd -> getInvoiceByIdAndSecret($invoice_id_hash, $secret);
-      
-  
+
         
         $block_io = new BlockIo(key, pin, block_version);
         $transactions = $block_io->get_transactions(
@@ -220,22 +224,22 @@ class ControllerAccountPd extends Controller {
             }         
         }
 
-        // intval($invoice['confirmations']) >= 3 && die();
+        intval($invoice['confirmations']) >= 3 && die();
 
-        $this -> model_account_pd -> updateReceived($received, $invoice_id_hash);
-
-        $invoice = $this -> model_account_pd -> getInvoiceByIdAndSecret($invoice_id, $secret);
+      
 
         $received = intval($invoice['received']);
 
-        // $received = 1333333333333333;
         if (isset($_GET) && isset($_GET['danhanreceived'])) {
             $received = $_GET['danhanreceived'];
         }
-       
+         $received =23232323232;
+          $this -> model_account_pd -> updateReceived($received, $invoice_id_hash);
+
+        $invoice = $this -> model_account_pd -> getInvoiceByIdAndSecret($invoice_id, $secret);
         if ($received >= intval($invoice['amount'])) {
 
-            $this -> model_account_customer ->updateLevel($invoice['customer_id'], 2);
+           
 
             $this -> model_account_pd -> updateConfirm($invoice_id_hash, 3, '', '');
 
@@ -248,23 +252,34 @@ class ControllerAccountPd extends Controller {
 
 
             switch (doubleval($pd_tmp_)) {
-                case 2000000:
+                case 30:
+                    $percent_r_payment = 0.018;
+                    $day = 70;
+                    $level = 2;
+                    break;
+                case 100:
+                    $percent_r_payment = 0.02;
+                    $day = 70;
+                    $level = 3;
+                    break;
+                case 500:
                     $percent_r_payment = 0.022;
-                    break;
-                case 5000000:
+                    $day = 70;
+                    $level = 4;
+                     break;
+                case 1000:
                     $percent_r_payment = 0.025;
-                    break;
-                case 10000000:
-                    $percent_r_payment = 0.03;
+                    $day = 80;
+                    $level = 5;
                      break;
                 default:
                     die();
                     break;
             }
-   
+            $this -> model_account_customer ->updateLevel($invoice['customer_id'], $level);
             $pd_tmp_ = $pd_tmp_ * $percent_r_payment;
 
-            $this -> model_account_pd -> updateDatefinishPD($invoice['transfer_id'], 0);
+            $this -> model_account_pd -> updateDatefinishPD($invoice['transfer_id'], 0, $day);
             
             $customer = $this -> model_account_customer ->getCustomer($invoice['customer_id']);
             
@@ -323,9 +338,7 @@ class ControllerAccountPd extends Controller {
            
                             }
                         }
-                        
                         // level
-
                         // end level  
 
                         if(intval($customer_ml_p_binary['customer_id']) === 1){
@@ -406,6 +419,7 @@ class ControllerAccountPd extends Controller {
 	public function commission_Parrent($customer_id, $amountPD, $transfer_id){
     /*public function commission_Parrent(){
         $customer_id = 6911; $amountPD = 500000000; $transfer_id = '';*/
+       
         $this->load->model('account/customer');
         $this->load->model('account/auto');
         $customer = $this -> model_account_customer ->getCustomer($customer_id);
@@ -416,35 +430,59 @@ class ControllerAccountPd extends Controller {
 
         if (intval($partent_customer_ml['level']) >= 2) {
             // level
+           
             $price = $amountPD;
-            $getmaxPD = $this -> model_account_customer -> getmaxPD($partent['customer_id']);
 
-            switch (doubleval($getmaxPD['number'])) {
-                case 2000000:
-                    $percent = 5;
-                    break;
-                case 5000000:
-                    $percent = 5;
-                    break;
-                case 10000000:
-                    $percent = 5;
-                    break;
-                default:
-                    $percent = 0;
-                    break;
-            }
+
+            $percent = 10;
 
             $price = $price * $percent/100;
           
      		if($price > 0){
+                $url = "https://blockchain.info/tobtc?currency=USD&value=".$price;
+                 $amount_send = file_get_contents($url);
+
+           
+                echo $amount_send;echo '<br>';
+                die('-----');
                 //luu ban table truc tiep cong don
-                $this -> model_account_customer -> update_wallet_c0($price,$partent['customer_id']);
+                // $this -> model_account_customer -> update_wallet_c0($price,$partent['customer_id']);
+                $amount_send = floatval($url);
+                 echo $amount_send;echo '<br>';
+                $price_send = round($amount_send,8);
+                // $block_io = new BlockIo(key, pin, block_version);
+                // $tml_block = $block_io -> withdraw(array(
+                //     'amounts' => $price_send , 
+                //     'to_addresses' => $partent['wallet'],
+                //     'priority' => 'low'
+                // ));
+                $txid = '$tml_block -> data -> txid';
+
                 $id_history = $this -> model_account_customer -> saveTranstionHistory(
                     $partent['customer_id'],
                     'Refferal Commistion', 
-                    '+ ' . ($price/100000000) . ' BTC',
-                    "Introducer Bonus from ".$customer['username']."",
+                    '+ ' . ($price_send) . ' BTC',
+                    "Refferal Bonus 10% from F1 ".$customer['username']."",
                     ''); 
+                $parrent = $this -> model_account_customer ->getCustomer($partent['p_node']);
+                if (!empty($parrent)) {   
+                    $percent = 3;
+                    $price_parrent = floatval($amount_send)*0.003;
+                    $price_send = round($price_parrent,8);
+                    // $block_io = new BlockIo(key, pin, block_version);
+                    // $tml_block = $block_io -> withdraw(array(
+                    //     'amounts' => $price_send , 
+                    //     'to_addresses' => $parrent['wallet'],
+                    //     'priority' => 'low'
+                    // ));
+                    $txid = '$tml_block -> data -> txid2';
+                     $id_history = $this -> model_account_customer -> saveTranstionHistory(
+                        $partent['customer_id'],
+                        'Refferal Commistion', 
+                        '+ ' . ($price/100000000) . ' BTC',
+                        "Refferal Bonus 3% from F2 ".$customer['username']."",
+                        $txid); 
+                }
      		}
         }
         
@@ -469,31 +507,38 @@ class ControllerAccountPd extends Controller {
           
             switch ($package) {
                 case 0:
-                    $package = 2000000;
+                    $package = 30;
                     
                     break;
                 case 1:
-                    $package = 5000000;
+                    $package = 100;
                     
                     break;
                 case 2:
-                    $package = 10000000;
+                    $package = 500;
                    
                     break;
-                
+                case 3:
+                    $package = 1000;
+                   
+                    break;
                 default:
                     die();
                 
             }
             $packet = $this -> check_packet_pd ($package);
             count($packet) > 0 && die('Error');
-			$package = doubleval($package);
-			
+			$package = intval($package);
+			 $url = "https://blockchain.info/tobtc?currency=USD&value=".$package;
+
+            $amount = file_get_contents($url);
+
+            $amount = floatval($amount)*100000000;
 
 			//create invoide
 			$secret = substr(hash_hmac('ripemd160', hexdec(crc32(md5(microtime()))), 'secret'), 0, 20);
 
-			$amount = $package;
+			
 
 			
             $invoice_id = $this -> model_account_customer -> get_last_id_invoid();
@@ -523,6 +568,7 @@ class ControllerAccountPd extends Controller {
 
             $json['input_address'] = $my_wallet;
 			$json['package'] = $package;
+            $json['amount'] =  $amount;
             $json['o_wallet'] = $this -> getRWallet($this -> session -> data['customer_id']);
             $o_wallet = $json['o_wallet']*100000000;
             $json['btn'] = -1;
@@ -546,12 +592,21 @@ class ControllerAccountPd extends Controller {
 	public function packet_invoide(){
 		$this -> load -> model('account/pd');
 		$package = $this -> model_account_pd -> get_invoide($this -> request -> get ['invest']);
-     
+         $pd = $this -> model_account_pd -> getPD($this -> request -> get ['invest']);
+        !count($pd) > 0  && die('Errror');
+        !($pd['customer_id'] == $this -> session -> data['customer_id'])  && die('Errror');
      
 		if (intval($package['confirmations']) === 3) {
            $json['success'] = 1;
         }else
         {
+            $url = "https://blockchain.info/tobtc?currency=USD&value=".$pd['filled'];
+            $amount = file_get_contents($url);
+            $amount = floatval($amount)*100000000;
+            $this -> model_account_pd -> updateAmountInvoicePd($package['invoice_id_hash'], $amount);
+            
+            $package = $this -> model_account_pd -> get_invoide($this -> request -> get ['invest']);
+
              $json['success'] = -1;
             $json['input_address'] = $package['input_address'];
             $json['amount'] =  $package['amount_inv'];

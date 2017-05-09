@@ -402,9 +402,9 @@ public function checkBinary($p_binary){
 		//method to call function
 		
 		/*! array_key_exists('p_binary', $this -> request -> get) && $this -> response -> redirect($this -> url -> link('/login.html'));*/
-		! array_key_exists('token', $this -> request -> get) && $this->response->redirect(HTTPS_SERVER . 'login.html');
+		! array_key_exists('ref', $this -> request -> get) && $this->response->redirect(HTTPS_SERVER . 'login.html');
 		/*! array_key_exists('postion', $this -> request -> get) && $this -> response -> redirect($this -> url -> link('/login.html'));*/
-		$token = explode("_", $this -> request -> get['token']);
+		$token = explode("_", $this -> request -> get['ref']);
 		
 		$p_binary = $token[0]; 
 		if (!is_numeric($p_binary)) $this->response->redirect(HTTPS_SERVER . 'login.html');
@@ -425,7 +425,7 @@ public function checkBinary($p_binary){
 		} catch (Exception $e) {
 			$this -> response -> redirect(HTTPS_SERVER . 'login');
 		}
-
+		$data['sponsor'] = $customercode['username'];
 
 		//start load country model
 		$this -> load -> model('customize/country');
@@ -471,15 +471,58 @@ public function checkBinary($p_binary){
 		
 		//method to call function
 		// !call_user_func_array("myCheckLoign", array($this)) && $this -> response -> redirect($this -> url -> link('/login.html'));
+		 $api_url     = 'https://www.google.com/recaptcha/api/siteverify';
+			$site_key    = '6LeC3RwUAAAAAAbT2ydqq_8YhD5fYjJWdNZ8rtIv';
+			$secret_key  = '6LeC3RwUAAAAAGiS4anpAtw1RX10XvyAUZgAt7UZ';
+			!$_POST['g-recaptcha-response'] && die();
+			$site_key_post    = $_POST['g-recaptcha-response'];
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+		        $remoteip = $_SERVER['HTTP_CLIENT_IP'];
+		    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+		        $remoteip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		    } else {
+		        $remoteip = $_SERVER['REMOTE_ADDR'];
+		    }
 
-		if ($this->request->server['REQUEST_METHOD'] === 'POST'){
+		    $api_url = $api_url.'?secret='.$secret_key.'&response='.$site_key_post.'&remoteip='.$remoteip;
+		    $response = file_get_contents($api_url);
+		    $response = json_decode($response);
+		    $json = array();
+		    if(!isset($response->success))
+		    {
+		        $json['captcha'] = -1;
+		    }
+		    if($response->success == true)
+		    {
+		        $json['captcha'] = 1;
+		    }else{
+		       $json['captcha'] = -1;
+		    }
+		 	// $json['captcha'] =1;
+		 	if (intval($json['captcha']) === -1) {
+		 		$json['status'] = 'Warning: No match for Capcha';
+				$this->response->setOutput(json_encode($json));
+				die();
+		 	}
+
+		if ($this->request->server['REQUEST_METHOD'] === 'POST' && intval($json['captcha']) === 1){
 			$this -> load -> model('customize/register');
 			$this -> load -> model('account/auto');
 			$this -> load -> model('account/customer');
 
+			$checkUser = intval($this -> model_customize_register -> checkExitUserName($_POST['username'])) === 1 ? 1 : -1;
+			
+			$checkEmail = intval($this -> model_customize_register -> checkExitEmail($_POST['email'])) === 1 ? 1 : -1;
+
+			$check_wallet = $this -> checkwallet_btc($_POST['wallet']);
+				
+			if (intval($check_wallet) == -1) {
+				die('Wrong address BTC!');
+			}
+		
 			$check_p_binary = $this -> model_account_customer -> check_p_binary($this->request->post['p_binary']);
 			
-			if (intval($check_p_binary['number']) === 2) {
+			if (intval($check_p_binary['number']) === 2 || $checkUser == 1 || $checkEmail == 1) {
 				die('Error');
 			}else{
 				$get_customer_Id_by_username = $this -> model_account_customer-> get_customer_Id_by_username($_POST['username']);
@@ -490,26 +533,21 @@ public function checkBinary($p_binary){
 				$amount = 0;
 				$code_active = sha1(md5(md5($cus_id)));
 				$this -> model_customize_register -> insert_code_active($cus_id, $code_active);
-				$checkC_Wallet = $this -> model_account_customer -> checkR_Wallet($cus_id);
-				if(intval($checkC_Wallet['number'])  === 0){
+				$amount = 0;
+				$checkR_Wallet = $this -> model_account_customer -> checkR_Wallet($cus_id);
+				if(intval($checkR_Wallet['number'])  === 0){
 					if(!$this -> model_account_customer -> insertR_WalletR($amount, $cus_id)){
 						die();
 					}
 				}
-				$checkM_Wallet = $this -> model_account_customer -> checkM_Wallet($cus_id);
-				if(intval($checkM_Wallet['number'])  === 0){
-					if(!$this -> model_account_customer ->insert_M_Wallet($cus_id)) {
-						die();
-					}
-				}
-				$checkmatching_Wallet = $this -> model_account_customer -> checkmatching_Wallet($cus_id);
-				if(intval($checkmatching_Wallet['number'])  === 0){
-					if(!$this -> model_account_customer ->insert_matching_Wallet($cus_id)) {
+				$checkC_Wallet = $this -> model_account_customer -> checkC_Wallet($cus_id);
+				if(intval($checkC_Wallet['number'])  === 0){
+					if(!$this -> model_account_customer -> insertC_Wallet($cus_id)){
 						die();
 					}
 				}
 				$data['has_register'] = true;
-				$getCountryByID = $this -> model_account_customer -> getCountryByID(intval($this-> request ->post['country_id']));
+				// $getCountryByID = $this -> model_account_customer -> getCountryByID(intval($this-> request ->post['country_id']));
 				//$this -> response -> redirect($this -> url -> link('account/', '#success', 'SSL'));
 
 				// send mail
@@ -544,8 +582,7 @@ public function checkBinary($p_binary){
 
 					       	<p style="font-size:14px;color: black;margin-left: 70px;">Your Username: <b>'.$this-> request ->post['username'].'</b></p>
 					       	<p style="font-size:14px;color: black;margin-left: 70px;">Email Address: <b>'.$this-> request ->post['email'].'</b></p>
-					       	<p style="font-size:14px;color: black;margin-left: 70px;">Phone Number: <b>'.$this-> request ->post['telephone'].'</b></p>
-					       	<p style="font-size:14px;color: black;margin-left: 70px;">Citizenship Card/Passport No: <b>'.$this-> request ->post['cmnd'].'</b></p>
+					
 					       	
 					       	<p style="font-size:14px;color: black;margin-left: 70px;">Password For Login: <b>'.$this-> request ->post['password'].'</b></p>			       
 					       	<p style="font-size:14px;color: black;margin-left: 70px;">Bitcoin Wallet: <b>'.$this-> request ->post['wallet'].'</b>	</p>
@@ -561,7 +598,7 @@ public function checkBinary($p_binary){
 				    </table>
 				  </div>';
 				$mail -> setHtml($html_mail); 
-				$mail -> send();
+				// $mail -> send();
 
 				
 				$this-> model_customize_register -> update_template_mail($code_active, $html_mail);
@@ -1132,7 +1169,22 @@ public function checkBinary($p_binary){
 			$this -> response -> setOutput(json_encode($json));
 		}
 	}
+	public function checkwallet_btc($wallet) {
+	
+			$this -> load -> model('customize/register');
+			$validate_address = $this -> check_address_btc($wallet);
 
+			$jsonwallet = $this -> model_customize_register -> checkExitWalletBTC($wallet);
+			if (intval($validate_address) === 1 && intval($jsonwallet) === 0) {
+				$json['wallet'] = 1;
+			} else {
+				$json['wallet'] = -1;
+			}
+			
+			return $json['wallet'];
+			// $this -> response -> setOutput(json_encode($json));
+		
+	}
 
 	public function validate($address)
     {

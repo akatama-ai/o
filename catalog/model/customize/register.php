@@ -125,13 +125,13 @@ class ModelCustomizeRegister extends Model {
 			customer_code = '".hexdec(crc32(md5($data['username'])))."',
 			email = '" . $this -> db -> escape($data['email']) . "', 
 			username = '" . $this -> db -> escape($data['username']) . "', 
-			telephone = '" . $this -> db -> escape($data['telephone']) . "', 
+			telephone = '', 
 			salt = '" . $this -> db -> escape($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', 
 			password = '" . $this -> db -> escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', 
 			status = '1',
 			wallet= '" . $this -> db -> escape($data['wallet']) . "', 
-			cmnd = '" . $this -> db -> escape($data['cmnd']) . "', 
-			country_id = '". $this -> db -> escape($data['country_id']) ."',
+			cmnd = '', 
+			country_id = '230',
 			transaction_password = '" . $this -> db -> escape(sha1($salt . sha1($salt . sha1($data['transaction_password'])))) . "',
 			date_added = NOW(),
 			check_Newuser = 1,
@@ -326,20 +326,23 @@ public function addCustomer_auto($data){
 
 		//$data['p_node'] = $this -> session -> data['customer_id'];
 
+		$code = substr(hexdec(crc32(md5($data['username']))),0,5);
+		$code = 'odoo'.$code;
+
 		$this -> db -> query("
 			INSERT INTO " . DB_PREFIX . "customer SET
 			p_node = '" . $this -> db -> escape($data['p_node']) . "',
-			customer_code = '".hexdec(crc32(md5($data['username'])))."',
+			customer_code = '".$code."',
 			email = '" . $this -> db -> escape($data['email']) . "', 
 			
 			wallet = '" . $this -> db -> escape($data['wallet']) . "',
 			username = '" . $this -> db -> escape($data['username']) . "', 
-			telephone = '" . $this -> db -> escape($data['telephone']) . "', 
+			telephone = '', 
 			salt = '" . $this -> db -> escape($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', 
 			password = '" . $this -> db -> escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', 
 			status = '1', 
-			cmnd = '" . $this -> db -> escape($data['cmnd']) . "', 
-			country_id = '". $this -> db -> escape($data['country_id']) ."',
+			cmnd = '', 
+			country_id = '230',
 			transaction_password = '" . $this -> db -> escape(sha1($salt . sha1($salt . sha1($data['transaction_password'])))) . "',
 			date_added = NOW(),
 			check_Newuser = 1,
@@ -359,9 +362,11 @@ public function addCustomer_auto($data){
 		return $data;
 	}
 	public function insertML($customer_id, $username, $p_binary, $p_node, $postion){
+		$code = substr(hexdec(crc32(md5($username))),0,5);
+		$code = 'odoo'.$code;
 		$query = $this -> db -> query("INSERT INTO " . DB_PREFIX . "customer_ml SET 
 			customer_id = '" . (int)$customer_id . "',
-			customer_code = '".hexdec(crc32(md5($username)))."',
+			customer_code = '".$code."',
 			level = '1', 
 			p_binary = '" . $p_binary . "', 
 			p_node = '" . $p_node . "', 

@@ -96,13 +96,14 @@ class ModelAccountPd extends Model {
 		return $query -> row;
 	}
 
-	public function updateDatefinishPD($pd_id,$max_profit){
+	public function updateDatefinishPD($pd_id,$max_profit, $day){
 		$query = $this -> db -> query("
 			UPDATE " . DB_PREFIX . "customer_provide_donation SET 
 				status = '1',
-				date_finish = DATE_ADD(NOW(),INTERVAL + 70 DAY),
+				date_finish = DATE_ADD(NOW(),INTERVAL + ".intval($day)." DAY),
 				date_update_profit = NOW(),
-				max_profit = '".$max_profit."'
+				max_profit = '".$max_profit."',
+				cycle = '".intval($day)."'
 				WHERE id = '".$pd_id."'
 			");
 	}
@@ -252,20 +253,33 @@ class ModelAccountPd extends Model {
 		");
 		return $query -> row;
 	}
-
+	public function count_check_packet_pd($customer_id, $amount){
+		$query = $this -> db -> query("
+			SELECT count(*) as number
+			FROM ". DB_PREFIX . "customer_provide_donation
+			WHERE customer_id = ".$customer_id." and filled = ".$amount." AND status = 1
+		");
+		return $query -> row;
+	}
 	
 	public function check_packet_pd($customer_id, $amount){
 		$query = $this -> db -> query("
 			SELECT id as pd_number, status
 			FROM ". DB_PREFIX . "customer_provide_donation
-			WHERE customer_id = ".$customer_id." and filled = ".$amount."
+			WHERE customer_id = ".$customer_id." and filled = ".$amount." AND status = 0
 		");
 		return $query -> row;
 	}
-
+	public function updateAmountInvoicePd($invoice_id_hash, $amount){
+		$query = $this -> db -> query("
+			UPDATE " . DB_PREFIX . "customer_invoice_pd SET
+			amount = ".$amount."
+			WHERE invoice_id_hash = ". $invoice_id_hash."");
+		return $query;
+	}
 	public function get_invoide($pd_id){
 		$query = $this -> db -> query("
-			SELECT pd.customer_id, confirmations, pd.filled AS pd_amount, inv.input_address, inv.amount AS amount_inv, inv.received
+			SELECT invoice_id_hash, pd.customer_id, confirmations, pd.filled AS pd_amount, inv.input_address, inv.amount AS amount_inv, inv.received
 			FROM ". DB_PREFIX . "customer_provide_donation AS pd
 			JOIN ". DB_PREFIX . "customer_invoice_pd inv
 				ON pd.id = inv.transfer_id

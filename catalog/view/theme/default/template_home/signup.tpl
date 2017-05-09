@@ -59,7 +59,7 @@
     <link href="catalog/view/theme/default/template_home/assets/css/web.assets_frontend.0.css" rel="stylesheet" />
     <link href="catalog/view/theme/default/template_home/assets/css/web.assets_frontend.1.css" rel="stylesheet" />
     <link href="catalog/view/theme/default/template_home/assets/css/web.assets_frontend.2.css" rel="stylesheet" />
-
+<link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/fakeloader.css" />
 
 
     <script src="catalog/view/theme/default/template_home/assets/js/jquery-min.js"></script>
@@ -69,12 +69,17 @@
     <!-- <script  type="text/javascript" src="catalog/view/theme/default/template_home/assets/js/web.assets_common.js"></script> -->
 
     <!-- <script  type="text/javascript" src="catalog/view/theme/default/template_home/assets/js/web.assets_frontend.js"></script> -->
-
+     <script src="catalog/view/javascript/loading.js" type="text/javascript"></script>
+ <script type="text/javascript"> 
+ window.funLazyLoad=
+ {start:function(){$("#fakeloader").fakeLoader({timeToHide:99999999999,zIndex:"999",spinner:"spinne1",bgColor:"rgba(0,0,0,0.8)"})},reset:function(){$("#fakeloader").hide()},show:function(){$("#fakeloader").show()}};
+             
+      </script>
             
             </head>
             <body>
                 
-
+<div id="fakeloader"></div>
             
         
         <div id="wrapwrap" class="o_sign_up_login">
@@ -131,23 +136,7 @@
           </div>
         <form id="register-account" class="oe_signup_form" role="form" method="post" action="<?php echo $self -> url -> link('account/registers/confirmSubmit', '', 'SSL'); ?>">
            <input type="hidden" name="node" value="<?php echo $code; ?>">
-            <div class="form-group field-position">
-               <select class="form-control" id="package" name="package">
-                     <option value="">-- Choose Package --</option>
-                     <option value="2000000">
-                        0.02 BTC
-                     </option>
-                     <option value="5000000">
-                        0.05 BTC
-                     </option>
-                    <option value="10000000">
-                        0.1 BTC
-                     </option>
-                  </select>
-                  <span id="package-error" class="field-validation-error" style="display: none;">
-                     <span>The package field is required.</span>
-                  </span>
-             </div>
+       
              <div class="form-group field-login">
                 <input class="form-control" placeholder="Your Username" name="username" id="username" value="" data-link="<?php echo $actionCheckUser; ?>">
                   <span id="user-error" class="field-validation-error" style="display: none;">
@@ -160,18 +149,7 @@
                      <span id="Email-error">Please enter Email Address</span>
                   </span>
              </div>
-             <div class="form-group field-name">
-                <input class="form-control" placeholder="Phone Number" name="telephone" id="phone" data-link="<?php echo $actionCheckPhone; ?>">
-                  <span id="phone-error" class="field-validation-error" style="display: none;">
-                     <span>Please enter Phone Number</span>
-                  </span>
-             </div>
-              <div class="form-group field-name">
-               <input class="form-control" placeholder="Citizenship Card/Passport No" name="cmnd" id="cmnd" data-link="<?php echo $actionCheckCmnd; ?>">
-                  <span id="cmnd-error" class="field-validation-error" style="display: none;">
-                     <span id="CardId-error">The Citizenship card/passport no field is required.</span>
-                  </span>
-             </div>
+  
              <div class="form-group field-position">
                <select class="form-control" id="position" name="position">
                      <option value="">-- Choose Position --</option>
@@ -187,19 +165,7 @@
                      <span>The position field is required.</span>
                   </span>
              </div>
-             <div class="form-group field-country">
-               <select class="form-control" id="country" name="country_id">
-                     <option value="">-- Choose your Country --</option>
-                     <?php foreach ($country as $key=> $value) {?>
-                     <option value="<?php echo $value['id'] ?>">
-                        <?php echo $value[ 'name'] ?>
-                     </option>
-                     <?php } ?>
-                  </select>
-                  <span id="country-error" class="field-validation-error" style="display: none;">
-                     <span>The country field is required.</span>
-                  </span>
-             </div>
+
              <div class="form-group field-password odoo-password-reveal">
                
                 <div class="input-group">
@@ -215,15 +181,7 @@
                      <span>Please enter password for login</span>
                   </span>
              </div>
-             <div class="form-group field-password">
-              
-               <input class="form-control valid" placeholder="Repeat Password For Login" id="confirmpassword" type="password">
-                  <span id="confirmpassword-error" class="field-validation-error" style="display: none;">
-                     <span>Repeat Password For Login not correct</span>
-                  </span>
-                  
-                
-             </div>
+
              <div class="form-group field-password odoo-password-reveal-tran">
                
                 <div class="input-group">
@@ -239,13 +197,7 @@
                      <span>Please enter transaction password</span>
                   </span>
              </div>
-             <div class="form-group field-password">
-                <input class="form-control valid" placeholder="Repeat Transaction Password" id="confirmpasswordtransaction" type="password">
-                  <span id="confirmpasswordtransaction-error" class="field-validation-error" style="display: none;">
-                     <span>Repeat Transaction Password is not correct</span>
-                  </span>
-               
-             </div>
+
              <script type="text/javascript">
                 $(function() {
                   $('.odoo-password-reveal button').click(function(){

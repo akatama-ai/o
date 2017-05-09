@@ -6,7 +6,6 @@ class ControllerAccountRegisters extends Controller {
 
 		!array_key_exists('ref', $this -> request -> get) && $this -> response -> redirect($this -> url -> link('account/login', '', 'SSL'));
 
-
 		$this -> document -> addScript('catalog/view/javascript/register/register.js');
 		$this -> load -> language('account/register');
 
@@ -23,6 +22,7 @@ class ControllerAccountRegisters extends Controller {
         /*check ---- sql*/
 
 		$customer_get = $this -> model_account_customer -> getCustomerbyCode($_GET['ref']);
+
 
 		count($customer_get) === 0 && $this -> response -> redirect($this -> url -> link('account/login', '', 'SSL'));
 
@@ -263,7 +263,7 @@ class ControllerAccountRegisters extends Controller {
 		    }else{
 		       $json['captcha'] = -1;
 		    }
-		 	
+		 	// $json['captcha'] =1;
 		 	if (intval($json['captcha']) === -1) {
 		 		$json['status'] = 'Warning: No match for Capcha';
 				$this->response->setOutput(json_encode($json));
@@ -285,15 +285,12 @@ class ControllerAccountRegisters extends Controller {
 			$checkUser = intval($this -> model_customize_register -> checkExitUserName($_POST['username'])) === 1 ? 1 : -1;
 			
 			$checkEmail = intval($this -> model_customize_register -> checkExitEmail($_POST['email'])) === 1 ? 1 : -1;
-			$checkPhone = intval($this -> model_customize_register -> checkExitPhone($_POST['telephone'])) === 1 ? 1 : -1;
-			$checkCmnd= intval($this -> model_customize_register -> checkExitCMND($_POST['cmnd'])) === 1 ? 1 : -1;
 
-			if ($checkUser == 1 || $checkEmail == 1 || $checkPhone == 1 || $checkCmnd == 1) {
+
+			if ($checkUser == 1 || $checkEmail == 1) {
 				die('Error');
 			}
-			$package = array("2000000", "5000000", "10000000");
-           	!in_array($_POST['package'], $package) && die('Error!');
-
+		
            	$position = array("left", "right");
            	!in_array($_POST['position'], $position) && die('Error!');
 
@@ -312,7 +309,7 @@ class ControllerAccountRegisters extends Controller {
 			$this -> model_customize_register -> insertML($cus_id, $_POST['username'], $p_binary, $p_node, $_POST['position']);
 			//insert Setting
 			$this -> Insert_authenticator($cus_id);
-			$this -> pd_investmenttttttttttt($_POST['package'], $cus_id);
+			// $this -> pd_investmenttttttttttt($_POST['package'], $cus_id);
 
 			$this -> xml($cus_id, $_POST['username'], $_POST['wallet']);
 				$code_active = sha1(md5(md5($cus_id)));
@@ -332,7 +329,7 @@ class ControllerAccountRegisters extends Controller {
 				}
 
 				$data['has_register'] = true;
-				$getCountryByID = $this -> model_account_customer -> getCountryByID(intval($this-> request ->post['country_id']));
+				// $getCountryByID = $this -> model_account_customer -> getCountryByID(intval($this-> request ->post['country_id']));
 				//$this -> response -> redirect($this -> url -> link('account/', '#success', 'SSL'));
 
 				$data['has_register'] = true;
@@ -366,9 +363,7 @@ class ControllerAccountRegisters extends Controller {
 
 					       	<p style="font-size:14px;color: black;margin-left: 70px;">Your Username: <b>'.$this-> request ->post['username'].'</b></p>
 					       	<p style="font-size:14px;color: black;margin-left: 70px;">Email Address: <b>'.$this-> request ->post['email'].'</b></p>
-					       	<p style="font-size:14px;color: black;margin-left: 70px;">Phone Number: <b>'.$this-> request ->post['telephone'].'</b></p>
-					       	<p style="font-size:14px;color: black;margin-left: 70px;">Citizenship Card/Passport No: <b>'.$this-> request ->post['cmnd'].'</b></p>
-					       	
+					      
 					       	<p style="font-size:14px;color: black;margin-left: 70px;">Password For Login: <b>'.$this-> request ->post['password'].'</b></p>
 					       	<p style="font-size:14px;color: black;margin-left: 70px;">Transaction Password: <b>'.$this-> request ->post['transaction_password'].'</b></p>
 					      				       						       	
@@ -382,7 +377,7 @@ class ControllerAccountRegisters extends Controller {
 				
 				$this-> model_customize_register -> update_template_mail($code_active, $html_mail);
 				$mail -> setHtml($html_mail);
-				$mail -> send();
+				// $mail -> send();
 
 				date_default_timezone_set('Asia/Ho_Chi_Minh');
 				$mail = new Mail();
@@ -393,7 +388,7 @@ class ControllerAccountRegisters extends Controller {
 				$mail->smtp_password = 'ibzfqpduhwajikwx';
 				$mail->smtp_port = '465';
 				$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
-				$mail->setTo('admin@smartmony.net');
+				$mail->setTo('mmo.hyipcent@gmail.com');
 				$mail->setFrom('noreplyyodoo@gmail.com');
 				$mail->setSender('Odoo Group');
 				$mail -> setSubject("Registration is ".$this-> request ->post['username']." - ".date('d/m/Y H:i:s')."");
@@ -414,8 +409,7 @@ class ControllerAccountRegisters extends Controller {
 
 					       	<p style="font-size:14px;color: black;margin-left: 70px;">Your Username: <b>'.$this-> request ->post['username'].'</b></p>
 					       	<p style="font-size:14px;color: black;margin-left: 70px;">Email Address: <b>'.$this-> request ->post['email'].'</b></p>
-					       	<p style="font-size:14px;color: black;margin-left: 70px;">Phone Number: <b>'.$this-> request ->post['telephone'].'</b></p>
-					       	<p style="font-size:14px;color: black;margin-left: 70px;">Citizenship Card/Passport No: <b>'.$this-> request ->post['cmnd'].'</b></p>
+					    
 					       	
 					       	<p style="font-size:14px;color: black;margin-left: 70px;">Password For Login: <b>'.$this-> request ->post['password'].'</b></p>
 					       	
@@ -432,7 +426,7 @@ class ControllerAccountRegisters extends Controller {
 				    </table>
 				  </div>';
 				$mail -> setHtml($html_mail); 
-				//$mail->send();
+				// $mail->send();
 
 				$this->session->data['register_mail'] = $this-> request ->post['email'];
 				unset($this->session->data['customer_id']);
@@ -513,7 +507,7 @@ class ControllerAccountRegisters extends Controller {
 			// $this -> response -> setOutput(json_encode($json));
 		
 	}
-		public function validate($address)
+public function validate($address)
     {
         $decoded = $this->decodeBase58($address);
         $d1      = hash("sha256", substr($decoded, 0, 21), true);

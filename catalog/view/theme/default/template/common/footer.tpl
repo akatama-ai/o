@@ -70,15 +70,15 @@ $('.js-textareacopybtn').click(function(event) {
 				self.ajaxSubmit({
 					success : function(result) {
 						result = $.parseJSON(result);
-						console.log(result);
 						
-						var package = result.package / 100000000
+						var amount = result.amount / 100000000;
+						var package = result.package;
 						if(_.has(result, 'btn') && result['btn'] === 1){
               var html = '<button id="payment_o" class="btn btn-info">Pay with O Wallet</button>';
             }else{
               var html ='';
             }  
-						var xhtml = '<div class="col-md-12">Please send '+package+' BTC to this address.</div><div class="col-md-6"><img style="margin-left:0px" src="https://chart.googleapis.com/chart?chs=225x225&chld=L|0&cht=qr&chl=bitcoin:'+result.input_address+'?amount='+package+'"/><p>'+result.input_address+'</p></div><div class="col-md-6"><p>Your Packet: '+package+' BTC</p>Total: '+ package +' BTC</p> <p><code><h4>O Wallet: '+result.o_wallet+' BTC</h4></code></p><p>'+html+'</p></div>';
+						var xhtml = '<div class="col-md-12">Please send '+amount+' BTC to this address.</div><div class="col-md-6"><img style="margin-left:0px" src="https://chart.googleapis.com/chart?chs=225x225&chld=L|0&cht=qr&chl=bitcoin:'+result.input_address+'?amount='+package+'"/><p>'+result.input_address+'</p></div><div class="col-md-6"><p>Your Packet: '+package+' USD</p>Total: '+ amount +' BTC</p> <p><code><h4>O Wallet: '+result.o_wallet+' BTC</h4></code></p><p>'+html+'</p></div>';
 						alertify.alert(xhtml, function(){                
 
 						    window.funLazyLoad.reset();
@@ -143,10 +143,10 @@ $('.js-textareacopybtn').click(function(event) {
             }else{
               var html ='';
             }  
-						var package = result.package / 100000000
-						var total = package;
+						var package = result.package;
+						var total = amount;
 						var received = result.received / 100000000;
-						var xhtml = '<div class="col-md-12">Please send '+amount+' BTC to this address.</div><div class="col-md-6"><img style="margin-left:-10px" src="https://chart.googleapis.com/chart?chs=225x225&chld=L|0&cht=qr&chl=bitcoin:'+result.input_address+'?amount='+amount+'"/><p>'+result.input_address+'</p></div><div class="col-md-6"><p>Your Packet: '+package+' BTC</p><p>Total: '+ total +' BTC</p><p></p>Paid amount: '+received+' BTC <p><code><h4>O Wallet: '+result.o_wallet+' BTC</h4></code></p><p>'+html+'</p></div>';
+						var xhtml = '<div class="col-md-12">Please send '+amount+' BTC to this address.</div><div class="col-md-6"><img style="margin-left:-10px" src="https://chart.googleapis.com/chart?chs=225x225&chld=L|0&cht=qr&chl=bitcoin:'+result.input_address+'?amount='+amount+'"/><p>'+result.input_address+'</p></div><div class="col-md-6"><p>Your Packet: '+package+' USD</p><p>Total: '+ total +' BTC</p><p></p>Paid amount: '+received+' BTC <p><code><h4>O Wallet: '+result.o_wallet+' BTC</h4></code></p><p>'+html+'</p></div>';
 						}
 					
 					alertify.alert(xhtml, function(){

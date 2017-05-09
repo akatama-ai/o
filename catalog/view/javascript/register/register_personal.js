@@ -22,8 +22,7 @@ $( document ).ready(function() {
                 self.find('#BitcoinWalletAddress-error').hide();
                 self.find('#email').parent().removeClass('has-error');
                 self.find('#email-error').hide();               
-                self.find('#position').parent().removeClass('has-error');
-                self.find('#position-error').hide();
+
                 self.find('#password').parent().removeClass('has-error');
                 self.find('#password-error').hide();
                 self.find('#password2').parent().removeClass('has-error');
@@ -63,16 +62,7 @@ $( document ).ready(function() {
                 return true;
             },
 
-            position: function(self) {
-                if (self.find('#position').existsWithValue() === 0) {
-                     $('#register-account button').attr('disabled', false);
-                    self.find('#position').parent().addClass('has-error');
-                    self.find('#position-error').show();
-                    self.find('#position-error span').html('The position field is required');
-                    return false;
-                }
-                return true;
-            },
+          
             password: function(self) {
                 if (self.find('#password').existsWithValue() === 0) {
                      $('#register-account button').attr('disabled', false);
@@ -174,14 +164,7 @@ $( document ).ready(function() {
             }
         }
       
-        if (validate.position($(this)) === false) {
-             $('#register-account button').attr('disabled', false);
-            return false;
-        } else {
-            validate.init($(this));
-            self.find('#position').parent().addClass('has-success');
-        }
-
+      
         if (validate.password($(this)) === false) {
              $('#register-account button').attr('disabled', false);
             return false;
@@ -231,8 +214,6 @@ $( document ).ready(function() {
                 self.find('#BitcoinWalletAddress').parent().removeClass('has-error');
                 self.find('#BitcoinWalletAddress-error').hide();
                
-                 self.find('#position').parent().removeClass('has-error');
-                self.find('#position-error').hide();
                 self.find('#password').parent().removeClass('has-error');
                 self.find('#password-error').hide();
                 self.find('#password2').parent().removeClass('has-error');
@@ -267,8 +248,6 @@ $( document ).ready(function() {
                     self.find('#BitcoinWalletAddress').parent().removeClass('has-error');
                     self.find('#BitcoinWalletAddress-error').hide();
                   
-                     self.find('#position').parent().removeClass('has-error');
-                self.find('#position-error').hide();
                     self.find('#password').parent().removeClass('has-error');
                     self.find('#password-error').hide();
                     self.find('#password2').parent().removeClass('has-error');
@@ -304,8 +283,6 @@ $( document ).ready(function() {
                     self.find('#BitcoinWalletAddress').parent().removeClass('has-error');
                     self.find('#BitcoinWalletAddress-error').hide();
                   
-                     self.find('#position').parent().removeClass('has-error');
-                self.find('#position-error').hide();
                     self.find('#password').parent().removeClass('has-error');
                     self.find('#password-error').hide();
                     self.find('#password2').parent().removeClass('has-error');

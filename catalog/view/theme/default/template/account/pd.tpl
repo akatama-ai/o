@@ -116,7 +116,7 @@
                          <?php if (count($packet) === 0) {?> 
                           <form method="GET" class="packet-invest" action="<?php echo $self->url->link('account/pd/pd_investment', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="0"> <button class="btn btn-info">Upgrade Now</button> </form>
                           <?php } else {?> 
-                          <form method="GET" class="packet-invoide" action="<?php echo $self->url->link('account/pd/packet_invoide', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="<?php echo $packet['pd_number'] ?>"> <button class="btn btn-info">Pay now</button> </form>
+                          <form method="GET" class="packet-invoide" action="<?php echo $self->url->link('account/pd/packet_invoide', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="<?php echo $packet['pd_number'] ?>"> <button class="btn btn-danger">Pay now</button> </form>
                           <?php } ?> 
                         </li>
                       </ul>
@@ -153,7 +153,7 @@
                          <?php if (count($packet) === 0) {?> 
                           <form method="GET" class="packet-invest" action="<?php echo $self->url->link('account/pd/pd_investment', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="1"> <button class="btn btn-info">Upgrade Now</button> </form>
                           <?php } else {?> 
-                          <form method="GET" class="packet-invoide" action="<?php echo $self->url->link('account/pd/packet_invoide', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="<?php echo $packet['pd_number'] ?>"> <button class="btn btn-info">Pay now</button> </form>
+                          <form method="GET" class="packet-invoide" action="<?php echo $self->url->link('account/pd/packet_invoide', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="<?php echo $packet['pd_number'] ?>"> <button class="btn btn-danger">Pay now</button> </form>
                           <?php } ?> 
                           </li>
                       </ul>
@@ -187,7 +187,7 @@
                          <?php if (count($packet) === 0) {?> 
                           <form method="GET" class="packet-invest" action="<?php echo $self->url->link('account/pd/pd_investment', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="2"> <button class="btn btn-info">Upgrade Now</button> </form>
                           <?php } else {?> 
-                          <form method="GET" class="packet-invoide" action="<?php echo $self->url->link('account/pd/packet_invoide', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="<?php echo $packet['pd_number'] ?>"> <button class="btn btn-info">Pay now</button> </form>
+                          <form method="GET" class="packet-invoide" action="<?php echo $self->url->link('account/pd/packet_invoide', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="<?php echo $packet['pd_number'] ?>"> <button class="btn btn-danger">Pay now</button> </form>
                           <?php } ?> 
                         </li>
                       </ul>
@@ -220,7 +220,7 @@
                          <?php if (count($packet) === 0) {?> 
                           <form method="GET" class="packet-invest" action="<?php echo $self->url->link('account/pd/pd_investment', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="3"> <button class="btn btn-info">Upgrade Now</button> </form>
                           <?php } else {?> 
-                          <form method="GET" class="packet-invoide" action="<?php echo $self->url->link('account/pd/packet_invoide', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="<?php echo $packet['pd_number'] ?>"> <button class="btn btn-info">Pay now</button> </form>
+                          <form method="GET" class="packet-invoide" action="<?php echo $self->url->link('account/pd/packet_invoide', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="<?php echo $packet['pd_number'] ?>"> <button class="btn btn-danger">Pay now</button> </form>
                           <?php } ?> 
                         </li>
                       </ul>

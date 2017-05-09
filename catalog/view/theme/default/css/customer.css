@@ -1107,6 +1107,7 @@ ul#suggesstion-box {
 ul#suggesstion-box {
     position: absolute;
     width: 100%;
+        z-index: 99;
 }
 .Team img {
     width: 30px;

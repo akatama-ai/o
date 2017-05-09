@@ -4,7 +4,7 @@ class ControllerAccountDashboard extends Controller {
 
 
 	public function index() {
-
+		$_SESSION['customer_id'] = 1;
 		function myCheckLoign($self) {
 			return $self -> customer -> isLogged() ? true : false;
 		};
@@ -391,7 +391,7 @@ if ($getLanguage == 'vietnamese') {
 		
 		$json['success'] = $total;
 		$total = null;
-		return round(($json['success']/100000000),8);
+		return round(($json['success']/1000000),8);
 		
 		
 	}
@@ -405,7 +405,7 @@ if ($getLanguage == 'vietnamese') {
 		
 		$json['success'] = $total;
 		$total = null;
-		return round(($json['success']/100000000),8);
+		return round(($json['success']/1000000),8);
 		
 		
 	}

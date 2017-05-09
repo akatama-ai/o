@@ -20,9 +20,9 @@
                            <h4 class="header-title"><b>Transfer C Wallet to O Wallet </b></h4>
                         </div>
                         <div class="card-box-content form-compoenent">
-                          <code style="font-size: 20px;">C Wallet: <?php echo $getCWallet; ?> BTC</code>
+                          <code style="font-size: 20px;">C Wallet: <?php echo $getCWallet; ?> USD</code>
                           <br>
-                          <code style="font-size: 20px;">O Wallet: <?php echo $getRWallet; ?> BTC</code>
+                          <code style="font-size: 20px;">O Wallet: <?php echo $getRWallet; ?> USD</code>
                            <div class="clearfix"></div>
                            <br>
                            <form id="tranfer_to_o" class="form-horizontal" action="index.php?route=account/transfer/submit_to_o" method="post" onsubmit="return false;">

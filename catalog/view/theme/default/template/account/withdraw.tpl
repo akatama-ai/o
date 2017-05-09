@@ -29,7 +29,7 @@
 
 
                         <div class="col-xs-11">
-                <code style="font-size: 30px;"><?php echo $getCWallet; ?> BTC</code>
+                <code style="font-size: 30px;"><?php echo $getCWallet; ?> USD</code>
                               <!--   
                                  <p><span class="text-info">Min Withdrawal: 0.005 BTC</span></p> -->
                            <div class="form-group">
@@ -58,7 +58,7 @@
                    <?php } else{ ?>
                   
                         <div class="col-xs-11">
-                <code style="font-size: 30px;">C Wallet <?php echo $getCWallet; ?> BTC</code>
+                <code style="font-size: 30px;">C Wallet <?php echo $getCWallet; ?> USD</code>
                             
                               <a href="javascript:void(0)" class="btn btn-rounded btn-custom btn-pink btn-md" style=" margin-top: 40px; white-space: initial">The withdrawal function will be reopened on a Sunday each week</a>
                            

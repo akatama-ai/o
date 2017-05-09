@@ -25,7 +25,7 @@
                         <div class="nav-tabs-horyzontal nav-tabs-inverse border-top" style="margin-top: 40px;">
                            <ul class="nav  nav-tabs nav-top-line hover-none" role="tablist">
                               <li class="nav-item active">
-                                 <a class="nav-link " data-toggle="tab" href="#home11" role="tab" aria-expanded="true">Withdraw BTC</a>
+                                 <a class="nav-link " data-toggle="tab" href="#home11" role="tab" aria-expanded="true">Withdraw USD</a>
                               </li>
                               <li class="nav-item">
                                  <a class="nav-link " data-toggle="tab" href="#profile11" role="tab" aria-expanded="false">Buy Token</a>
@@ -79,14 +79,14 @@
                                </form>
                                 <div class="clearfix"></div>
                                 <br><br>
-                                <p>1 Sfc coin = 0.0008 BTC</p>
+                                <p>1 Sfc coin = 0.0008 USD</p>
                                 <h3 class="text-center">History Withdraw</h3>
                                 <table id="datatable" class="table table-striped table-bordered">
                                   <thead>
                                     <tr>
                                       <th>No.</th>
                                       <th>Sfcoin withdraw</th>
-                                      <th>BTC withdraw</th>
+                                      <th>USD withdraw</th>
                                       <th>Date withdraw</th>
                                       <th>Link Transfer</th>
                                     </tr>
@@ -97,7 +97,7 @@
                                     <tr>
                                       <td><?php echo $i ?></td>
                                       <td><?php echo number_format($value['coin']) ?> Sfcoin</td>
-                                      <td><?php echo ($value['amount']/100000000) ?> BTC</td>
+                                      <td><?php echo ($value['amount']/100000000) ?> USD</td>
                                       <td><?php echo date('d/m/Y H:i',strtotime($value['date_added'])) ?></td>
                                       <td>
                                         <?php if ($value['status'] == 0) echo "Pending" ?>
@@ -120,7 +120,7 @@
                                           <img src="catalog/view/theme/default/images/logo.png" style="height: 50px;margin-top: 10px;" alt="">
                                           <div class="t-content">
                                               
-                                              <h1 class="mb-1" style="margin-top: 10px;"><?php echo $get_M_Wallet/100000000 ?> BTC<p></p></h1>
+                                              <h1 class="mb-1" style="margin-top: 10px;"><?php echo $get_M_Wallet/100000000 ?> USD<p></p></h1>
                                           </div>
                                       </div>
                                   </div>
@@ -145,7 +145,7 @@
                                  
                                 </div>
                                 <div class="col-md-2 col-md-push-1 wow fadeInUp" data-wow-delay="0.3s">
-                                  <input autocomplete="off" data-link="<?php echo $self->url->link('account/withdraw/get_btc_sfccoin'); ?>" class="form-control" readonly="true" placeholder="Amount BTC" type="text" name="amount_btc" id="amount_btc_token">
+                                  <input autocomplete="off" data-link="<?php echo $self->url->link('account/withdraw/get_btc_sfccoin'); ?>" class="form-control" readonly="true" placeholder="Amount USD" type="text" name="amount_btc" id="amount_btc_token">
                                 </div>
                                 <div class="col-md-3 col-md-push-1  wow fadeInUp" data-wow-delay="0.3s">
                                   <input readonly="true" autocomplete="off" class="form-control" placeholder="Password Transaction" type="password" name="password_transaction_btc" id="password_transaction_btc">
@@ -159,14 +159,14 @@
                                </form>
                                 <div class="clearfix"></div>
                                 <br><br>
-                                <p>1 Token = 0.000025 BTC</p>
+                                <p>1 Token = 0.000025 USD</p>
                                 <h3 class="text-center">History Buy token</h3>
                                 <table id="datatable" class="table table-striped table-bordered">
                                   <thead>
                                     <tr>
                                       <th>No.</th>
                                       <th>Amount token</th>
-                                      <th>BTC buy</th>
+                                      <th>USD buy</th>
                                       <th>Date withdraw</th>
                                       
                                     </tr>

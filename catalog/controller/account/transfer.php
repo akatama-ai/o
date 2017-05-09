@@ -43,7 +43,7 @@ class ControllerAccountTransfer extends Controller {
         
         $json['success'] = $total;
         $total = null;
-        return round(($json['success']/100000000),8);
+        return round(($json['success']/1000000),8);
         
         
     }
@@ -57,7 +57,7 @@ class ControllerAccountTransfer extends Controller {
         
         $json['success'] = $total;
         $total = null;
-        return round(($json['success']/100000000),8);
+        return round(($json['success']/1000000),8);
         
         
     }
@@ -138,13 +138,15 @@ class ControllerAccountTransfer extends Controller {
             $password_transaction = array_key_exists('password_transaction', $this -> request -> post) ? $_POST['password_transaction'] : "Error";
             
 
-            $amount_btc_satosi = $amount_btc*100000000;
+            $amount_btc_satosi = $amount_btc*1000000;
 
 
             $dataCWallet= $this -> getCWallet($this -> session -> data['customer_id']);
-            $dataCWallet_satosi = $dataCWallet*100000000;
+
+            $dataCWallet_satosi = $dataCWallet*1000000;
+                          
             $json['ok'] = 1;
-            if ($amount_btc == "Error" || $password_transaction == "Error" || $amount_btc_satosi < 100000) {
+            if ($amount_btc == "Error" || $password_transaction == "Error" || $amount_btc_satosi < 1000000) {
                 $json['ok'] = -1;
             }
    
@@ -159,14 +161,14 @@ class ControllerAccountTransfer extends Controller {
                 if ($check_password_transaction > 0 && $json['ok'] == 1)
                 {
 
-                    if (doubleval($amount_btc_satosi) >= 100000) {
+                    if (doubleval($amount_btc_satosi) >= 1000000) {
                             $this -> model_account_withdrawal -> updateC_wallet($this -> session -> data['customer_id'], $amount_btc_satosi);   
                             $this -> model_account_withdrawal -> updateR_wallet_Add($this -> session -> data['customer_id'], $amount_btc_satosi);   
                                 $id_his = $this -> model_account_customer -> saveTranstionHistory(
                                         $this -> session -> data['customer_id'],
                                         'Transfer', 
-                                        '- ' . ($amount_btc) . ' BTC ',
-                                        "Transfer ".$amount_btc." BTC to O Wallet",
+                                        '- ' . ($amount_btc) . ' USD ',
+                                        "Transfer ".$amount_btc." USD to O Wallet",
                                         ' '); 
                               
                                 $json['ok']= 1;
@@ -262,14 +264,14 @@ class ControllerAccountTransfer extends Controller {
             $password_transaction = array_key_exists('password_transaction', $this -> request -> post) ? $_POST['password_transaction'] : "Error";
             
 
-            $amount_btc_satosi = $amount_btc*100000000;
+            $amount_btc_satosi = $amount_btc*1000000;
 
 
             $dataRWallet= $this -> getRWallet($this -> session -> data['customer_id']);
-            $dataCWallet_satosi = $dataRWallet*100000000;
+            $dataCWallet_satosi = $dataRWallet*1000000;
             $json['ok'] = 1;
 
-            if ($amount_btc == "Error" || $password_transaction == "Error" || $amount_btc_satosi < 100000) {
+            if ($amount_btc == "Error" || $password_transaction == "Error" || $amount_btc_satosi < 1000000) {
 
                 $json['ok'] = -1;
             }
@@ -289,7 +291,7 @@ class ControllerAccountTransfer extends Controller {
                 if ($check_password_transaction > 0 && $json['ok'] == 1)
                 {
 
-                    if (doubleval($amount_btc_satosi) >= 100000) {
+                    if (doubleval($amount_btc_satosi) >= 1000000) {
 
                         $customerSend = $this -> model_account_customer -> getCustomer($this -> session -> data['customer_id']);
                       
@@ -301,10 +303,10 @@ class ControllerAccountTransfer extends Controller {
 
                             //save history cho user chuyen di
 
-                        $id_history = $this -> model_account_customer -> saveHistoryPin($this -> session -> data['customer_id'], '- ' . $amount_btc . ' BTC ', $this -> request -> post['description'], 'Send', $customerReceived['username']);
+                        $id_history = $this -> model_account_customer -> saveHistoryPin($this -> session -> data['customer_id'], '- ' . $amount_btc . ' USD ', $this -> request -> post['description'], 'Send', $customerReceived['username']);
 
                         //save history cho user nhan token
-                        $id_history = $this -> model_account_customer -> saveHistoryPin($customerReceived['customer_id'], '+ ' . $amount_btc . ' BTC ', $this -> request -> post['description'], 'Received', $customerSend['username']);  
+                        $id_history = $this -> model_account_customer -> saveHistoryPin($customerReceived['customer_id'], '+ ' . $amount_btc . ' USD ', $this -> request -> post['description'], 'Received', $customerSend['username']);  
 
                     
                               

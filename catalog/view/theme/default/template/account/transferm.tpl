@@ -21,7 +21,7 @@
                         </div>
                         <div class="card-box-content form-compoenent">
                          
-                          <code style="font-size: 20px;">O Wallet: <?php echo $getRWallet; ?> BTC</code>
+                          <code style="font-size: 20px;">O Wallet: <?php echo $getRWallet; ?> USD</code>
                            <div class="clearfix"></div>
                            <br>
                            <form id="tranfer_to_m" class="form-horizontal" action="index.php?route=account/transfer/submit_to_m" method="post" onsubmit="return false;">
@@ -38,7 +38,7 @@
                               <div class="form-group">
                               <div class="col-sm-6">
                                  <label>Amount</label>
-                                   <input autocomplete="off" value="" class="form-control" id="amount" name="amount" placeholder='Amount BTC' type="text" required/>
+                                   <input autocomplete="off" value="" class="form-control" id="amount" name="amount" placeholder='Amount USD' type="text" required/>
                                                         <p class="error help-block animated fadeInDown error_amount" style="display:none">Please enter Amount</p>
                                                         </div>
                                  

@@ -24,7 +24,7 @@
 
                     <div class="col-md-3 col-xs-6">
                         <div class="widget-panel widget-style-1 bg-primary">
-                            <h2 class="m-0 text-white counter font-40 font-400 text-center"><?php echo $getCWallet; ?> BTC</h2>
+                            <h2 class="m-0 text-white counter font-40 font-400 text-center"><?php echo $getCWallet; ?> USD</h2>
                             <div class="text-white text-opt  m-t-5 text-center font-12">C Wallet</div>
                             
                         </div>
@@ -33,7 +33,7 @@
 
                     <div class="col-md-3 col-xs-6">
                         <div class="widget-panel widget-style-1 bg-success">
-                            <h2 class="m-0 text-white counter font-40 font-400 text-center"><?php echo $getRWallet; ?> BTC</h2>
+                            <h2 class="m-0 text-white counter font-40 font-400 text-center"><?php echo $getRWallet; ?> USD</h2>
                             <div class="text-white text-opt m-t-5 text-center font-12">O Wallet</div>
                             
                         </div>
@@ -41,7 +41,7 @@
 
                     <div class="col-md-3 col-xs-6">
                         <div class="widget-panel widget-style-1 bg-info">
-                            <h2 class="m-0 text-white counter font-40 font-400 text-center"><?php echo $total_pd_left; ?> BTC</h2>
+                            <h2 class="m-0 text-white counter font-40 font-400 text-center"><?php echo $total_pd_left; ?> USD</h2>
                             <div class="text-white text-opt m-t-5 text-center font-12">Amount Left</div>
                             
                         </div>
@@ -49,7 +49,7 @@
 
                     <div class="col-md-3 col-xs-6">
                         <div class="widget-panel widget-style-1 bg-purple">
-                            <h2 class="m-0 text-white counter font-40 font-400 text-center"><?php echo $total_pd_right; ?> BTC</h2>
+                            <h2 class="m-0 text-white counter font-40 font-400 text-center"><?php echo $total_pd_right; ?> USD</h2>
                             <div class="text-white text-opt m-t-5 text-center font-12">Amount Right</div>
                             
                         </div>

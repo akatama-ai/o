@@ -462,7 +462,7 @@ class ControllerAccountPd extends Controller {
                     'Refferal Commistion', 
                     '+ ' . ($price) . ' USD',
                     "Refferal Bonus 10%  (".$price_send." BTC) from F1 ".$customer['username']."",
-                    $txid); 
+                     $txid); 
                 $parrent = $this -> model_account_customer ->getCustomer($partent['p_node']);
                 if (!empty($parrent)) {   
                     $percent = 3;

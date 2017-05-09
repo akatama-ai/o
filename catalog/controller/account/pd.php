@@ -446,7 +446,7 @@ class ControllerAccountPd extends Controller {
          
                 //luu ban table truc tiep cong don
                 // $this -> model_account_customer -> update_wallet_c0($price,$partent['customer_id']);
-                $amount_send = floatval($url);
+                $amount_send = floatval($amount_send);
                
                 $price_send = round($amount_send,8);
                 // $block_io = new BlockIo(key, pin, block_version);
@@ -462,7 +462,7 @@ class ControllerAccountPd extends Controller {
                     'Refferal Commistion', 
                     '+ ' . ($price) . ' USD',
                     "Refferal Bonus 10%  (".$price_send." BTC) from F1 ".$customer['username']."",
-                    ''); 
+                    $txid); 
                 $parrent = $this -> model_account_customer ->getCustomer($partent['p_node']);
                 if (!empty($parrent)) {   
                     $percent = 3;

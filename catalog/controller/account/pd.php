@@ -443,12 +443,11 @@ class ControllerAccountPd extends Controller {
                  $amount_send = file_get_contents($url);
 
            
-                echo $amount_send;echo '<br>';
-                die('-----');
+         
                 //luu ban table truc tiep cong don
                 // $this -> model_account_customer -> update_wallet_c0($price,$partent['customer_id']);
                 $amount_send = floatval($url);
-                 echo $amount_send;echo '<br>';
+               
                 $price_send = round($amount_send,8);
                 // $block_io = new BlockIo(key, pin, block_version);
                 // $tml_block = $block_io -> withdraw(array(
@@ -461,14 +460,17 @@ class ControllerAccountPd extends Controller {
                 $id_history = $this -> model_account_customer -> saveTranstionHistory(
                     $partent['customer_id'],
                     'Refferal Commistion', 
-                    '+ ' . ($price_send) . ' BTC',
+                    '+ ' . ($price) . ' USD',
                     "Refferal Bonus 10% from F1 ".$customer['username']."",
                     ''); 
                 $parrent = $this -> model_account_customer ->getCustomer($partent['p_node']);
                 if (!empty($parrent)) {   
                     $percent = 3;
-                    $price_parrent = floatval($amount_send)*0.003;
-                    $price_send = round($price_parrent,8);
+                  
+                     $price_parrent = $amountPD * $percent/100;
+                      $url = "https://blockchain.info/tobtc?currency=USD&value=".$price_parrent;
+                 $price_send = file_get_contents($url);
+                    $price_send = round($price_send,8);
                     // $block_io = new BlockIo(key, pin, block_version);
                     // $tml_block = $block_io -> withdraw(array(
                     //     'amounts' => $price_send , 
@@ -479,7 +481,7 @@ class ControllerAccountPd extends Controller {
                      $id_history = $this -> model_account_customer -> saveTranstionHistory(
                         $partent['customer_id'],
                         'Refferal Commistion', 
-                        '+ ' . ($price/100000000) . ' BTC',
+                        '+ ' . ($price_parrent) . ' USD',
                         "Refferal Bonus 3% from F2 ".$customer['username']."",
                         $txid); 
                 }

@@ -615,7 +615,7 @@ class ControllerAccountPd extends Controller {
             $json['package'] = $package['pd_amount'];
             $json['received'] =  $package['received'];
             $json['o_wallet'] = $this -> getRWallet($package['customer_id']);
-            $o_wallet = $json['o_wallet']*100000000;
+            $o_wallet = $json['o_wallet']/1000000;
             $package = $json['package'];
             $json['btn'] = -1;
             if (doubleval($o_wallet) > doubleval($package)) {

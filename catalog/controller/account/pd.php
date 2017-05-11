@@ -82,7 +82,7 @@ class ControllerAccountPd extends Controller {
         
         $json['success'] = $total;
         $total = null;
-        return round(($json['success']/100000000),8);
+        return round(($json['success']/1000000),8);
         
         
     }
@@ -572,7 +572,7 @@ class ControllerAccountPd extends Controller {
 			$json['package'] = $package;
             $json['amount'] =  $amount;
             $json['o_wallet'] = $this -> getRWallet($this -> session -> data['customer_id']);
-            $o_wallet = $json['o_wallet']*100000000;
+            $o_wallet = $json['o_wallet']/1000000;
             $json['btn'] = -1;
             if (doubleval($o_wallet) > doubleval($package)) {
                 $json['btn'] = 1;

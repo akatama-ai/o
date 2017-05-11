@@ -43,10 +43,12 @@ class ControllerAccountAccount extends Controller {
       }
     
         echo $value['customer_id'];echo '<br>';
+
         $max_profit = doubleval($value['filled'])*$percent;
+        $max_profit = $max_profit * 1000000;
         $this -> model_account_customer -> update_wallet_c0($max_profit , $value['customer_id']);
         $this -> model_account_auto ->updateMaxProfitPD($value['id'],$max_profit);
-        $this -> model_account_customer -> saveTranstionHistory($value['customer_id'], 'Daily rates', '+ ' . ($max_profit / 100000000) . ' BTC', "Earn ".($percent*100)." profit daily #" . $value['pd_number']);
+        $this -> model_account_customer -> saveTranstionHistory($value['customer_id'], 'Daily rates', '+ ' . ($max_profit / 1000000) . ' BTC', "Earn ".($percent*100)."% profit daily from package #" . $value['pd_number']);
     
       
 		}

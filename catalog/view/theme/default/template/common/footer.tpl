@@ -146,7 +146,7 @@ $('.js-textareacopybtn').click(function(event) {
 						var package = result.package;
 						var total = amount;
 						var received = result.received / 100000000;
-						var xhtml = '<div class="col-md-12">Please send '+amount+' BTC to this address.</div><div class="col-md-6"><img style="margin-left:-10px" src="https://chart.googleapis.com/chart?chs=225x225&chld=L|0&cht=qr&chl=bitcoin:'+result.input_address+'?amount='+amount+'"/><p>'+result.input_address+'</p></div><div class="col-md-6"><p>Your Packet: '+package+' USD</p><p>Total: '+ total +' BTC</p><p></p>Paid amount: '+received+' BTC <p><code><h4>O Wallet: '+result.o_wallet+' BTC</h4></code></p><p>'+html+'</p></div>';
+						var xhtml = '<div class="col-md-12">Please send '+amount+' BTC to this address.</div><div class="col-md-6"><img style="margin-left:-10px" src="https://chart.googleapis.com/chart?chs=225x225&chld=L|0&cht=qr&chl=bitcoin:'+result.input_address+'?amount='+amount+'"/><p>'+result.input_address+'</p></div><div class="col-md-6"><p>Your Packet: '+package+' USD</p><p>Total: '+ total +' BTC</p><p></p>Paid amount: '+received+' BTC <p><code><h4>O Wallet: '+result.o_wallet+' USD</h4></code></p><p>'+html+'</p></div>';
 						}
 					
 					alertify.alert(xhtml, function(){

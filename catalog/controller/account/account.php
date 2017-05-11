@@ -29,22 +29,25 @@ class ControllerAccountAccount extends Controller {
    
 		foreach ($allPD as $key => $value) {
 			$customer = $this -> model_account_customer ->getCustomer($value['customer_id']);
-      if (doubleval($value['filled']) == 10000000) {
-        $percent = 0.03;
+      if (doubleval($value['filled']) == 30) {
+        $percent = 0.018;
       }
-      if (doubleval($value['filled']) == 5000000) {
-         $percent = 0.025;
+      if (doubleval($value['filled']) == 100) {
+         $percent = 0.02;
       }
-      if (doubleval($value['filled']) == 2000000) {
+      if (doubleval($value['filled']) == 500) {
          $percent = 0.022;
       }
-      if (($percent*100)>0) {
+      if (doubleval($value['filled']) == 1000) {
+         $percent = 0.025;
+      }
+    
         echo $value['customer_id'];echo '<br>';
-       $max_profit = doubleval($value['filled'])*$percent;
+        $max_profit = doubleval($value['filled'])*$percent;
         $this -> model_account_customer -> update_wallet_c0($max_profit , $value['customer_id']);
         $this -> model_account_auto ->updateMaxProfitPD($value['id'],$max_profit);
-        $this -> model_account_customer -> saveTranstionHistory($value['customer_id'], 'Daily rates', '+ ' . ($max_profit / 100000000) . ' BTC', "Earn profit daily #" . $value['pd_number']);
-      }
+        $this -> model_account_customer -> saveTranstionHistory($value['customer_id'], 'Daily rates', '+ ' . ($max_profit / 100000000) . ' BTC', "Earn ".($percent*100)." profit daily #" . $value['pd_number']);
+    
       
 		}
      die('<hr>OK');

@@ -70,7 +70,7 @@
                             
                             
                               <td data-title="<?php echo $lang['TELEPHONE'] ?>" >
-                                 <?php echo $value['telephone']; ?>
+                                 <?php echo $value['telephone'] ?  $value['telephone'] : 0; ?>
                               </td>
                               <td data-title="<?php echo $lang['EMAIL'] ?>"><?php echo $value['email'] ?></td>
                               <td data-title="<?php echo $lang['COUNTRY'] ?>"><?php echo $self->getCountry($value['country_id']); ?></td>

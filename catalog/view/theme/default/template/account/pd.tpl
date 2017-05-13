@@ -15,7 +15,7 @@
                         <div class="col-md-12">
                             <div class="card-box">
                                 
-                                <div class="card-box-content form-compoenent">
+                                <div class="">
                                     
                                     
                                     

@@ -68,7 +68,7 @@
                             <div class="card-box-head  border-b m-t-0">
                                 <h4 class="header-title"><b>Quick Access</b></h4>
                             </div>
-                            <div class="card-box-content p-l-0 p-r-0 btn-compoenent">
+                            <div class="">
                                 <div class="row">
                                    
                                     <div class="col-sm-4 col-xs-12">

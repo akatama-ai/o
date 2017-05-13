@@ -27,7 +27,7 @@
                                                     <th>Receipt No.</th>
                                                 
                                                   <th>Date Created</th>
-                                                  <th>Expiration Days</th>
+                                                  <th style=" width: 165px; ">Expiration Days</th>
                                                   <th>Amount</th>
                                                   <th>Profit</th>
                                                   <!-- <th>Time</th> -->
@@ -42,7 +42,7 @@
                                                     <td data-title="Receipt No."><?php echo $key['pd_number'] ?></td>
                                                 
                                                     <td data-title="Date Created"><?php echo date("l jS \of F Y ", strtotime($key['date_added'])); ?></td>
-                                                    <td data-title="Expiration Days"><?php echo $key['cycle'] ?></td>
+                                                    <td data-title="Expiration Days" style=" text-align: center; "><?php echo $key['cycle'] ?></td>
                                                      <!-- <td data-title="Expiration Date"><?php echo date("l jS \of F Y ", strtotime($key['date_finish'])); ?></td>  -->
                                                     <td data-title="Amount">
                                                         <?php echo (doubleval($key['filled']) ) ?> USD

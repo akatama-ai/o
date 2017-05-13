@@ -71,20 +71,20 @@
                             <div class="card-box-content p-l-0 p-r-0 btn-compoenent">
                                 <div class="row">
                                    
-                                    <div class="col-xs-4">
+                                    <div class="col-sm-4 col-xs-12">
                                         <div class="item-quick-access">
                                             <i class="fa fa-gear" aria-hidden="true"></i>
                                              <p><a href="your-profile.html">Account Settings</a></p>
                                         </div>
                                     </div>
-                                    <div class="col-xs-4">
+                                    <div class="col-sm-4 col-xs-12">
                                         <div class="item-quick-access">
                                             <i class="fa fa-file-text-o" aria-hidden="true"></i>
                                              <p><a href="investment.html">Investment</a></p>
                                         </div>
                                     </div>
                                    
-                                    <div class="col-xs-4">
+                                    <div class="col-sm-4 col-xs-12">
                                         <div class="item-quick-access">
                                             <i class="fa fa-list" aria-hidden="true"></i>
                                              <p><a href="withdraw">Withdrawal History</a></p>

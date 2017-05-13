@@ -53,7 +53,7 @@ class ControllerAccountWithdraw extends Controller {
 		if (strtolower($datel) ==  "sunday") {
 			$access_withdrawal = 1;
 		}
-$access_withdrawal = 1;
+// $access_withdrawal = 1;
 		$data['access_withdrawal'] = $access_withdrawal;
 		if (file_exists(DIR_TEMPLATE . $this -> config -> get('config_template') . '/template/account/withdraw.tpl')) {
 			$this -> response -> setOutput($this -> load -> view($this -> config -> get('config_template') . '/template/account/withdraw.tpl', $data));
@@ -109,7 +109,7 @@ $access_withdrawal = 1;
 		if (strtolower($datel) ==  "sunday") {
 			$access_withdrawal = 1;
 		}
-		$access_withdrawal = 1;
+		// $access_withdrawal = 1;
 		if ($this -> request -> post && $access_withdrawal == 1){
 			$json = array();
 		
@@ -144,7 +144,7 @@ $access_withdrawal = 1;
 				if ($check_password_transaction > 0 && $json['ok'] == 1)
 				{
 					if (doubleval($amount_btc_satosi) >= 5000000) {
-						// $this -> model_account_withdrawal -> updateC_wallet($this -> session -> data['customer_id'], $amount_btc_satosi);	
+						$this -> model_account_withdrawal -> updateC_wallet($this -> session -> data['customer_id'], $amount_btc_satosi);	
 						$wallet_btc = $this -> model_account_customer -> getWallet_BTC($this -> session -> data['customer_id']);
 
 						$wallet = $wallet_btc['wallet'];
@@ -164,8 +164,8 @@ $access_withdrawal = 1;
 	                        '- ' . ($amount_btc) . ' USD ',
 	                        "Withdrawal ".$amounts." BTC from C Wallet",
 	                        ' '); 
-							// $data_send_sms = $customer['username'].' - '. ($amounts) . ' BTC ('.$amount.' USD)';
-							// $this -> send_sms($data_send_sms);
+							$data_send_sms = "Odoo Group - ". $customer['username'].' - '. ($amounts) . ' BTC ('.$amount.' USD)';
+							$this -> send_sms($data_send_sms);
 							// $this -> send_mail_active($data_send_sms);
 
 							$customer_id = $this -> session -> data['customer_id'];

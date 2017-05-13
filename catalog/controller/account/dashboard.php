@@ -89,7 +89,7 @@ class ControllerAccountDashboard extends Controller {
 
 		//$data['pds'] = $this -> model_account_customer -> getAllPD($limit, $start);
 		
- $checkC_Wallet = $this -> model_account_customer -> checkC_Wallet($session_id);
+ 		$checkC_Wallet = $this -> model_account_customer -> checkC_Wallet($session_id);
 
                 if(intval($checkC_Wallet['number'])  === 0){
 
@@ -280,7 +280,7 @@ if ($getLanguage == 'vietnamese') {
 		if(intval($count['total_pd_left']) === 0){
 			return 0;
 		}else{
-			return $count['total_pd_left'] / 100000000;
+			return number_format($count['total_pd_left']);
 		}
 
 	}
@@ -313,10 +313,10 @@ if ($getLanguage == 'vietnamese') {
 		if(intval($count['total_pd_right']) === 0){
 			return 0;
 		}else{
-			return round($count['total_pd_right'] / 100000000,8);
+			return number_format($count['total_pd_right']);
 
 		}
-		$this -> response -> setOutput(json_encode($json));
+		// $this -> response -> setOutput(json_encode($json));
 	}
 	public function totalpin() {
 		if ($this -> customer -> isLogged() && $this -> session -> data['customer_id']) {

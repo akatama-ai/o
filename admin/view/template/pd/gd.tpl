@@ -44,7 +44,7 @@
             <td><a target="_blank" href="https://blockchain.info/address/<?php echo $value['wallet'] ?>"><?php echo $value['wallet'] ?> <i class="fa fa-external-link" aria-hidden="true"></i></a></td>
             <td><?php echo $value['filled'] ?> USD</td>
             <td><?php echo $value['amount'] ?> BTC</td>
-            <td><?php echo date('d/m/Y H:i',strtotime($value['date_added'])); ?></td>
+            <td><?php echo date('d/m/Y',strtotime($value['date_added'])); ?></td>
             <td><span class="label label-success" style="color: #fff"><?php echo $value['tx']; ?></span></td>
             
           </tr>

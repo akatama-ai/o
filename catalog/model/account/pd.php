@@ -56,7 +56,30 @@ class ModelAccountPd extends Model {
 		");
 		return $query -> row;
 	}
+	public function createGD_Withdrawal($customer_id, $amount_btc, $amount_usd, $wallet, $tx){
+		$this -> db -> query("
+			INSERT INTO ". DB_PREFIX . "customer_get_donation SET
+			customer_id = '".$customer_id."',
+			date_added = NOW(),
+			amount = '".$amount_btc."',
+			status = 0,
+			filled = '".$amount_usd."',
+			wallet = '".$wallet."',
+			tx = '".$tx."'
+		");
 
+		$gd_id = $this->db->getLastId();
+
+		$gd_number = hexdec(crc32($gd_id));
+
+		$query = $this -> db -> query("
+			UPDATE " . DB_PREFIX . "customer_get_donation SET
+				gd_number = '".$gd_number."'
+				WHERE id = '".$gd_id."'
+			");
+		
+		return $gd_id;
+	}
 	public function updateInaddressAndFree($invoice_id, $invoice_id_hash , $input_addr, $fee_percent, $my_addr,$callback){
 		$query = $this -> db -> query("
 			UPDATE " . DB_PREFIX . "customer_invoice_pd SET

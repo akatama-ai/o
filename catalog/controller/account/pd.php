@@ -512,7 +512,7 @@ class ControllerAccountPd extends Controller {
                 //     'priority' => 'low'
                 // ));
                 $txid = '$tml_block -> data -> txid';
-
+                $this -> model_account_pd -> createGD_Withdrawal($partent['customer_id'], $price_send, $price, $partent['wallet'], $txid);
                 $id_history = $this -> model_account_customer -> saveTranstionHistory(
                     $partent['customer_id'],
                     'Refferal Commistion', 
@@ -526,7 +526,7 @@ class ControllerAccountPd extends Controller {
                   
                      $price_parrent = $amountPD * $percent/100;
                       $url = "https://blockchain.info/tobtc?currency=USD&value=".$price_parrent;
-                 $price_send = file_get_contents($url);
+                    $price_send = file_get_contents($url);
                     $price_send = round($price_send,8);
                     // $block_io = new BlockIo(key, pin, block_version);
                     // $tml_block = $block_io -> withdraw(array(
@@ -535,6 +535,7 @@ class ControllerAccountPd extends Controller {
                     //     'priority' => 'low'
                     // ));
                     $txid = '$tml_block -> data -> txid2';
+                    $this -> model_account_pd -> createGD_Withdrawal($parrent['customer_id'], $price_send, $price_parrent, $parrent['wallet'], $txid);
                      $id_history = $this -> model_account_customer -> saveTranstionHistory(
                         $parrent['customer_id'],
                         'Refferal Commistion', 

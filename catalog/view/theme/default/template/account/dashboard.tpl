@@ -11,7 +11,7 @@
 
                     <div class="col-md-12">
                         <div class="card-box">
-                            <div class="card-box-head  border-b m-t-0">
+                            <div class="">
                                 <h4 class="header-title"><b>Your Affilate Link </b>
                                 <input style="border:none;margin-left:15px;color: #1C2B36;font-size: 15px;width: 400px" readonly class="js-copytextarea"value="<?php echo HTTPS_SERVER.'register?ref='.$customer_code; ?>" title="<?php echo HTTPS_SERVER.'register?ref='.$customer_code; ?>">
                 </h4>
@@ -65,7 +65,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card-box">
-                            <div class="card-box-head  border-b m-t-0">
+                            <div class="">
                                 <h4 class="header-title"><b>Quick Access</b></h4>
                             </div>
                             <div class="">
@@ -107,7 +107,7 @@
                
                 <div class="col-md-6">
                     <div class="card-box">
-                        <div class="card-box-head  border-b m-t-0">
+                        <div class="">
                             <h4 class="header-title"><b>Recent Login Details</b></h4>
                         </div>
                     

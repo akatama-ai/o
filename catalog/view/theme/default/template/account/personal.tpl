@@ -146,9 +146,9 @@ jQuery.fn.show_tree = function(node) {
     x_p += "<p>Amount Left: "+node.leftPD+" USD</p>";
     x_p += "<p>Amount Right: "+node.rightPD+" USD</p>";
     html += !node.empty 
-        ? '<div class=\''+node_class+' '+level_active+'\'><a data-html="true" data-toggle="tooltip" rel="tooltip" data-placement="top" data-title="<p>'+x_p+'</p>" class="binaryTree" style="display:block"   \'><i class="fa fa-user type-'+node.level+'" onclick=\'click_node('+node.id+')\' value=\''+node.id+'\' aria-hidden="true"></i></a><span class="username_node">'+node.username+'</span>' 
+        ? '<div class=\''+node_class+' '+level_active+'\'><a data-html="true" data-toggle="tooltip" rel="tooltip" data-placement="top" data-title="<p>'+x_p+'</p>" class="binaryTree" style="display:block"   \'><i class="fa fa-user type-'+node.level+'" onclick=\'click_node('+node.id+')\' value=\''+node.id+'\' aria-hidden="true"></i></a><span class="username_node" style=" color: #7b5470; ">'+node.username+'</span>' 
      
-        : '<div class=\''+node_class+'\'><a data-toggle="tooltip" data-placement="top" style="display:block" onclick=\'click_node_add('+node.p_binary+', "'+positon[1]+'")\' value=\''+node.p_binary+'\' title="Add new user"><span style="font-size: 12px; position: absolute; top: 60px; color: #826400; left: 10px; text-transform: uppercase;">new user</span><i class="fa fa-plus-square type-add"></i></a>';
+        : '<div class=\''+node_class+'\'><a data-toggle="tooltip" data-placement="top" style="display:block" onclick=\'click_node_add('+node.p_binary+', "'+positon[1]+'")\' value=\''+node.p_binary+'\' title="Add new user"><span style="font-size: 12px; position: absolute; top: 65px; color: #7b5470; left: 20px; text-transform: uppercase;">new user</span><i class="fa fa-plus-square type-add"></i></a>';
 
     html += '<div id=\''+node.id+'\' ></div>';
 

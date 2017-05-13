@@ -2209,6 +2209,11 @@ public function createPD_register($amount, $max_profit, $customer_id){
 		return $query;
 	}
 	public function update_wallet_c0($amount,$customer_id){
+		echo $customer_id;echo "--".$amount;echo '<br>';
+		echo "UPDATE ". DB_PREFIX ."customer_c_wallet SET
+			amount = amount + ".doubleval($amount)."
+			WHERE customer_id = '".doubleval($customer_id)."'";
+			echo '<br>';
 		$query = $this -> db -> query("
 		UPDATE ". DB_PREFIX ."customer_c_wallet SET
 			amount = amount + ".doubleval($amount)."

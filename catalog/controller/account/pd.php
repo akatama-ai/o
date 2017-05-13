@@ -179,6 +179,60 @@ class ControllerAccountPd extends Controller {
 
         return $this -> model_account_pd -> count_check_packet_pd($customer_id, $amount);
     }
+    public function binary_right($customer_id){
+        $this -> load -> model('account/customer');
+        $check_f1 = $this -> model_account_customer -> check_p_node_binary_($customer_id);
+        $listId= '';
+        foreach ($check_f1 as $item) {
+            $listId .= ',' . $item['customer_id'];
+        }
+        $arrId = substr($listId, 1);
+        // $arrId = explode(',', $arrId);
+        $count = $this -> model_account_customer ->  getCustomer_ML($customer_id);
+        if(intval($count['right']) === 0){
+            $customer_binary = ',0';
+        }else{
+            $id = $count['right'];
+            $count = $this -> model_account_customer -> getCount_ID_BinaryTreeCustom($count['right']);
+            $customer_binary = $count.','.$id;
+        }
+        $customer_binary = substr($customer_binary, 1);
+        // $customer_binary = explode(',', $customer_binary);
+        $array = $arrId.','.$customer_binary;
+        $array = explode(',', $array);
+
+        $array = array_count_values($array);
+        $array = in_array(2, $array) ? 1 : 0;
+        return $array;
+    }
+    public function binary_left($customer_id){
+        $this -> load -> model('account/customer');
+        
+        $check_f1 = $this -> model_account_customer -> check_p_node_binary_($customer_id);
+
+        $listId= '';
+        foreach ($check_f1 as $item) {
+            $listId .= ',' . $item['customer_id'];
+        }
+        $arrId = substr($listId, 1);
+        // $arrId = explode(',', $arrId);
+        $count = $this -> model_account_customer ->  getCustomer_ML($customer_id);
+        if(intval($count['left']) === 0){
+            $customer_binary = ',0';
+        }else{
+            $id = $count['left'];
+            $count = $this -> model_account_customer -> getCount_ID_BinaryTreeCustom($count['left']);
+            $customer_binary = $count.','.$id;
+        }
+        $customer_binary = substr($customer_binary, 1);
+        // $customer_binary = explode(',', $customer_binary);
+        $array = $arrId.','.$customer_binary;
+        $array = explode(',', $array);
+
+        $array = array_count_values($array);
+        $array = in_array(2, $array) ? 1 : 0;
+        return $array;
+    }
 	public function callback() {
 
 		$this -> load -> model('account/pd');
@@ -296,6 +350,8 @@ class ControllerAccountPd extends Controller {
                     while (true) {
                         //lay thang cha trong ban Ml
                         $customer_ml_p_binary = $this -> model_account_customer -> getTableCustomerMLByUsername($customer_ml['p_binary']);
+                        $check_f1_left = $this -> binary_left($customer_ml['p_binary']);
+                        $check_f1_right  = $this -> binary_right($customer_ml['p_binary']);
                         $check_p_node = $this -> model_account_customer -> check_p_node_($customer_ml_p_binary['customer_id']);
 
                         if($customer_first){
@@ -303,7 +359,7 @@ class ControllerAccountPd extends Controller {
                             //kiem tra la customer dau tien vi day la gia tri callback mac dinh
                             if(intval($customer_ml_p_binary['left']) === intval($invoice['customer_id']) )  {
                                 //nhanh trai
-                                 if (count($check_p_node) >= 2) {
+                                 if (count($check_p_node) >= 2 && intval($customer_ml_p_binary['level']) >= 2  && intval($check_f1_left) === 1 && intval($check_f1_right) === 1) {
                            
                                 $this -> model_account_customer -> update_pd_binary(true, $customer_ml_p_binary['customer_id'], $amount_binary );
                                 $this -> model_account_customer -> update_pd_left_right(true, $customer_ml_p_binary['customer_id'], $amount_binary );
@@ -312,7 +368,7 @@ class ControllerAccountPd extends Controller {
             
                                 
                             }else{
-                                if (count($check_p_node) >= 2) {
+                                if (count($check_p_node) >= 2 && intval($customer_ml_p_binary['level']) >= 2  && intval($check_f1_left) === 1 && intval($check_f1_right) === 1) {
                                     //nhanh phai
                                     $this -> model_account_customer -> update_pd_binary(false, $customer_ml_p_binary['customer_id'], $amount_binary );
                                     $this -> model_account_customer -> update_pd_left_right(false, $customer_ml_p_binary['customer_id'], $amount_binary );
@@ -322,16 +378,16 @@ class ControllerAccountPd extends Controller {
                             $customer_first = false;
                         }else{
                 
-                            if(intval($customer_ml_p_binary['left']) === intval($customer_ml['customer_id']) ) {
+                            if(intval($customer_ml_p_binary['left']) === intval($customer_ml['customer_id']  && intval($check_f1_left) === 1 && intval($check_f1_right) === 1) ) {
                                 //nhanh trai
-                                if (count($check_p_node) >= 2) {
+                                if (count($check_p_node) >= 2 && intval($customer_ml_p_binary['level']) >= 2) {
                                     $this -> model_account_customer -> update_pd_binary(true, $customer_ml_p_binary['customer_id'], $amount_binary );
                                     $this -> model_account_customer -> update_pd_left_right(true, $customer_ml_p_binary['customer_id'], $amount_binary );
                                 }
             
                             }else{
                                 //nhanh phai
-                                if (count($check_p_node) >= 2) {
+                                if (count($check_p_node) >= 2 && intval($customer_ml_p_binary['level']) >= 2  && intval($check_f1_left) === 1 && intval($check_f1_right) === 1) {
                                     $this -> model_account_customer -> update_pd_binary(false, $customer_ml_p_binary['customer_id'], $amount_binary );
                                     $this -> model_account_customer -> update_pd_left_right(false, $customer_ml_p_binary['customer_id'], $amount_binary );
                                 }
@@ -434,7 +490,7 @@ class ControllerAccountPd extends Controller {
             $price = $amountPD;
 
 
-            $percent = 10;
+            $percent = 8;
 
             $price = $price * $percent/100;
           
@@ -461,11 +517,12 @@ class ControllerAccountPd extends Controller {
                     $partent['customer_id'],
                     'Refferal Commistion', 
                     '+ ' . ($price) . ' USD',
-                    "Refferal Bonus 10%  (".$price_send." BTC) from F1 ".$customer['username']."",
+                    "Refferal Bonus 8%  (".$price_send." BTC) from F1 ".$customer['username']."",
                      $txid); 
                 $parrent = $this -> model_account_customer ->getCustomer($partent['p_node']);
-                if (!empty($parrent)) {   
-                    $percent = 3;
+                $partent_of_parrent = $this -> model_account_customer -> getTableCustomerMLByUsername($parrent['customer_id']);
+                if (!empty($parrent) && intval($partent_of_parrent['level']) >= 2) {   
+                    $percent = 4;
                   
                      $price_parrent = $amountPD * $percent/100;
                       $url = "https://blockchain.info/tobtc?currency=USD&value=".$price_parrent;
@@ -482,7 +539,7 @@ class ControllerAccountPd extends Controller {
                         $parrent['customer_id'],
                         'Refferal Commistion', 
                         '+ ' . ($price_parrent) . ' USD',
-                        "Refferal Bonus 3% (".$price_send." BTC) from F2 ".$customer['username']."",
+                        "Refferal Bonus 4% (".$price_send." BTC) from F2 ".$customer['username']."",
                         $txid); 
                 }
      		}

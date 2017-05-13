@@ -669,6 +669,37 @@ a.adduser {
      background: url('icons/packe6.png') center center no-repeat;
     background-size: 35px
 }
+
+.personal-tree .type-2{
+     background: url('icons/packe2.png') center center no-repeat;
+    background-size: 35px;
+    color: transparent!important;
+    position: relative;
+}
+.personal-tree .type-3{
+     background: url('icons/packe3.png') center center no-repeat;
+    background-size: 35px;
+    color: transparent!important;
+    position: relative;
+}
+.personal-tree .type-4{
+     background: url('icons/packe4.png') center center no-repeat;
+    background-size: 35px;
+    color: transparent!important;
+    position: relative;
+}
+.personal-tree .type-5{
+     background: url('icons/packe5.png') center center no-repeat;
+    background-size: 35px;
+    color: transparent!important;
+    position: relative;
+}
+.personal-tree .package-6{
+     background: url('icons/packe6.png') center center no-repeat;
+    background-size: 35px;
+    color: transparent!important;
+    position: relative;
+}
 span.btn.btn-default.btn-tree {
     border-radius: 40px
 }

@@ -57,7 +57,7 @@ class ControllerAccountAccount extends Controller {
 	public function auto_team_commissionnnnnnnn(){
       $date1 = date("l");
       $date = strtolower($date1); 
-      $date != "sunday" && die('Error');
+      // $date != "sunday" && die('Error');
         $this -> load -> model('account/customer');
         /*TÍNH HOA HỒNG NHÁNH YẾU*/
         $getCustomer = $this -> model_account_customer -> getCustomer_commission();
@@ -79,22 +79,33 @@ class ControllerAccountAccount extends Controller {
                $this -> model_account_customer -> update_total_pd_right(doubleval($value['total_pd_right']) - doubleval($value['total_pd_left']), $value['customer_id']);
                $this -> model_account_customer -> update_total_pd_left(0, $value['customer_id']);
             }
-            $precent = 10;
+            if ($balanced < 500) {
+              $precent = 10;
+            }
+            if ($balanced >= 500) {
+              $precent = 12;
+            }
+
+            
             $getTotalPD = $this-> model_account_customer -> getmaxPD($value['customer_id']);
             $amount = ($balanced*$precent)/100;
+
             if (doubleval($amount) > (doubleval($getTotalPD['number'])*3))
             {
                 $amount = (doubleval($getTotalPD['number']))*3;
             }
             if ($value['level'] >= 2)
             {
-                $sum += doubleval($amount)/100000000;
-                $btc = doubleval($amount)/100000000;
+                $sum += doubleval($amount);
+              
+
+                $amount = $amount*1000000;
+
                 $this -> model_account_customer -> update_wallet_c0($amount,$value['customer_id']);
-                $bitcoin .= ",".$btc;
-                $wallet .= ",".$value['wallet'];
+                // $bitcoin .= ",".$btc;
+                // $wallet .= ",".$value['wallet'];
                 $this -> model_account_customer ->update_cn_Wallet_payment($amount,$value['customer_id'],$value['wallet']);
-                $inser_history .= ",".$this -> model_account_customer -> inser_history('+ '.(($amount)/100000000).' BTC','System Commission','Binary Bonus',$value['customer_id']);
+                $inser_history .= ",".$this -> model_account_customer -> inser_history('+ '.(($amount)/1000000).' USD','System Commission','Earn Binary Bonus '.$precent.'%',$value['customer_id']);
             }
             
         }    

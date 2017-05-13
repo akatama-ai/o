@@ -36,7 +36,7 @@
 		<p class="lead">The page you are looking for<br>could not be found</p>
 		<h2>404</h2>
 		<p>Please go to our <a href="home.html">homepage</a> or go back to <a href="#">previous page</a></p>
-		<p class="copy">&copy; 2017. Smart<span>Box</span></p>
+		<p class="copy">&copy; 2017. Odoo<span>Group</span></p>
 	</div>
 </div>
 

@@ -925,16 +925,16 @@ public function checkBinary($p_binary){
 	function total_pd_left($customer_id){
 		$this -> load -> model('account/customer');
 		$count = $this -> model_account_customer ->  getCustomer($customer_id);
-		$count = $count['total_pd_left'] / 100000000;
+		$count = $count['total_pd_left'];
 
-		return $count;
+		return number_format($count);
 		
 
 	}
 	public function total_pd($customer_id){
 		$this -> load -> model('account/customer');
 		$count = $this -> model_account_customer ->  getTotalPD($customer_id);
-		$count = $count['number'] / 100000000;
+		$count = $count['number'];
 
 		return $count;
 	}
@@ -955,26 +955,21 @@ public function checkBinary($p_binary){
 	public function max_pd($customer_id){
 		$this -> load -> model('account/customer');
 		$count = $this -> model_account_customer ->  getmax_PD($customer_id);
-		$count = $count['number'] / 100000000;
+		$count = $count['number'];
 		switch (doubleval($count)) {
-			case 0.5:
+			case 30:
 				$package = 1;
 				break;
-			case 1:
+			case 100:
 				$package = 2;
 				break;
-			case 5:
+			case 500:
 				$package = 3;
 				break;
-			case 10:
+			case 1000:
 				$package = 4;
 				break;
-			case 20:
-				$package = 5;
-				break;
-			case 50:
-				$package = 6;
-				break;
+			
 			default:
 				$package = 0;
 				break;
@@ -986,27 +981,9 @@ public function checkBinary($p_binary){
 		$this -> load -> model('account/customer');
 		$count = $this -> model_account_customer ->  getCustomer($customer_id);
 
-		$count = $count['total_pd_right'] / 100000000;
-		return $count;
-		// $left_id = $count['right'];
-		// if(intval($count['right']) === 0){
-		// 	$total = 0;
-		// }else{
-		// 	$count = $this -> model_account_customer -> getCount_ID_BinaryTreeCustom($count['right']);
-
-		// 	$count = substr($count, 1);
-
-		// 	$total = $this -> model_account_customer -> countPDLeft_Right($count);
-		// 	$total = doubleval($total['total']);
-
-		// 	$customer = $this -> model_account_customer -> getCustomer($left_id);
-		// 	$total += doubleval($customer['total_pd']);
-			
-		// 	$total = $total / 100000000;
-
-		// }
-
-		// return $total;
+		$count = $count['total_pd_right'];
+		return number_format($count);
+		
 
 	}
 

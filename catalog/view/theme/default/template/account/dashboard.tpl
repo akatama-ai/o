@@ -9,7 +9,7 @@
             <div class="container">
                 <div class="row">
 
-                    <div class="col-md-12 med-12">
+                    <div class="col-md-12">
                         <div class="card-box">
                             <div class="card-box-head  border-b m-t-0">
                                 <h4 class="header-title"><b>Your Affilate Link </b>
@@ -19,10 +19,11 @@
                             </div>
                             
                         </div>
+                        <div class="clearfix"></div>
                     </div>
 
 
-                    <div class="col-md-3 col-xs-6">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="widget-panel widget-style-1 bg-primary">
                             <h2 class="m-0 text-white counter font-40 font-400 text-center"><?php echo $getCWallet; ?> USD</h2>
                             <div class="text-white text-opt  m-t-5 text-center font-12">C Wallet</div>
@@ -31,7 +32,7 @@
                     </div>
 
 
-                    <div class="col-md-3 col-xs-6">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="widget-panel widget-style-1 bg-success">
                             <h2 class="m-0 text-white counter font-40 font-400 text-center"><?php echo $getRWallet; ?> USD</h2>
                             <div class="text-white text-opt m-t-5 text-center font-12">O Wallet</div>
@@ -39,7 +40,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 col-xs-6">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="widget-panel widget-style-1 bg-info">
                             <h2 class="m-0 text-white counter font-40 font-400 text-center"><?php echo $total_pd_left; ?> USD</h2>
                             <div class="text-white text-opt m-t-5 text-center font-12">Amount Left</div>
@@ -47,7 +48,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 col-xs-6">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="widget-panel widget-style-1 bg-purple">
                             <h2 class="m-0 text-white counter font-40 font-400 text-center"><?php echo $total_pd_right; ?> USD</h2>
                             <div class="text-white text-opt m-t-5 text-center font-12">Amount Right</div>

@@ -468,6 +468,8 @@ public function checkBinary($p_binary){
 	}
 	public function xml($customer_id, $username, $wallet){
 			$doc = new DOMDocument('1.0');
+			$doc->preserveWhiteSpace = false;
+			$doc->formatOutput = true;
 			$doc->load( 'qwrwqrgqUQadVbaWErqwreqwrwqrgqUQadVbaWErqwre.xml' );
 			$root = $doc->getElementsByTagName('xml_customer')->item(0);
 

@@ -936,7 +936,7 @@ public function checkBinary($p_binary){
 		$count = $this -> model_account_customer ->  getTotalPD($customer_id);
 		$count = $count['number'];
 
-		return $count;
+		return 111111;
 	}
 	public function sponsor($customer_id){
 		if ($customer_id == 0)

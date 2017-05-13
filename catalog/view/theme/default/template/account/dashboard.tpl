@@ -102,7 +102,9 @@
 
         <div class="cb-page-content">
             <div class="container">
-                
+                <div class="row">
+                    
+               
                 <div class="col-md-6">
                     <div class="card-box">
                         <div class="card-box-head  border-b m-t-0">
@@ -112,7 +114,7 @@
                         <?php if (count($login_detail) > 0) {
                           
                          ?>
-                        <div class="card-box-content p-l-0 p-r-0 btn-compoenent">
+                        
                             <table class="table table-condensed table-striped table-hover table-bordered" id="data-table">
                             <thead>
                                 <tr>
@@ -137,7 +139,7 @@
                             </tbody>
                         </table>
 
-                        </div>
+                       
                         <?php
                           
                         } ?>
@@ -146,7 +148,7 @@
                 <div class="col-md-6">
                     <img class="img-responsive" src="catalog/view/theme/default/images/odoo_image.png">
                 </div>
-               
+                </div>
             </div>
         </div>
    

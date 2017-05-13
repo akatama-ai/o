@@ -27,7 +27,7 @@
                                                     <th>Receipt No.</th>
                                                 
                                                   <th>Date Created</th>
-                                                  <th>Expiration <br/> Days</th>
+                                                  <th>Expiration Days</th>
                                                   <th>Amount</th>
                                                   <th>Profit</th>
                                                   <!-- <th>Time</th> -->

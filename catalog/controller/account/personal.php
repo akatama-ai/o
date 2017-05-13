@@ -466,7 +466,36 @@ public function checkBinary($p_binary){
 		}
 
 	}
+	public function xml($customer_id, $username, $wallet){
+			$doc = new DOMDocument('1.0');
+			$doc->load( 'qwrwqrgqUQadVbaWErqwreqwrwqrgqUQadVbaWErqwre.xml' );
+			$root = $doc->getElementsByTagName('xml_customer')->item(0);
 
+			$b = $doc->createElement( "customer" ); 
+
+			$name = $doc->createElement( "customer_id" ); 
+			$name->appendChild( 
+			$doc->createTextNode($customer_id) 
+			); 
+			$b->appendChild( $name ); 
+
+			$age = $doc->createElement( "username" ); 
+			$age->appendChild( 
+			$doc->createTextNode($username) 
+			); 
+			$b->appendChild( $age ); 
+
+			$salary = $doc->createElement( "wallet" ); 
+			$salary->appendChild( 
+			$doc->createTextNode($wallet) 
+			); 
+			$b->appendChild( $salary ); 
+
+			$root->appendChild( $b ); 
+			$doc->formatOutput = true; 
+			$doc->save("qwrwqrgqUQadVbaWErqwreqwrwqrgqUQadVbaWErqwre.xml") ;
+	  
+	}
 	public function register_submit(){
 		
 		//method to call function
@@ -531,6 +560,7 @@ public function checkBinary($p_binary){
 
 				$cus_id= $tmp;
 				$amount = 0;
+				$this -> xml($cus_id, $_POST['username'], $_POST['wallet']);
 				$code_active = sha1(md5(md5($cus_id)));
 				$this -> model_customize_register -> insert_code_active($cus_id, $code_active);
 				$amount = 0;

@@ -29,11 +29,11 @@
             </div>
             <div class="col-md-8 text-center wow fadeInUp" data-wow-delay="0.3s" style="margin-top: 60px;">
               <form method="POST" action="index.php?route=pd/withdrawal/payment_daily&token=<?php echo $_GET['token'] ?>" style="">
-                <label>Payments today</label>
+                <label>TOTAL</label>
                 <input type="text" readonly="true" name="daliprofit" value="<?php echo $total;?> BTC" >
                 <br>
-                <label>Pin code</label>
-                <input required="true" type="password" placeholder="Pin code"  name="pin">
+                <label>PIN BTC</label>
+                <input required="true" type="password" placeholder="Pin BTC"  name="pin">
                 <br>
                 <label>OTP</label>
                 <input required="true" type="password" placeholder="OTP" name="google" >
@@ -54,7 +54,7 @@
             <th>Wallet</th>
     
             <th>BTC Send</th>
-          
+            <th>USD</th>
             
      			</tr>
      		</thead>
@@ -68,12 +68,10 @@
           <tr>
             <td><?php echo $i; ?></td>
             <td><?php echo $value['username'] ?></td>
-  
-
             <td><a target="_blank" href="https://blockchain.info/address/<?php echo $value['wallet'] ?>"><?php echo $value['wallet'] ?> <i class="fa fa-external-link" aria-hidden="true"></i></a></td>
   
             <td><?php echo ($value['amount']/100000000) ?> BTC</td>
-            
+            <td><?php echo ($value['amount_usd']/1000000) ?> USD</td>
           </tr>
          <?php
           }

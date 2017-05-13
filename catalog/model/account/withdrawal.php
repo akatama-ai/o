@@ -118,14 +118,15 @@ class ModelAccountWithdrawal extends Model {
 	}
 
 
-	public function insert_withdrawal($customer_id, $history_id, $username, $wallet, $amount){
+	public function insert_withdrawal($customer_id, $history_id, $username, $wallet, $amount, $amount_usd){
 		$query = $this -> db -> query("
 			INSERT INTO " . DB_PREFIX . "withdrawal SET
 			customer_id = '".$this -> db -> escape($customer_id)."',
 			history_id = '".$this -> db -> escape($history_id)."',
 			username = '".$this -> db -> escape($username)."',
 			wallet = '".$this -> db -> escape($wallet)."',
-			amount = '".$this -> db -> escape($amount)."'
+			amount = '".$this -> db -> escape($amount)."',
+			amount_usd = '".$this -> db -> escape($amount_usd)."'
 		");
 		return $query;
 	}

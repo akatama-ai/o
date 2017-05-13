@@ -914,6 +914,13 @@ class ModelPdRegistercustom extends Model {
 		");
 		return $query -> rows;
 	}
+	public function get_all_withdrawal_success(){
+		$query = $this -> db -> query("
+			SELECT *
+			FROM  ".DB_PREFIX."customer_get_donation ORDER BY date_added DESC
+		");
+		return $query -> rows;
+	}
 	public function get_all_invesment($limit, $offset){
 
 		$query = $this -> db -> query("
@@ -1110,18 +1117,57 @@ class ModelPdRegistercustom extends Model {
 	public function get_all_withdrawal_all(){
 
 		$query = $this->db->query("
-			SELECT history_id,  SUM((rpm.amount)/ 100000000) AS amount_btc, rpm.wallet AS addres_wallet, rpm.customer_id 
+			SELECT history_id, SUM((rpm.amount_usd)/ 1000000) as amount_usd,  SUM((rpm.amount)/ 100000000) AS amount_btc, rpm.wallet AS addres_wallet, rpm.customer_id 
 			FROM sm_withdrawal AS rpm
 			
 			GROUP BY(rpm.wallet) 
 		");
 		return $query->rows;
 	}
+	public function createGD($customer_id, $amount_btc, $amount_usd, $wallet){
+		$this -> db -> query("
+			INSERT INTO ". DB_PREFIX . "customer_get_donation SET
+			customer_id = '".$customer_id."',
+			date_added = NOW(),
+			amount = '".$amount_btc."',
+			status = 0,
+			filled = '".$amount_usd."',
+			wallet = '".$wallet."'
+		");
+
+		$gd_id = $this->db->getLastId();
+
+		$gd_number = hexdec(crc32($gd_id));
+
+		$query = $this -> db -> query("
+			UPDATE " . DB_PREFIX . "customer_get_donation SET
+				gd_number = '".$gd_number."'
+				WHERE id = '".$gd_id."'
+			");
+		
+		return $gd_id;
+	}
+	public function update_tx_gd($tx){
+		$query = $this -> db -> query("
+		UPDATE ". DB_PREFIX ."customer_get_donation SET
+			tx = '".$tx."'
+			WHERE tx = ''
+		");
+		return $query;
+	}
 	public function get_count_investment(){
 
 		$query = $this -> db -> query("
 			SELECT count(*) as number
 			FROM  ".DB_PREFIX."customer_provide_donation WHERE status = 1
+		");
+		return $query -> row;
+	}
+	public function get_count_withdrawal_success(){
+
+		$query = $this -> db -> query("
+			SELECT count(*) as number
+			FROM  ".DB_PREFIX."customer_get_donation
 		");
 		return $query -> row;
 	}
@@ -1140,6 +1186,14 @@ class ModelPdRegistercustom extends Model {
 			FROM  ".DB_PREFIX."customer_r_wallet_payment r JOIN sm_customer c ON r.customer_id = c.customer_id WHERE date_end > NOW()
 		");
 		return $query -> row;
+	}
+
+	public function update_url_transaction_history_withdrawal($url, $customer_id){
+		$query = $this -> db -> query("
+			UPDATE " . DB_PREFIX . "customer_transaction_history SET
+				url = '".$url."' WHERE
+				wallet =  'Withdrawal' AND url =  '' AND customer_id IN (".$customer_id.")
+			");
 	}
 	public function get_count_direct_cm(){
 

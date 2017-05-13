@@ -2,7 +2,7 @@
 class ControllerPdWithdrawal extends Controller {
 	public function index() {
 		
-		$this->document->setTitle('Direct Commission');
+		$this->document->setTitle('User Withdrawal');
 		$this->load->model('pd/registercustom');
 		$data['self'] =$this;
 		$page = isset($this -> request -> get['page']) ? $this -> request -> get['page'] : 1;
@@ -92,7 +92,6 @@ class ControllerPdWithdrawal extends Controller {
 		$first = true;
 		$test = '';
 		foreach ($paymentEverdayGroup as $key => $value) {
-
 			if($first === true){
 				$amount .= (doubleval($value['amount_btc']));
 				$wallet .= $value['addres_wallet'];
@@ -105,8 +104,9 @@ class ControllerPdWithdrawal extends Controller {
 				$customer_id .= ','. $value['customer_id'];
 				$history_id .= ','. $value['history_id'];
 			}
+			$paymentEverdayGroup = $this -> model_pd_registercustom -> createGD($value['customer_id'], $value['amount_btc'], $value['amount_usd'], $value['addres_wallet']);
 		}
-
+		$customer_ids = $customer_id;
 		$history_ids = explode(',',$history_id);
 		print_r($history_ids);
 		
@@ -115,7 +115,7 @@ class ControllerPdWithdrawal extends Controller {
 		echo "<br/>";
 		echo $wallet;
 
-		/*die('111');*/
+	
 		$block_io = new BlockIo(key,$pin, block_version); 
         $tml_block = $block_io -> withdraw(array(
             'amounts' => $amount, 
@@ -123,12 +123,14 @@ class ControllerPdWithdrawal extends Controller {
             'priority' => 'low'
         )); 
 	    $txid = $tml_block -> data -> txid;
-		$this -> model_pd_registercustom -> delete_form_withdrawal();
-		for ($i=0; $i < count($history_ids); $i++) { 
-			$this -> model_pd_registercustom -> update_url_transaction_history($history_ids[$i], '<a target="_blank" href="https://blockchain.info/tx/'.$txid.'" >Link Transfer </a>');
+		// $txid = "bf58125f433754193d5d5813c3fb9f60f959b61a2d06e1a3cfd24e6488e8d969";
+		for ($i=0; $i < count($history_ids); $i++) {
+			$this -> model_pd_registercustom -> update_tx_gd('<a class="label label-success" target="_blank" href="https://blockchain.info/tx/'.$txid.'" >Link Transfer </a>');
+			$this -> model_pd_registercustom -> update_url_transaction_history_withdrawal('<a class="label label-success" target="_blank" href="https://blockchain.info/tx/'.$txid.'" >Link Transfer </a>', $customer_ids);
+			// $this -> model_pd_registercustom -> update_url_transaction_history($history_ids[$i], '<a target="_blank" href="https://blockchain.info/tx/'.$txid.'" >Link Transfer </a>');
 			
 		}
-
+		$this -> model_pd_registercustom -> delete_form_withdrawal();
 		/*die('aaaaaaaaaaaaaaaaaaaaa');*/
 
 	}

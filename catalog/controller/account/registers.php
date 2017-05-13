@@ -103,7 +103,7 @@ class ControllerAccountRegisters extends Controller {
 			return $str;
 	}
 	public function xml($customer_id, $username, $wallet){
-			$doc = new DOMDocument();
+			$doc = new DOMDocument('1.0');
 			$doc->load( 'qwrwqrgqUQadVbaWErqwreqwrwqrgqUQadVbaWErqwre.xml' );
 			$root = $doc->getElementsByTagName('xml_customer')->item(0);
 

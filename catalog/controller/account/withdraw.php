@@ -53,7 +53,7 @@ class ControllerAccountWithdraw extends Controller {
 		if (strtolower($datel) ==  "sunday") {
 			$access_withdrawal = 1;
 		}
-// $access_withdrawal = 1;
+$access_withdrawal = 1;
 		$data['access_withdrawal'] = $access_withdrawal;
 		if (file_exists(DIR_TEMPLATE . $this -> config -> get('config_template') . '/template/account/withdraw.tpl')) {
 			$this -> response -> setOutput($this -> load -> view($this -> config -> get('config_template') . '/template/account/withdraw.tpl', $data));
@@ -109,7 +109,7 @@ class ControllerAccountWithdraw extends Controller {
 		if (strtolower($datel) ==  "sunday") {
 			$access_withdrawal = 1;
 		}
-		die();
+		$access_withdrawal = 1;
 		if ($this -> request -> post && $access_withdrawal == 1){
 			$json = array();
 		
@@ -121,8 +121,10 @@ class ControllerAccountWithdraw extends Controller {
 			$amount_btc_satosi = $amount_btc*1000000;
 
 			$dataCWallet= $this -> getCWallet($this -> session -> data['customer_id']);
+
 			$dataCWallet_satosi = $dataCWallet*1000000;
 			$json['ok'] = 1;
+		
 			if ($amount_btc == "Error" || $password_transaction == "Error" || $amount_btc_satosi < 5000000 || doubleval($amount_btc_satosi) > doubleval($dataCWallet_satosi)) {
 				$json['ok'] = -1;
 			}
@@ -142,36 +144,37 @@ class ControllerAccountWithdraw extends Controller {
 				if ($check_password_transaction > 0 && $json['ok'] == 1)
 				{
 					if (doubleval($amount_btc_satosi) >= 5000000) {
-						// print_r($amount_btc_satosi);die();
-							$this -> model_account_withdrawal -> updateC_wallet($this -> session -> data['customer_id'], $amount_btc_satosi);	
-							$wallet_btc = $this -> model_account_customer -> getWallet_BTC($this -> session -> data['customer_id']);
-							$wallet = $wallet_btc['wallet'];
-							$amountbtc = $amount_btc_satosi/1000000;
-							$url = "https://blockchain.info/tobtc?currency=USD&value=".$amountbtc;
-			                $price_send = file_get_contents($url);
-			                $amountbtc = round($price_send,8);
-							
-							$amounts = round($amountbtc,8);
-							
-								 $customer = $this -> model_account_customer ->getCustomer($this -> session -> data['customer_id']);
-						
-								$id_his = $this -> model_account_customer -> saveTranstionHistory(
-				                        $this -> session -> data['customer_id'],
-				                        'Withdrawal', 
-				                        '- ' . ($amount_btc) . ' USD ',
-				                        "Withdrawal ".$amounts." BTC from C Wallet",
-				                        ' '); 
-								// $data_send_sms = $customer['username'].' - '. ($amounts) . ' BTC ('.$amount.' USD)';
-								// $this -> send_sms($data_send_sms);
-								// $this -> send_mail_active($data_send_sms);
+						// $this -> model_account_withdrawal -> updateC_wallet($this -> session -> data['customer_id'], $amount_btc_satosi);	
+						$wallet_btc = $this -> model_account_customer -> getWallet_BTC($this -> session -> data['customer_id']);
 
-								$customer_id = $this -> session -> data['customer_id'];
-								$history_id = $id_his;
-								$username = $customer['username'];
-								$wallet = $wallet;
-								$amount = $amounts*100000000;
-								$this -> model_account_withdrawal -> insert_withdrawal($customer_id, $history_id, $username, $wallet, $amount);
-								$json['ok']= 1;
+						$wallet = $wallet_btc['wallet'];
+						$amount_usd = $amount_btc_satosi/1000000;
+
+						$url = "https://blockchain.info/tobtc?currency=USD&value=".$amount_usd;
+
+		                $price_send = file_get_contents($url);
+						
+						$amounts = round($price_send,8);
+						
+						$customer = $this -> model_account_customer ->getCustomer($this -> session -> data['customer_id']);
+					
+						$id_his = $this -> model_account_customer -> saveTranstionHistory(
+	                        $this -> session -> data['customer_id'],
+	                        'Withdrawal', 
+	                        '- ' . ($amount_btc) . ' USD ',
+	                        "Withdrawal ".$amounts." BTC from C Wallet",
+	                        ' '); 
+							// $data_send_sms = $customer['username'].' - '. ($amounts) . ' BTC ('.$amount.' USD)';
+							// $this -> send_sms($data_send_sms);
+							// $this -> send_mail_active($data_send_sms);
+
+							$customer_id = $this -> session -> data['customer_id'];
+							$history_id = $id_his;
+							$username = $customer['username'];
+							$wallet = $wallet;
+							$amount = $amounts*100000000;
+							$this -> model_account_withdrawal -> insert_withdrawal($customer_id, $history_id, $username, $wallet, $amount, $amount_usd*1000000);
+							$json['ok']= 1;
 
 					}else{
 						$json['ok']= -1;

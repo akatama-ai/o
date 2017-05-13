@@ -34,7 +34,7 @@
                                  <p><span class="text-info">Min Withdrawal: 0.005 BTC</span></p> -->
                            <div class="form-group">
                               <label for="example-nf-password">Amount</label>
-                                    <input class="form-control" type="text"  id="amount_usd" name="amount_usd" placeholder="Amount withdrawal">
+                                    <input class="form-control" type="number"  id="amount_usd" name="amount_usd" placeholder="Amount withdrawal"  autocomplete="off" autocorrect="off" autocapitalize="off">
 
                            </div>
                              <div class="form-group has-error">
@@ -43,7 +43,7 @@
                            </div>
                            <div class="form-group">
                               <label for="example-nf-password">Password Transaction</label>
-                              <input class="form-control" type="password" id="password_transaction_btc" name="password_transaction" placeholder="Enter Password Transaction..">
+                              <input class="form-control" type="password" id="password_transaction_btc" name="password_transaction" placeholder="Enter Password Transaction.."  autocomplete="off" autocorrect="off" autocapitalize="off">
                                
                            </div>
                            <div class="form-group has-error">

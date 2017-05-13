@@ -424,10 +424,10 @@ class ModelAccountAuto extends Model {
 		return $query -> rows;
 	}
 	public function updateMaxProfitPD($pd_id , $amount){
-		$this -> db -> query("
-			UPDATE " . DB_PREFIX . "customer_provide_donation SET 
+		$this -> db -> query(" UPDATE " . DB_PREFIX . "customer_provide_donation SET 
 			max_profit = max_profit + ".doubleval($amount).",
-			date_update_profit = DATE_ADD(NOW(), INTERVAL 23 HOUR)
+			date_update_profit = DATE_ADD(NOW(), INTERVAL 23 HOUR),
+			cycle = cycle - 1
 			WHERE id = '".$pd_id."'
 		");
 	}

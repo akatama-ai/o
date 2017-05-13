@@ -8,7 +8,7 @@
   
 
    <li id="" ><a href="index.php?route=pd/withdrawal&token=<?php echo $_GET['token'];?>"><i class="fa fa-user fa-fw"></i> <span> User Withdrawal</span></a></li>
-
+  <li id="" ><a href="index.php?route=pd/gd&token=<?php echo $_GET['token'];?>"><i class="fa fa-user fa-fw"></i> <span> Withdrawal Success</span></a></li>
   
   <li id="system"><a class="parent"><i class="fa fa-cog fa-fw"></i> <span><?php echo $text_system; ?></span></a>
     <ul>

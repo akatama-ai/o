@@ -3,14 +3,14 @@
 <div id="content">
 <div class="page-header">
   <div class="container-fluid">
-    <h1>Investment Manager</h1>
+    <h1>List Withdrawal Success</h1>
 
   </div>
 </div>
 <div class="container-fluid">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title pull-left">Investment Manager </h3>
+      <h3 class="panel-title pull-left">List Withdrawal Success </h3>
       
       <div class="clearfix">
           

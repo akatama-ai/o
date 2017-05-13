@@ -178,7 +178,7 @@
                                         <form >
                                            <div class="form-group">
                                               <label class="col-md-4" for="BitcoinWalletAddress">Wallet BTC</label>
-                                              <div class="col-md-8">
+                                              <div class="col-md-8 col-xs-12">
                                                 <input class="form-control" readonly id="BitcoinWalletAddress" name="wallet" type="text" data-link="<?php echo $self -> url -> link('account/account/main', '', 'SSL'); ?>" value="<?php echo $customer['wallet'] ?>" placeholder="Wallet Blockchain"/>
                                               
                                               </div>

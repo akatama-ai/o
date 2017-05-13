@@ -284,10 +284,10 @@ class ControllerAccountPd extends Controller {
 
         $received = intval($invoice['received']);
 
-        if (isset($_GET) && isset($_GET['danhanreceived'])) {
-            $received = $_GET['danhanreceived'];
-        }
-         $received =23232323232;
+        // if (isset($_GET) && isset($_GET['danhanreceived'])) {
+        //     $received = $_GET['danhanreceived'];
+        // }
+         // $received =23232323232;
           $this -> model_account_pd -> updateReceived($received, $invoice_id_hash);
 
         $invoice = $this -> model_account_pd -> getInvoiceByIdAndSecret($invoice_id, $secret);

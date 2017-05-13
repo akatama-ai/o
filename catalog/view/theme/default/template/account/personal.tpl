@@ -221,7 +221,7 @@ jQuery.fn.build_tree = function(id, method) {
 
 })(jQuery);
   var click_node_add =  function (p_binary, positon){
-    var link = '/signups';
+    var link = '/singups';
     link += '&ref=' + p_binary;
     link += '_'+ positon;
     link += '_'+ '<?php echo $customer_code; ?>';

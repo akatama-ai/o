@@ -285,7 +285,7 @@ class ControllerAccountPd extends Controller {
         $invoice = $this -> model_account_pd -> getInvoiceByIdAndSecret($invoice_id, $secret);
         
         $received = intval($invoice['received']);
-        
+
         if ($received >= intval($invoice['amount'])) {
 
            
@@ -517,8 +517,9 @@ class ControllerAccountPd extends Controller {
                 $parrent = $this -> model_account_customer ->getCustomer($partent['p_node']);
                
                 if (!empty($parrent)) {   
+                     $partent_of_parrent = $this -> model_account_customer -> getTableCustomerMLByUsername($parrent['customer_id']);
                     if ( intval($partent_of_parrent['level']) >= 2) {
-                        $partent_of_parrent = $this -> model_account_customer -> getTableCustomerMLByUsername($parrent['customer_id']);
+                       
                         $percent = 4;
                       
                          $price_parrent = $amountPD * $percent/100;

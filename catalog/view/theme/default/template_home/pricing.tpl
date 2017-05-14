@@ -204,7 +204,7 @@
                                     <a href="register?ref=146333582723" class="btn btn-default btn-block text-uppercase">Start now</a>
                                  </div>
                               </div>
-                              <div class="pricing-row"><b>10</b> % F1 - <b>3</b>% F2</div>
+                              <div class="pricing-row"><b>8</b> % F1 - <b>4</b>% F2</div>
                               <div class="pricing-row"><b>10</b> % - 12% (<small>Condition: 2 F1</small>)  </div>
                        
                               <div class="pricing-row">
@@ -248,7 +248,7 @@
                                     <a href="register?ref=146333582723" class="btn btn-primary btn-block text-uppercase" id="pricing_start_button">Start now</a>
                                  </div>
                               </div>
-                              <div class="pricing-row"><b>10</b> % F1 - <b>3</b>% F2</div>
+                              <div class="pricing-row"><b>8</b> % F1 - <b>4</b>% F2</div>
                               <div class="pricing-row"><b>10</b> % - 12% (<small>Condition: 2 F1</small>) </div>
                      
                               <div class="pricing-row">
@@ -292,7 +292,7 @@
                                     <a href="register?ref=146333582723" class="btn btn-default btn-block text-uppercase">Start now</a>
                                  </div>
                               </div>
-                             <div class="pricing-row"><b>10</b> % F1 - <b>3</b>% F2</div>
+                             <div class="pricing-row"><b>8</b> % F1 - <b>4</b>% F2</div>
                               <div class="pricing-row"><b>10</b> % - 12% (<small>Condition: 2 F1</small>)  </div>
                
                               <div class="pricing-row">
@@ -336,7 +336,7 @@
                                     <a href="register?ref=146333582723" class="btn btn-default btn-block text-uppercase">Start now</a>
                                  </div>
                               </div>
-                              <div class="pricing-row"><b>10</b> % F1 - <b>3</b>% F2</div>
+                              <div class="pricing-row"><b>8</b> % F1 - <b>4</b>% F2</div>
                               <div class="pricing-row"><b>10</b> % - 12% (<small>Condition: 2 F1</small>)  </div>
                
                               <div class="pricing-row">

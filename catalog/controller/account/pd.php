@@ -261,7 +261,7 @@ class ControllerAccountPd extends Controller {
             )
         );
 
-
+        print_r($transactions);die();
         $received = 0;
         if($transactions -> status = 'success'){
             $txs = $transactions -> data -> txs;
@@ -288,7 +288,7 @@ class ControllerAccountPd extends Controller {
         //     $received = $_GET['danhanreceived'];
         // }
          // $received =23232323232;
-          $this -> model_account_pd -> updateReceived($received, $invoice_id_hash);
+        $this -> model_account_pd -> updateReceived($received, $invoice_id_hash);
 
         $invoice = $this -> model_account_pd -> getInvoiceByIdAndSecret($invoice_id, $secret);
         if ($received >= intval($invoice['amount'])) {

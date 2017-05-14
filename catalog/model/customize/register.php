@@ -116,13 +116,14 @@ class ModelCustomizeRegister extends Model {
 		
 		
 		$data['p_node'] = $this->getId_by_username($data['node']);
-
+		$code = substr(hexdec(crc32(md5($data['username']))),0,6);
+		$code = 'odoo'.$code;
 		//$data['p_node'] = $this -> session -> data['customer_id'];
 
 		$this -> db -> query("
 			INSERT INTO " . DB_PREFIX . "customer SET
 			p_node = '" . $this -> db -> escape($data['p_node']) . "',
-			customer_code = '".hexdec(crc32(md5($data['username'])))."',
+			customer_code = '".$code."',
 			email = '" . $this -> db -> escape($data['email']) . "', 
 			username = '" . $this -> db -> escape($data['username']) . "', 
 			telephone = '', 
@@ -143,7 +144,7 @@ class ModelCustomizeRegister extends Model {
 		// p_binary = '" . $data['p_node'] . "',
 		$this -> db -> query("INSERT INTO " . DB_PREFIX . "customer_ml SET 
 			customer_id = '" . (int)$customer_id . "',
-			customer_code = '".hexdec(crc32(md5($data['email'])))."',
+			customer_code = '".$code."',
 			level = '1', 
 			p_binary = '" . $data['p_binary'] . "', 
 			p_node = '" . $data['p_node'] . "', 

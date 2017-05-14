@@ -110,7 +110,7 @@
                         <li class="grey">30 USD/70 days</li>
                         <li>1.8% Daily</li>
                         <li>Referral Program 10% F1, 3% F2</li>
-                        <li>Binary Bonuses 10% - 15%</li>
+                        <li>Binary Bonuses 10% - 12%</li>
                       
                         <li class="grey">
                        
@@ -148,7 +148,7 @@
                         <li class="grey">100 USD/70 days</li>
                         <li>2.0% Daily</li>
                         <li>Referral Program 10% F1, 5% F2</li>
-                        <li>Binary Bonuses 10% - 15%</li>
+                        <li>Binary Bonuses 10% - 12%</li>
                         
                         <li class="grey">
                          <?php if (count($packet) === 0) {?> 
@@ -182,7 +182,7 @@
                         <li class="grey">500 USD/70 days</li>
                         <li>2.2% Daily</li>
                         <li>Referral Program 10% F1, 3% F2</li>
-                        <li>Binary Bonuses 10% - 15%</li>
+                        <li>Binary Bonuses 10% - 12%</li>
                         
                         <li class="grey">
                          <?php if (count($packet) === 0) {?> 
@@ -215,7 +215,7 @@
                         <li class="grey">1,000 USD/80 days</li>
                         <li>2.5% Daily</li>
                         <li>Referral Program 10% F1, 3% F2</li>
-                        <li>Binary Bonuses 10% - 15%</li>
+                        <li>Binary Bonuses 10% - 12%</li>
                         
                         <li class="grey">
                          <?php if (count($packet) === 0) {?> 

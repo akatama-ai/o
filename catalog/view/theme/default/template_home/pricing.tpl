@@ -205,7 +205,7 @@
                                  </div>
                               </div>
                               <div class="pricing-row"><b>10</b> % F1 - <b>3</b>% F2</div>
-                              <div class="pricing-row"><b>10</b> % - 15% (<small>Condition: 2 F1</small>)  </div>
+                              <div class="pricing-row"><b>10</b> % - 12% (<small>Condition: 2 F1</small>)  </div>
                        
                               <div class="pricing-row">
                                  Sunday
@@ -249,7 +249,7 @@
                                  </div>
                               </div>
                               <div class="pricing-row"><b>10</b> % F1 - <b>3</b>% F2</div>
-                              <div class="pricing-row"><b>10</b> % - 15% (<small>Condition: 2 F1</small>) </div>
+                              <div class="pricing-row"><b>10</b> % - 12% (<small>Condition: 2 F1</small>) </div>
                      
                               <div class="pricing-row">
                                  Sunday
@@ -293,7 +293,7 @@
                                  </div>
                               </div>
                              <div class="pricing-row"><b>10</b> % F1 - <b>3</b>% F2</div>
-                              <div class="pricing-row"><b>10</b> % - 15% (<small>Condition: 2 F1</small>)  </div>
+                              <div class="pricing-row"><b>10</b> % - 12% (<small>Condition: 2 F1</small>)  </div>
                
                               <div class="pricing-row">
                                  Sunday
@@ -337,7 +337,7 @@
                                  </div>
                               </div>
                               <div class="pricing-row"><b>10</b> % F1 - <b>3</b>% F2</div>
-                              <div class="pricing-row"><b>10</b> % - 15% (<small>Condition: 2 F1</small>)  </div>
+                              <div class="pricing-row"><b>10</b> % - 12% (<small>Condition: 2 F1</small>)  </div>
                
                               <div class="pricing-row">
                                  Sunday

@@ -65,7 +65,7 @@
                   <div>
                      <a href="login.html">Sign in</a>
                   </div>
-                  <a class="btn btn-primary" href="register?ref=146333582723">Sign up</a>
+                  <a class="btn btn-primary" href="register?ref=odoo14633">Sign up</a>
                </div>
                <ul class="o_primary_nav">
                   <li>
@@ -90,7 +90,7 @@
                   </a>
                   <div class="collapse navbar-collapse">
                      <div class="call-to-action navbar-right">
-                        <a class="btn btn-primary" href="register?ref=146333582723">Sign Up</a>
+                        <a class="btn btn-primary" href="register?ref=odoo14633">Sign Up</a>
                      </div>
                      <ul class="nav navbar-nav navbar-right" id="top_menu">
                         <li></li>
@@ -201,7 +201,7 @@
                                     <p>1.8% Daily</p>
                                  </div>
                                  <div class="btn-container">
-                                    <a href="register?ref=146333582723" class="btn btn-default btn-block text-uppercase">Start now</a>
+                                    <a href="register?ref=odoo14633" class="btn btn-default btn-block text-uppercase">Start now</a>
                                  </div>
                               </div>
                               <div class="pricing-row"><b>8</b> % F1 - <b>4</b>% F2</div>
@@ -245,7 +245,7 @@
                                     <p>2.0% Daily</p>
                                  </div>
                                  <div class="btn-container">
-                                    <a href="register?ref=146333582723" class="btn btn-primary btn-block text-uppercase" id="pricing_start_button">Start now</a>
+                                    <a href="register?ref=odoo14633" class="btn btn-primary btn-block text-uppercase" id="pricing_start_button">Start now</a>
                                  </div>
                               </div>
                               <div class="pricing-row"><b>8</b> % F1 - <b>4</b>% F2</div>
@@ -289,7 +289,7 @@
                                     <p>2.2% Daily</p>
                                  </div>
                                  <div class="btn-container">
-                                    <a href="register?ref=146333582723" class="btn btn-default btn-block text-uppercase">Start now</a>
+                                    <a href="register?ref=odoo14633" class="btn btn-default btn-block text-uppercase">Start now</a>
                                  </div>
                               </div>
                              <div class="pricing-row"><b>8</b> % F1 - <b>4</b>% F2</div>
@@ -333,7 +333,7 @@
                                     <p>2.5% Daily</p>
                                  </div>
                                  <div class="btn-container">
-                                    <a href="register?ref=146333582723" class="btn btn-default btn-block text-uppercase">Start now</a>
+                                    <a href="register?ref=odoo14633" class="btn btn-default btn-block text-uppercase">Start now</a>
                                  </div>
                               </div>
                               <div class="pricing-row"><b>8</b> % F1 - <b>4</b>% F2</div>

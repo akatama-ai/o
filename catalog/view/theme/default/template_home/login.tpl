@@ -98,7 +98,7 @@
                     <div>
                         <a href="login.html">Sign in</a>
                     </div>
-                    <a class="btn btn-primary" href="register?ref=146333582723">Sign up</a>
+                    <a class="btn btn-primary" href="register?ref=odoo14633">Sign up</a>
                 </div>
                  <ul class="o_primary_nav">
                      <li>
@@ -208,7 +208,7 @@
 <div class="clearfix"></div>
                 <div class="clearfix oe_login_buttons">
                     
-                <a class="btn btn-link pull-right" href="register?ref=146333582723">Sign up</a>
+                <a class="btn btn-link pull-right" href="register?ref=odoo14633">Sign up</a>
                 <a class="btn btn-link pull-right" href="forgot.html">Reset Password</a>
             <button type="submit" class="btn btn-primary pull-left">
             

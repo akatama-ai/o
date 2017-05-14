@@ -105,7 +105,7 @@
                         <a href="about.html" style="position: relative; overflow: hidden;">About</a>
                     </li>
                     <li>
-                        <a href="tour.html" style="position: relative; overflow: hidden;">Tour</a>
+                        <a href="tour.html" style="position: relative; overflow: hidden;">Service</a>
                     </li>
                     <li>
                         <a href="pricing.html" style="position: relative; overflow: hidden;">Pricing</a>
@@ -256,60 +256,35 @@
                           </div>
                         </div>
                     <div class="col-sm-5 col-md-4 col-md-offset-1 col-lg-5 col-lg-offset-1">
-                        <ul class="o_language_selector">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <div id="google_translate_element" style="right: 0; bottom: -19px; z-index: 10002;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+   new google.translate.TranslateElement({pageLanguage: 'en' }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-
-
-
-
-                                    <img alt="" src="catalog/view/theme/default/template_home/assets/images/en_US.png" /> English
-                                    <span class="caret"></span>
-
-
-
-
-
-                                </a>
-                                <ul class="dropdown-menu js_language_selector">
-
-                                    <li>
-                                        <a class="js_change_lang" href="#" data-lang="zh_CN">
-                                            <img alt="" src="catalog/view/theme/default/template_home/assets/images/zh_CN.png" /> 简体中文
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a class="js_change_lang" href="#" data-lang="nl_NL">
-                                            <img alt="" src="catalog/view/theme/default/template_home/assets/images/nl_NL.png" /> Nederlands
-                                        </a>
-                                    </li>
-
-
-
-                                    <li>
-                                        <a class="js_change_lang" href="#" data-lang="fr_FR">
-                                            <img alt="" src="catalog/view/theme/default/template_home/assets/images/fr_FR.png" /> Français
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a class="js_change_lang" href="#" data-lang="de_DE">
-                                            <img alt="" src="catalog/view/theme/default/template_home/assets/images/de_DE.png" /> Deutsch
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a class="js_change_lang" href="#" data-lang="es_ES">
-                                            <img alt="" src="catalog/view/theme/default/template_home/assets/images/es_ES.png" /> Español
-                                        </a>
-                                    </li>
-
-
-                                </ul>
-                            </li>
-                        </ul>
+      <style type="text/css">
+      #google_translate_element select{
+        1px solid #94ffea;
+    padding: 10px;
+    border-radius: 5px;
+    background: #21b799;
+    color: #fff;
+      }
+      a.goog-logo-link {
+    display: none;
+}
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+    } 
+body {
+    top: 0px !important; 
+    }
+    #goog-gt-tt {
+    display: none !important;
+}
+      </style>
 
                         <hr/>
                         <p>

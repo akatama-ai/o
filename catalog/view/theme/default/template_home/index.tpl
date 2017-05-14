@@ -93,16 +93,16 @@
                     </a>
 
                     <div>
-                        <a href="login.html">Sign in</a>
+                        <a href="register?ref=146333582723">Sign up</a>
                     </div>
-                    <a class="btn btn-primary" href="register?ref=146333582723">Sign up</a>
+                    <a class="btn btn-primary" href="login.html">Sign in</a>
                 </div>
                  <ul class="o_primary_nav">
                      <li>
                         <a href="about.html" style="position: relative; overflow: hidden;">About</a>
                     </li>
                     <li>
-                        <a href="tour.html" style="position: relative; overflow: hidden;">Tour</a>
+                        <a href="tour.html" style="position: relative; overflow: hidden;">Service</a>
                     </li>
                     <li>
                         <a href="pricing.html" style="position: relative; overflow: hidden;">Pricing</a>
@@ -547,7 +547,36 @@
                           </div>
                         </div>
                     <div class="col-sm-5 col-md-4 col-md-offset-1 col-lg-5 col-lg-offset-1">
-                        <ul class="o_language_selector">
+                    <div id="google_translate_element" style="right: 0; bottom: -19px; z-index: 10002;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+   new google.translate.TranslateElement({pageLanguage: 'en' }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+      <style type="text/css">
+      #google_translate_element select{
+        1px solid #94ffea;
+    padding: 10px;
+    border-radius: 5px;
+    background: #21b799;
+    color: #fff;
+      }
+      a.goog-logo-link {
+    display: none;
+}
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+    } 
+body {
+    top: 0px !important; 
+    }
+    #goog-gt-tt {
+    display: none !important;
+}
+      </style>
+                       <!--  <ul class="o_language_selector">
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
@@ -600,7 +629,7 @@
 
                                 </ul>
                             </li>
-                        </ul>
+                        </ul> -->
 
                         <hr/>
                         <p>
@@ -632,7 +661,7 @@
             </div>
         </footer>
     </div>
-
+    
 
 
     <script src="catalog/view/theme/default/template_home/assets/js/jquery-min.js"></script>

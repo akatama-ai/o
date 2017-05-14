@@ -65,7 +65,39 @@ if ($time >= strtotime("Second Sunday March 0")  && $time < strtotime("First Sun
                     </li>
                     <li> <a href="your-profile.html" class="waves-effect"> <i class="fa fa-user"></i> <span> Setting</span> </a> </li>
                     <li> <a href="logout.html" class="waves-effect"> <i class="fa fa-outdent"></i> <span> Logout</span> </a> </li>
+                    <li  class="waves-effect">
+                         <div id="google_translate_element" style="    padding: 12px 20px;right: 0; bottom: -19px; z-index: 10002;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+   new google.translate.TranslateElement({pageLanguage: 'en' }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+      <style type="text/css">
+      #google_translate_element select{
+        1px solid #94ffea;
+    padding: 10px;
+    border-radius: 5px;
+    background: #21b799;
+    color: #fff;
+      }
+      a.goog-logo-link {
+    display: none;
+}
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+    } 
+body {
+    top: 0px !important; 
+    }
+    #goog-gt-tt {
+    display: none !important;
+}
+      </style>
+                    </li>
                 </ul>
+
                 <div class="clearfix"></div>
             </div>
             <div class="clearfix"></div>

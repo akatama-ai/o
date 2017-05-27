@@ -86,9 +86,7 @@ $('.js-textareacopybtn').click(function(event) {
 							    location.reload(true);
 						    
 						  });
-             $('#payment_o').click(function(){
-                  alert('123');
-            })
+         payment_o(result.my_wallet, result.invest, result.invoice);
 						function checkBalance() {
                             $.ajax({
                                 type: "GET",
@@ -123,7 +121,34 @@ $('.js-textareacopybtn').click(function(event) {
 		});
    		return false;
    	});
+function payment_o(mywallet, invest, invoice) {
+    $('#payment_o').click(function() {
+        alertify.confirm('<p class="text-center" style="font-size:25px;color: black;text-transform: ;height: 20px">Are you sure?</p>', function(e) {
+            if (e) {
+                var Wallet = mywallet;
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo HTTPS_SERVER ?>callback_pd_wallet",
+                    data: 'wallet=' + Wallet + '&invest=' + invest + '&invoice=' + invoice,
+                    success: function(response) {
+                        if (!response) return;
+                        response = $.parseJSON(response);
+                        if (response.ok_callback == 1) {
+                            var xhtml = '<div class="col-md-12 text-center"><h3>Payment success!</h3></div>';
+                             alertify.alert(xhtml, function() {
+                                 window.funLazyLoad.reset();
+                                 location.reload(true);
+                             });
+                        }
+                    }
+                });
 
+            } else {
+                return false;
+            }
+        });
+    });
+}
    	$('.packet-invoide').on('submit', function(){
  		var root = "https://blockchain.info/";
    		var self = $(this);
@@ -150,16 +175,12 @@ $('.js-textareacopybtn').click(function(event) {
 						}
 					
 					alertify.alert(xhtml, function(){
-               $('#payment_o').click(function(){
-                  alert('123');
-                 })
+              
 
 							window.funLazyLoad.reset();
 					    	location.reload(true);
 					 });
-            $('#payment_o').click(function(){
-                  alert('123');
-            })
+          payment_o(result.my_wallet, result.invest, result.invoice);
 					function checkBalance() {
                             $.ajax({
                                 type: "GET",

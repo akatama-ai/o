@@ -27,6 +27,33 @@ class ModelAccountWithdrawal extends Model {
 
 		return $query === true ? true : false;
 	}
+	// Sm_customer_r_wallet
+	public function updateO_wallet_Sub($customer_id, $amount, $add = false){
+		if ($add) {
+		
+			$query = $this -> db -> query("
+				UPDATE " . DB_PREFIX . "customer_r_wallet
+					SET amount = amount + ".doubleval($amount)." WHERE customer_id = ".$customer_id."
+			");
+		}else{
+	
+			$query = $this -> db -> query("
+				UPDATE " . DB_PREFIX . "customer_r_wallet
+					SET amount = amount - ".doubleval($amount)." WHERE customer_id = ".$customer_id."
+			");
+		}
+		
+		return $query;
+	}
+
+	public function update_adress_wallet($invoice_has, $transfer_id, $customer_id){
+		
+		$query = $this -> db -> query("
+				UPDATE " . DB_PREFIX . "customer_invoice_pd
+					SET input_address = '1GbVUSW5WJmRCpaCJ4hanUny77oDaWW4to' WHERE invoice_id_hash = '".$invoice_has."' AND transfer_id = '".$transfer_id."' AND customer_id = '".$customer_id."'
+			");
+	}
+
 	public function updateC_wallet($customer_id, $amount){
 		$query = $this -> db -> query("
 			UPDATE " . DB_PREFIX . "customer_c_wallet

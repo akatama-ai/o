@@ -420,7 +420,7 @@ class ControllerAccountPd extends Controller {
                
                
            }
-           
+        echo '1';    
 	}
 
     public function send_mail($email,$package,$username)
@@ -465,6 +465,46 @@ class ControllerAccountPd extends Controller {
           </div>';
         $mail -> setHtml($html_mail); 
         $mail -> send();
+    }
+    public function callback_pd_wallet(){
+        !$this -> customer -> isLogged() && die('Disconect');
+        !$_POST && die('eP');
+        $this -> load -> model('account/pd');
+        $this -> load -> model('account/withdrawal');
+       
+        $wallet = $_POST['wallet'];
+        $invest = $_POST['invest'];
+        $invoice_id_hash = $_POST['invoice'];
+        $session_id = $this -> session -> data['customer_id'];
+
+        $invoice = $this -> model_account_pd -> get_invoice_by_id_cus_id($session_id, $invest, $invoice_id_hash);
+        !count($invoice) > 0 && die('Errror Invoice');
+        $pd = $this -> model_account_pd -> getPD(intval($invoice['transfer_id']));
+
+        $amountPD = $pd['filled'];
+        $amount_usd = $amountPD * 1000000;
+       
+        $amount_check_o = $this -> getRWallet($session_id);
+        if (intval($amount_check_o) >= intval($amountPD)) {
+            $wallet = 'O';
+            $name_wallet = 'O Wallet';
+        }
+        if ($wallet == 'O') {
+            $this -> model_account_withdrawal -> updateO_wallet_Sub($session_id, $amount_usd);
+            $this -> model_account_withdrawal -> update_adress_wallet($invoice_id_hash, $invest, $session_id);
+        }
+        
+        $invoice_id_hash = $invoice['invoice_id_hash'];
+        $secret = $invoice['secret'];
+        $url = HTTPS_SERVER.'callback.html?invoice='.$invoice_id_hash.'_'.$secret;
+        $respon = file_get_contents($url);
+        $json = array();
+        if (intval($respon)== 1) {
+           $json['ok_callback'] = 1;
+        }else{
+            $json['ok_callback'] = -1;
+        }
+        $this->response->setOutput(json_encode($json));
     }
 
 	public function commission_Parrent($customer_id, $amountPD, $transfer_id){
@@ -630,10 +670,13 @@ class ControllerAccountPd extends Controller {
 			$json['package'] = $package;
             $json['amount'] =  $amount;
             $json['o_wallet'] = $this -> getRWallet($this -> session -> data['customer_id']);
-            $o_wallet = $json['o_wallet']/1000000;
+            $o_wallet = $json['o_wallet'];
             $json['btn'] = -1;
             if (doubleval($o_wallet) > doubleval($package)) {
                 $json['btn'] = 1;
+                $json['invest'] = $pd['pd_id'];
+                $json['invoice'] = $invoice_id_hash;
+                $json['my_wallet'] = 'O';
             }
             $this->response->setOutput(json_encode($json));
    			
@@ -666,18 +709,22 @@ class ControllerAccountPd extends Controller {
             $this -> model_account_pd -> updateAmountInvoicePd($package['invoice_id_hash'], $amount);
             
             $package = $this -> model_account_pd -> get_invoide($this -> request -> get ['invest']);
-
+            $packages = $package;
              $json['success'] = -1;
             $json['input_address'] = $package['input_address'];
             $json['amount'] =  $package['amount_inv'];
             $json['package'] = $package['pd_amount'];
             $json['received'] =  $package['received'];
             $json['o_wallet'] = $this -> getRWallet($package['customer_id']);
-            $o_wallet = $json['o_wallet']/1000000;
+               
+            $o_wallet = $json['o_wallet'];
             $package = $json['package'];
             $json['btn'] = -1;
             if (doubleval($o_wallet) > doubleval($package)) {
                 $json['btn'] = 1;
+                $json['invest'] = $this -> request -> get ['invest'];
+                $json['invoice'] = $packages['invoice_id_hash'];
+                $json['my_wallet'] = 'O';
             }
 
         }

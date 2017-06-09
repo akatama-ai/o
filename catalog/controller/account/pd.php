@@ -671,8 +671,7 @@ class ControllerAccountPd extends Controller {
             $json['amount'] =  $amount;
             $json['o_wallet'] = $this -> getRWallet($this -> session -> data['customer_id']);
             $o_wallet = $json['o_wallet'];
-            $json['btn'] = -1;  print_r($o_wallet);echo '<br>';
-            print_r($package);die();
+            $json['btn'] = -1;
             if (doubleval($o_wallet) > doubleval($package)) {
                 $json['btn'] = 1;
                 $json['invest'] = $pd['pd_id'];
@@ -721,8 +720,6 @@ class ControllerAccountPd extends Controller {
             $o_wallet = $json['o_wallet'];
             $package = $json['package'];
             $json['btn'] = -1;
-            print_r($o_wallet);echo '<br>';
-            print_r($package);die();
             if (doubleval($o_wallet) > doubleval($package)) {
                 $json['btn'] = 1;
                 $json['invest'] = $this -> request -> get ['invest'];

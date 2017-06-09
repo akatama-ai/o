@@ -530,16 +530,18 @@ class ControllerAccountPd extends Controller {
             $price = $price * $percent/100;
           
      		if($price > 0){
-                $url = "https://blockchain.info/tobtc?currency=USD&value=".$price;
-                 $amount_send = file_get_contents($url);
+                $max_profit = 1000000 * $price;
+                $this -> model_account_customer -> update_wallet_c0($max_profit , $partent['customer_id']);
+                // $url = "https://blockchain.info/tobtc?currency=USD&value=".$price;
+                //  $amount_send = file_get_contents($url);
 
            
          
                 //luu ban table truc tiep cong don
                 // $this -> model_account_customer -> update_wallet_c0($price,$partent['customer_id']);
-                $amount_send = floatval($amount_send);
+                // $amount_send = floatval($amount_send);
                
-                $price_send = round($amount_send,8);
+                // $price_send = round($amount_send,8);
                 // $block_io = new BlockIo(key, pin, block_version);
                 // $tml_block = $block_io -> withdraw(array(
                 //     'amounts' => $price_send , 
@@ -547,13 +549,13 @@ class ControllerAccountPd extends Controller {
                 //     'priority' => 'low'
                 // ));
                 $txid = '$tml_block -> data -> txid';
-                $this -> model_account_pd -> createGD_Withdrawal($partent['customer_id'], $price_send, $price, $partent['wallet'], $txid);
+                // $this -> model_account_pd -> createGD_Withdrawal($partent['customer_id'], $price_send, $price, $partent['wallet'], $txid);
                 $id_history = $this -> model_account_customer -> saveTranstionHistory(
                     $partent['customer_id'],
                     'Refferal Commistion', 
                     '+ ' . ($price) . ' USD',
-                    "Refferal Bonus 8%  (".$price_send." BTC) from F1 ".$customer['username']."",
-                     $txid); 
+                    "Refferal Bonus 8%  from F1 ".$customer['username']."",
+                     ''); 
                 $parrent = $this -> model_account_customer ->getCustomer($partent['p_node']);
                
                 if (!empty($parrent)) {   
@@ -563,23 +565,25 @@ class ControllerAccountPd extends Controller {
                         $percent = 4;
                       
                          $price_parrent = $amountPD * $percent/100;
-                          $url = "https://blockchain.info/tobtc?currency=USD&value=".$price_parrent;
-                        $price_send = file_get_contents($url);
-                        $price_send = round($price_send,8);
+                         $max_profit2 = $price_parrent * 1000000;
+                         $this -> model_account_customer -> update_wallet_c0($max_profit2 , $parrent['customer_id']);
+                        //   $url = "https://blockchain.info/tobtc?currency=USD&value=".$price_parrent;
+                        // $price_send = file_get_contents($url);
+                        // $price_send = round($price_send,8);
                         // $block_io = new BlockIo(key, pin, block_version);
                         // $tml_block = $block_io -> withdraw(array(
                         //     'amounts' => $price_send , 
                         //     'to_addresses' => $parrent['wallet'],
                         //     'priority' => 'low'
                         // ));
-                        $txid = '$tml_block -> data -> txid2';
-                        $this -> model_account_pd -> createGD_Withdrawal($parrent['customer_id'], $price_send, $price_parrent, $parrent['wallet'], $txid);
+                        // $txid = '$tml_block -> data -> txid2';
+                        // $this -> model_account_pd -> createGD_Withdrawal($parrent['customer_id'], $price_send, $price_parrent, $parrent['wallet'], $txid);
                          $id_history = $this -> model_account_customer -> saveTranstionHistory(
                             $parrent['customer_id'],
                             'Refferal Commistion', 
                             '+ ' . ($price_parrent) . ' USD',
-                            "Refferal Bonus 4% (".$price_send." BTC) from F2 ".$customer['username']."",
-                            $txid); 
+                            "Refferal Bonus 4%  from F2 ".$customer['username']."",
+                            ''); 
                     }
                     
                 }

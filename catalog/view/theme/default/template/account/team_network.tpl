@@ -19,23 +19,41 @@
                             <div class="card-box-content p-l-0 p-r-0 btn-compoenent Team">
                                 <div class="row">
                                    
-                                    <div class="col-xs-4">
+                                    <div class="col-sm-2 col-xs-4">
                                         <div class="item-quick-access ">
-                                           <img src="catalog/view/theme/default/css/icons/3.png" style=" width: 41px; ">
+                                           <img src="catalog/view/theme/default/css/icons/3.png" style=" width: 39px; ">
                                            <p><a href="column-tree.html">Blank</a></p>
                                         </div>
                                     </div>
-                                    <div class="col-xs-4">
+                                    <div class="col-sm-2 col-xs-4">
                                         <div class="item-quick-access">
-                                             <img src="catalog/view/theme/default/css/icons/2.png" >
+                                             <img src="catalog/view/theme/default/css/icons/2.png" style=" width: 28px; ">
                                              <p><a href="column-tree.html">InActive</a></p>
                                         </div>
                                     </div>
                                    
-                                    <div class="col-xs-4">
+                                    <div class="col-sm-2 col-xs-4">
                                         <div class="item-quick-access">
-                                             <img src="catalog/view/theme/default/css/icons/6.png" >
-                                             <p><a href="column-tree.html">Active</a></p>
+                                             <img src="catalog/view/theme/default/css/icons/packe2.png" >
+                                             <p><a href="column-tree.html">30 USD</a></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 col-xs-4">
+                                        <div class="item-quick-access">
+                                             <img src="catalog/view/theme/default/css/icons/packe3.png" >
+                                             <p><a href="column-tree.html">100 USD</a></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 col-xs-4">
+                                        <div class="item-quick-access">
+                                             <img src="catalog/view/theme/default/css/icons/packe4.png" >
+                                             <p><a href="column-tree.html">500 USD</a></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 col-xs-4">
+                                        <div class="item-quick-access">
+                                             <img src="catalog/view/theme/default/css/icons/packe5.png" >
+                                             <p><a href="column-tree.html">1000 USD</a></p>
                                         </div>
                                     </div>
                                    

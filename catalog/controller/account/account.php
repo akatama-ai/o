@@ -46,7 +46,7 @@ class ControllerAccountAccount extends Controller {
      
       die('Error');
     }
-     print_r($date);die();
+   
 		$this -> load -> model('account/auto');
 		$this -> load -> model('account/customer');
 		$allPD = $this -> model_account_auto ->getPD20Before();

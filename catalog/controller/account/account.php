@@ -42,8 +42,8 @@ class ControllerAccountAccount extends Controller {
 		$date1 = date("l");
     $date = strtolower($date1); 
    
-    if ( $date == "sunday" || $date = "saturday") {
-      die('111');
+    if ( $date == "sunday" || $date == "saturday") {
+     
       die('Error');
     }
      print_r($date);die();

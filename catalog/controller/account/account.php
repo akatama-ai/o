@@ -41,7 +41,7 @@ class ControllerAccountAccount extends Controller {
 	public function auto_Update_profit_daily_rate(){
 		$date1 = date("l");
     $date = strtolower($date1); 
-    $date == "sunday" && die('Error');
+    $date == "sunday" || $date = "saturday" && die('Error');
 		$this -> load -> model('account/auto');
 		$this -> load -> model('account/customer');
 		$allPD = $this -> model_account_auto ->getPD20Before();

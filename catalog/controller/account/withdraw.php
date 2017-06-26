@@ -130,21 +130,11 @@ $access_withdrawal = 1;
 			}
 
 			$check_password_transaction = $this -> model_account_customer -> check_password_transaction($this->session->data['customer_id'],$password_transaction);
-			print_r($check_password_transaction);
-			echo '<br>';
 
 			$code_actives = $this -> model_account_withdrawal -> getuserin_ml($this->session->data['customer_id']);
             $check_in_pd = $this -> model_account_withdrawal -> getuserin_pd($this->session->data['customer_id']);
             $check_in_invoice = $this -> model_account_withdrawal -> getuserin_invoice_pd($this->session->data['customer_id']);
             $check_in_r_payment = $this -> model_account_withdrawal -> getuserin_r_payment($this->session->data['customer_id']);
-            print_r($code_actives);
-			echo '<br>';
-			print_r($check_in_pd);
-			echo '<br>';
-			print_r($check_in_invoice);
-			echo '<br>';
-			print_r($check_in_r_payment);
-			echo '<br>';
     
             if ($code_actives['number'] == 0 || $check_in_r_payment['number'] == 0  || $check_in_pd['number'] == 0 || $check_in_invoice['number'] == 0) {
                    $json['ok'] = -1;
@@ -174,7 +164,7 @@ $access_withdrawal = 1;
 	                        '- ' . ($amount_btc) . ' USD ',
 	                        "Withdrawal ".$amounts." BTC from C Wallet",
 	                        ' '); 
-							$data_send_sms = "Odoo Group - ". $customer['username'].' - '. ($amounts) . ' BTC ('.$amount.' USD)';
+							$data_send_sms = "Odoo Group - ". $customer['username'].' - '. ($amounts) . ' BTC ('.$amount_usd.' USD)';
 							$this -> send_sms($data_send_sms);
 							// $this -> send_mail_active($data_send_sms);
 

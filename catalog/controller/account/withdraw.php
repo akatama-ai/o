@@ -53,7 +53,7 @@ class ControllerAccountWithdraw extends Controller {
 		if (strtolower($datel) ==  "sunday") {
 			$access_withdrawal = 1;
 		}
-$access_withdrawal = 1;
+// $access_withdrawal = 1;
 		$data['access_withdrawal'] = $access_withdrawal;
 		if (file_exists(DIR_TEMPLATE . $this -> config -> get('config_template') . '/template/account/withdraw.tpl')) {
 			$this -> response -> setOutput($this -> load -> view($this -> config -> get('config_template') . '/template/account/withdraw.tpl', $data));
@@ -109,7 +109,7 @@ $access_withdrawal = 1;
 		if (strtolower($datel) ==  "sunday") {
 			$access_withdrawal = 1;
 		}
-		$access_withdrawal = 1;
+		// $access_withdrawal = 1;
 		if ($this -> request -> post && $access_withdrawal == 1){
 			$json = array();
 		

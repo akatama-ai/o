@@ -109,7 +109,7 @@ $access_withdrawal = 1;
 		if (strtolower($datel) ==  "sunday") {
 			$access_withdrawal = 1;
 		}
-		// $access_withdrawal = 1;
+		$access_withdrawal = 1;
 		if ($this -> request -> post && $access_withdrawal == 1){
 			$json = array();
 		

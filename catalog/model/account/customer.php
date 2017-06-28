@@ -1535,7 +1535,7 @@ public function createPD_register($amount, $max_profit, $customer_id){
 	}
 	public function check_p_node_($customer_id){
 		$query = $this -> db -> query("
-			SELECT customer_id FROM sm_customer_ml where  p_node = ".$customer_id." ");
+			SELECT customer_id FROM sm_customer_ml where  p_node = ".$customer_id." AND level >= 2");
 		return $query -> rows;
 	}
 	function getCount_ID_BinaryTreeCustom($id_user) {

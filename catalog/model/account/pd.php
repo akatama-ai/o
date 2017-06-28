@@ -166,6 +166,7 @@ class ModelAccountPd extends Model {
 	}
 
 	public function getInvoiceByIdAndSecret($invoice_id_hash, $secret){
+		
 		$query = $this -> db -> query("
 			SELECT *
 			FROM ". DB_PREFIX ."customer_invoice_pd

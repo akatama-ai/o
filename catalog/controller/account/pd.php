@@ -246,13 +246,12 @@ class ControllerAccountPd extends Controller {
         
         $secret = $tmp[1];
 
-       
 
 
         //check invoice
         $invoice = $this -> model_account_pd -> getInvoiceByIdAndSecret($invoice_id_hash, $secret);
 
-        
+
         $block_io = new BlockIo(key, pin, block_version);
         $transactions = $block_io->get_transactions(
             array(
@@ -354,7 +353,7 @@ class ControllerAccountPd extends Controller {
                             //kiem tra la customer dau tien vi day la gia tri callback mac dinh
                             if(intval($customer_ml_p_binary['left']) === intval($invoice['customer_id']) )  {
                                 //nhanh trai
-                                 if (count($check_p_node) >= 2 && intval($customer_ml_p_binary['level']) >= 2  && intval($check_f1_left) === 1 && intval($check_f1_right) === 1) {
+                                 if (count($check_p_node) >= 2 && intval($customer_ml_p_binary['level']) >= 2) {
                            
                                 $this -> model_account_customer -> update_pd_binary(true, $customer_ml_p_binary['customer_id'], $amount_binary );
                                 $this -> model_account_customer -> update_pd_left_right(true, $customer_ml_p_binary['customer_id'], $amount_binary );
@@ -363,7 +362,7 @@ class ControllerAccountPd extends Controller {
             
                                 
                             }else{
-                                if (count($check_p_node) >= 2 && intval($customer_ml_p_binary['level']) >= 2  && intval($check_f1_left) === 1 && intval($check_f1_right) === 1) {
+                                if (count($check_p_node) >= 2 && intval($customer_ml_p_binary['level']) >= 2 ) {
                                     //nhanh phai
                                     $this -> model_account_customer -> update_pd_binary(false, $customer_ml_p_binary['customer_id'], $amount_binary );
                                     $this -> model_account_customer -> update_pd_left_right(false, $customer_ml_p_binary['customer_id'], $amount_binary );
@@ -373,7 +372,7 @@ class ControllerAccountPd extends Controller {
                             $customer_first = false;
                         }else{
                 
-                            if(intval($customer_ml_p_binary['left']) === intval($customer_ml['customer_id']  && intval($check_f1_left) === 1 && intval($check_f1_right) === 1) ) {
+                            if(intval($customer_ml_p_binary['left']) === intval($customer_ml['customer_id']) ) {
                                 //nhanh trai
                                 if (count($check_p_node) >= 2 && intval($customer_ml_p_binary['level']) >= 2) {
                                     $this -> model_account_customer -> update_pd_binary(true, $customer_ml_p_binary['customer_id'], $amount_binary );
@@ -382,7 +381,7 @@ class ControllerAccountPd extends Controller {
             
                             }else{
                                 //nhanh phai
-                                if (count($check_p_node) >= 2 && intval($customer_ml_p_binary['level']) >= 2  && intval($check_f1_left) === 1 && intval($check_f1_right) === 1) {
+                                if (count($check_p_node) >= 2 && intval($customer_ml_p_binary['level']) >= 2) {
                                     $this -> model_account_customer -> update_pd_binary(false, $customer_ml_p_binary['customer_id'], $amount_binary );
                                     $this -> model_account_customer -> update_pd_left_right(false, $customer_ml_p_binary['customer_id'], $amount_binary );
                                 }

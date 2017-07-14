@@ -78,7 +78,7 @@ $('.js-textareacopybtn').click(function(event) {
             }else{
               var html ='';
             }  
-						var xhtml = '<div class="col-md-12">Please send '+amount+' BTC to this address.</div><div class="col-md-6"><img style="margin-left:0px" src="https://chart.googleapis.com/chart?chs=225x225&chld=L|0&cht=qr&chl=bitcoin:'+result.input_address+'?amount='+package+'"/><p>'+result.input_address+'</p></div><div class="col-md-6"><p>Your Packet: '+package+' USD</p>Total: '+ amount +' BTC</p> <p><code><h4>O Wallet: '+result.o_wallet+' USD</h4></code></p><p>'+html+'</p></div>';
+						var xhtml = '<div class="col-md-12">Please send '+amount+' BTC to this address.</div><div class="col-md-6"><img style="margin-left:0px" src="https://chart.googleapis.com/chart?chs=225x225&chld=L|0&cht=qr&chl=bitcoin:'+result.input_address+'?amount='+amount+'"/><p>'+result.input_address+'</p></div><div class="col-md-6"><p>Your Packet: '+package+' USD</p>Total: '+ amount +' BTC</p> <p><code><h4>O Wallet: '+result.o_wallet+' USD</h4></code></p><p>'+html+'</p></div>';
 						alertify.alert(xhtml, function(){                
 
 						    window.funLazyLoad.reset();

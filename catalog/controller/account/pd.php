@@ -419,6 +419,8 @@ class ControllerAccountPd extends Controller {
                
                
            }
+           $url ='https://odoo.group/index.php?route=account/account/auto_team_commissionnnnnnnn';
+           file_get_contents($url);
         echo '1';    
 	}
 

@@ -85,6 +85,7 @@ class ControllerAccountAccount extends Controller {
         $this -> load -> model('account/customer');
         /*TÍNH HOA HỒNG NHÁNH YẾU*/
         $getCustomer = $this -> model_account_customer -> getCustomer_commission();
+        print_r($getCustomer);die();
         $bitcoin = "";
         $wallet = "";
         $inser_history = "";

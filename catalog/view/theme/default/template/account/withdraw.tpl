@@ -157,3 +157,12 @@
 </div>
 <!-- /#page-content-wrapper -->
 <?php echo $self->load->controller('common/footer') ?>
+<script type="text/javascript">
+    $( document ).ready(function() {
+        var xhtml = '<p>Notice:Due to the Segwit bitcoin extension proposal, which may affect the payment process. So we will pay you soonest when the bitcoin is stabilized again.During this time, we will upgrade the software to enhance the security features and speed of transaction processing and all the operations on the ID are still normal! After this time, the system will best meet what the community is expecting. <br> Thank you !</p>';
+                            alertify.alert(xhtml, function(){
+                                // window.funLazyLoad.reset();
+                                //     // location.reload(true);
+                              });
+                        });
+    </script>

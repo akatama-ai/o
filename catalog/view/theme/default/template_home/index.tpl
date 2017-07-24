@@ -669,16 +669,16 @@ body {
     <script src="catalog/view/theme/default/template_home/assets/js/script.js"></script>
 
 <script src="catalog/view/javascript/alertifyjs/alertify.js" type="text/javascript"></script> 
-      <link href="catalog/view/theme/default/css/al_css/alertify.css" rel="stylesheet">
-<script type="text/javascript">
+<link href="catalog/view/theme/default/css/al_css/alertify.css" rel="stylesheet">
+<!-- <script type="text/javascript">
     $( document ).ready(function() {
-        var xhtml = '<p>Notice:Due to the Segwit bitcoin extension proposal, which may affect the payment process. We will suspend payments for a few days and upgrade the software to enhance the security features and speed of transaction processing. During this time all the operations on the ID are still normal! After this time, the system will best meet what the community is expecting. <br> Thank you !</p>';
+        var xhtml = '<p>Notice:Due to the Segwit bitcoin extension proposal, which may affect the payment process. So we will pay you soonest when the bitcoin is stabilized again.During this time, we will upgrade the software to enhance the security features and speed of transaction processing and all the operations on the ID are still normal! After this time, the system will best meet what the community is expecting. <br> Thank you !</p>';
                             alertify.alert(xhtml, function(){
                                 // window.funLazyLoad.reset();
                                 //     // location.reload(true);
                               });
                         });
-    </script>
+    </script> -->
     <style type="text/css">
             .ajs-header img{
     width: 40% !important;
@@ -686,7 +686,7 @@ body {
 }
 .ajs-header {
     text-align: center;
-    background-color: rgba(230,57,70,0.9) !important;
+    background-color: #21b799 !important;
     padding: 0px !important;
     padding-bottom: 5px !important; 
 }

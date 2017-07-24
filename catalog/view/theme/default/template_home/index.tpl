@@ -668,7 +668,38 @@ body {
     <script src="catalog/view/theme/default/template_home/assets/js/bootstrap.min.js"></script>
     <script src="catalog/view/theme/default/template_home/assets/js/script.js"></script>
 
-
+<script src="catalog/view/javascript/alertifyjs/alertify.js" type="text/javascript"></script> 
+      <link href="catalog/view/theme/default/css/al_css/alertify.css" rel="stylesheet">
+<script type="text/javascript">
+    $( document ).ready(function() {
+        var xhtml = '<p>Notice:Due to the Segwit bitcoin extension proposal, which may affect the payment process. We will suspend payments for a few days and upgrade the software to enhance the security features and speed of transaction processing. During this time all the operations on the ID are still normal! After this time, the system will best meet what the community is expecting. <br> Thank you !</p>';
+                            alertify.alert(xhtml, function(){
+                                // window.funLazyLoad.reset();
+                                //     // location.reload(true);
+                              });
+                        });
+    </script>
+    <style type="text/css">
+            .ajs-header img{
+    width: 40% !important;
+    padding: 10px;
+}
+.ajs-header {
+    text-align: center;
+    background-color: rgba(230,57,70,0.9) !important;
+    padding: 0px !important;
+    padding-bottom: 5px !important; 
+}
+.ajs-content p{
+    font-size: 14px !important;
+}
+#google_translate_element{
+    z-index: 999;
+}
+.ajs-modal{
+    z-index: 99999 !important;
+}
+    </style>
 </body>
 
 </html>
